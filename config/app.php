@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'ReclutaTI'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        ReclutaTI\Providers\AppServiceProvider::class,
+        ReclutaTI\Providers\AuthServiceProvider::class,
+        // ReclutaTI\Providers\BroadcastServiceProvider::class,
+        ReclutaTI\Providers\EventServiceProvider::class,
+        ReclutaTI\Providers\RouteServiceProvider::class,
 
     ],
 
