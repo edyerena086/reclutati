@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Front\StaticController@index');
+/**
+ * ------------------------------------------------------------------------
+ * Candidate Account Routes
+ * ------------------------------------------------------------------------
+ * 
+ */
+Route::get('candidate/account', 'Front\Candidate\AccountController@create');
+Route::post('candidate/account', 'Front\Candidate\AccountController@store');

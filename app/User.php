@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * [candidate description]
+     * @return [type] [description]
+     */
+    public function candidate()
+    {
+        return $this->hasOne('\ReclutaTI\Candidate');
+    }
 }

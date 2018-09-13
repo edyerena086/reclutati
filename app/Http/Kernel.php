@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \ReclutaTI\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'candidate.guest' => \ReclutaTI\Http\Middleware\CandidateGuest::class,
     ];
 }
