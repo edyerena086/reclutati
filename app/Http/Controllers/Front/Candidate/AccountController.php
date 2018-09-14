@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Mail\Candidate\Account\Welcome;
+use ReclutaTI\Http\Requests\Front\Candidate\Account\LoginRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Account\StoreRequest;
 
 class AccountController extends Controller
@@ -17,7 +18,7 @@ class AccountController extends Controller
 
 	public function __construct()
 	{
-		return $this->middleware('candidate.guest');
+		$this->middleware('candidate.guest')->except(['logout']);
 	}
 
 	/**
@@ -82,6 +83,12 @@ class AccountController extends Controller
     			//Send welcome Mail
     			Mail::to($user->email)->send(new Welcome($user));
 
+    			//Log user in
+    			Auth::attempt([
+    				'email' => $user->email,
+    				'password' => $request->password
+    			]);
+
     			$response = [
 	    			'errors' => false,
 	    			'message' => 'Se ha creado con éxito tu cuenta.',
@@ -105,5 +112,12 @@ class AccountController extends Controller
     	}
 
     	return response()->json($response);
+    }
+
+    public function logout()
+    {
+    	Auth::logout();
+
+    	return redirect()->intended('candidate');
     }
 }

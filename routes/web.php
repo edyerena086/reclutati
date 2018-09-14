@@ -18,5 +18,8 @@ Route::get('/', 'Front\StaticController@index');
  * ------------------------------------------------------------------------
  * 
  */
+Route::get('candidate', 'Front\Candidate\AccountController@index');
+Route::post('candidate', 'Front\Candidate\AccountController@login');
 Route::get('candidate/account', 'Front\Candidate\AccountController@create');
 Route::post('candidate/account', 'Front\Candidate\AccountController@store');
+Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout');
