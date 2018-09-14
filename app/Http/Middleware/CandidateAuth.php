@@ -2,6 +2,7 @@
 
 namespace ReclutaTI\Http\Middleware;
 
+use Auth;
 use Closure;
 
 class CandidateAuth

@@ -19,6 +19,8 @@ class AccountController extends Controller
 	public function __construct()
 	{
 		$this->middleware('candidate.guest')->except(['logout']);
+
+		$this->middleware('candidate.auth')->only(['logout']);
 	}
 
 	/**

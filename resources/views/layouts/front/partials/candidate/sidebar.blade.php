@@ -15,10 +15,15 @@
 			<div class="dashboard-nav">
 				<div class="dashboard-nav-inner">
 					<ul data-submenu-title="Inicio">
-						<li><a href="dashboard-reviews.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+						<li><a href="{{ url('candidate/dashboard') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 						<li><a href="{{ url('candidate/dashboard/curriculum') }}"><i class="icon-material-outline-assignment"></i> Mi Curriculum</a></li>
 						<li><a href="dashboard-bookmarks.html"><i class="icon-brand-wpforms"></i> Vacantes</a></li>
 						<li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Mensajes <span class="nav-tag">0</span></a></li>
+					</ul>
+
+					<ul data-submenu-title="Mi Cuenta">
+						<li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Configuración</a></li>
+						<li><a href="{{ url('candidate/account/logout') }}"><i class="icon-material-outline-power-settings-new"></i> Cerrar sesión</a></li>
 					</ul>
 				</div>
 			</div>
