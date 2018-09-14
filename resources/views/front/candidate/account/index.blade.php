@@ -46,6 +46,16 @@
 						</div>
 
 						<button class="submit button margin-top-15" id="submit">Iniciar sesión</button>
+
+						<ul class="ul-link">
+							<li>
+								<a href="{{ url('candidate/account/password/recover') }}">¿Olvidaste tu contraseña?</a>
+							</li>
+
+							<li>
+								<a href="{{ url('candidate/account') }}">¿No tienes cuenta?, crea la ¡aqui!</a>
+							</li>
+						</ul>
 					</form>
 				</section>
 			</diiv>
