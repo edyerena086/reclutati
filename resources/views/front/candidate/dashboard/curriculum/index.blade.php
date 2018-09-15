@@ -67,7 +67,7 @@
 										<div class="col-xl-3">
 											<div class="submit-field">
 												<h5>Genero:</h5>
-												{{ Form::select('genero', $genders, Auth::user()->candidate->gender_id, ['class' => 'with-border', 'placeholder' => 'Selecciona']) }}
+												{{ Form::select('genero', $genders, Auth::user()->candidate->gender_id, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
 											</div>
 										</div>
 									</div>
