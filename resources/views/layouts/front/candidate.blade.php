@@ -7,11 +7,11 @@
 	</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	{{-- CSS --}}
 	<link rel="stylesheet" href="{{ asset('hireo/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('hireo/css/colors/blue.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/plugins/jm.spinner.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 	
@@ -55,7 +55,6 @@
 	<script src="{{ asset('hireo/js/magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('hireo/js/slick.min.js') }}"></script>
 	<script src="{{ asset('hireo/js/custom.js') }}"></script>
-	<script src="{{ asset('js/plugins/jm.spinner.js') }}"></script>
 	<script src="{{ asset('js/pastora.js') }}"></script>
 
 	{{-- Page JS --}}

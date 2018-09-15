@@ -23,7 +23,7 @@ return [
     'before'               => ':attribute debe ser una fecha anterior a :date.',
     'before_or_equal'      => ':attribute debe ser una fecha anterior o igual a :date.',
     'between'              => [
-        'numeric' => ':attribute tiene que estar entre :min - :max.',
+        'numeric' => 'El campo :attribute tiene que estar entre :min - :max.',
         'file'    => ':attribute debe pesar entre :min - :max kilobytes.',
         'string'  => ':attribute tiene que tener entre :min - :max caracteres.',
         'array'   => ':attribute tiene que tener entre :min - :max ítems.',
@@ -38,7 +38,7 @@ return [
     'dimensions'           => 'Las dimensiones de la imagen :attribute no son válidas.',
     'distinct'             => 'El campo :attribute contiene un valor duplicado.',
     'email'                => ':attribute no es un correo válido',
-    'exists'               => ':attribute es inválido.',
+    'exists'               => 'El campo :attribute es inválido.',
     'file'                 => 'El campo :attribute debe ser un archivo.',
     'filled'               => 'El campo :attribute es obligatorio.',
     'gt'                   => [
@@ -56,7 +56,7 @@ return [
     'image'                => ':attribute debe ser una imagen.',
     'in'                   => ':attribute es inválido.',
     'in_array'             => 'El campo :attribute no existe en :other.',
-    'integer'              => ':attribute debe ser un número entero.',
+    'integer'              => 'El campo :attribute debe ser un número entero.',
     'ip'                   => ':attribute debe ser una dirección IP válida.',
     'ipv4'                 => ':attribute debe ser un dirección IPv4 válida',
     'ipv6'                 => ':attribute debe ser un dirección IPv6 válida.',

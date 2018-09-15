@@ -32,5 +32,7 @@ Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout
 Route::get('candidate/dashboard', function () {
 	return view('layouts.front.candidate');
 });
-
+//Curriculum
 Route::get('candidate/dashboard/curriculum', 'Front\Candidate\Curriculum\CurriculumController@index');
+Route::post('candidate/dashboard/curriculum/general-info', 'Front\Candidate\Curriculum\CurriculumController@generalInfo');
+Route::post('candidate/dashboard/curriculum/labor-goal', 'Front\Candidate\Curriculum\CurriculumController@laborGoal');

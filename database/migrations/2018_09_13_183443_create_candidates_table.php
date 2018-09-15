@@ -21,7 +21,16 @@ class CreateCandidatesTable extends Migration
             $table->string('second_last_name')->nullable();
             $table->integer('age')->nullable();
             $table->unsignedInteger('gender_id')->nullable();
+            //Contact info
+            $table->string('phone')->nullable();
+            $table->string('cellphone')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
+            //Job
+            $table->longText('labor_goal')->nullable();
         });
     }
 

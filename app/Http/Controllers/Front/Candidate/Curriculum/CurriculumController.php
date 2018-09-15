@@ -2,9 +2,12 @@
 
 namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
+use Auth;
 use ReclutaTI\Gender;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LaborGoalRequest;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\GeneralInfoRequest;
 
 class CurriculumController extends Controller
 {
@@ -19,22 +22,79 @@ class CurriculumController extends Controller
 	 */
     public function index()
     {
-    	return view('front.candidate.dashboard.curriculum.index', ['genders' => $this->renderList(Gender::all())]);
+    	return view('front.candidate.dashboard.curriculum.index');
+    }
+
+    public function generalInfo(GeneralInfoRequest $request)
+    {
+    	$response;
+
+    	$user = Auth::user();
+
+    	$user->name = strtolower($request->primerNombre);
+
+    	if ($user->save()) {
+    		$user->candidate->second_name = ($request->has('segundoNombre')) ? strtolower($request->segundoNombre) : '';
+    		$user->candidate->last_name = strtolower($request->apellidoPaterno);
+    		$user->candidate->second_last_name = ($request->has('apellidoMaterno')) ? strtolower($request->apellidoMaterno) : '';
+
+    		if ($request->has('edad')) {
+    			$user->candidate->age = $request->edad;
+    		}
+
+    		if ($request->has('genero')) {
+    			$user->candidate->gender_id = $request->genero;
+    		}
+
+    		if ($user->candidate->save()) {
+    			$response = [
+    				'errors' => false,
+    				'message' => 'Se ha actualizado con éxito tu información'
+    			];
+    		} else {
+    			$response = [
+    				'errors' => true,
+    				'message' => 'No se ha podido actualizar tu información',
+    				'error_code' => 'gi0001'
+    			];
+    		}
+    	} else {
+    		$response = [
+    			'errors' => true,
+    			'message' => 'No se ha podido actualizar tu información',
+    			'error_code' => 'gi0002'
+    		];
+    	}
+
+    	return response()->json($response);
     }
 
     /**
-     * [renderList description]
-     * @param  [type] $object [description]
-     * @return [type]         [description]
+     * [laborGoal description]
+     * @param  LaborGoalRequest $request [description]
+     * @return [type]                    [description]
      */
-    private function renderList($object)
+    public function laborGoal(LaborGoalRequest $request)
     {
-    	$list = [];
-    	
-    	foreach ($object as $item) {
-    		$list[$item->id] = ucwords($item->name); 
+    	$response;
+
+    	$candidate = Auth::user()->candidate;
+
+    	$candidate->labor_goal = $request->objetivoLaboral;
+
+    	if ($candidate->save()) {
+    		$response = [
+    			'errors' => false,
+    			'message' => 'Se ha actualizado con éxito tu objetivo laboral.'
+    		];
+    	} else {
+    		$response = [
+    			'errors' => true,
+    			'message' => 'No se ha podido actualizar tu objetivo laboral.',
+    			'error_code' => 'lg0001'
+    		];
     	}
 
-    	return $list;
+    	return response()->json($response);
     }
 }
