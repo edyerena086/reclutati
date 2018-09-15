@@ -24,6 +24,19 @@
 		<div class="dashboard-container">
 			{{-- Sidebar --}}
 			@include('layouts.front.partials.candidate.sidebar')
+
+			<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner">
+					<div class="dashboard-headline">
+						<h3>
+							@yield('sectionTitle')
+						</h3>
+					</div>
+
+					{{-- Content --}}
+					@yield('content')
+				</div>
+			</div>
 		</div>
 	</div>
 	

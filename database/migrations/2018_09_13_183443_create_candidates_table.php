@@ -18,6 +18,9 @@ class CreateCandidatesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('second_name')->nullable();
             $table->string('last_name');
+            $table->string('second_last_name')->nullable();
+            $table->integer('age')->nullable();
+            $table->unsignedInteger('gender_id')->nullable();
             $table->timestamps();
         });
     }
