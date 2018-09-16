@@ -1325,7 +1325,7 @@ body #navigation ul ul ul { margin-top: 0; }
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 10000;
+    z-index: 9999;
 }
 
 #wrapper.wrapper-with-transparent-header #header .right-side { background-color: transparent; }

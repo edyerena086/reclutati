@@ -50,7 +50,7 @@
 											<div class="col-xl-3">
 												<div class="submit-field">
 													<h5>Edad:</h5>
-													<input type="number" min="16" max="85" name="edad" class="with-border" value="{{ ucwords(Auth::user()->candidate->last_name) }}">
+													<input type="number" min="16" max="85" name="edad" class="with-border" value="{{ Auth::user()->candidate->age }}">
 												</div>
 											</div>
 

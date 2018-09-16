@@ -45,12 +45,40 @@ $(document).ready(function () {
 					});
 
 					$('.display-errors', env).removeClass('hidden');
+
+					$.jnoty("Haz cometido algunos errores en el formulario.", {
+						header: 'Advertencia',
+                        theme: 'jnoty-danger',
+                        life: 5000,
+                        color: 'rti-danger',
+                        position: 'top-right',
+                        icon: 'fa fa-info-circle'
+					});
 				}
 
 				unblockForm();
 			},
 			success: function (response) {
 				$('button.big', env).html('Guardar');
+
+				if (response.errors == false) {
+					$.jnoty(response.message, {
+						header: 'Éxito',
+                        theme: 'jnoty-success',
+                        life: 5000,
+                        position: 'top-right',
+                        icon: 'fa fa-check-circle'
+					});
+				} else {
+					$.jnoty(response.message, {
+						header: 'Advertencia',
+                        theme: 'jnoty-danger',
+                        life: 5000,
+                        color: 'rti-danger',
+                        position: 'top-right',
+                        icon: 'fa fa-info-circle'
+					});
+				}
 
 				unblockForm();
 			}
