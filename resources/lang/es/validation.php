@@ -110,7 +110,7 @@ return [
     'timezone'             => 'El :attribute debe ser una zona válida.',
     'unique'               => ':attribute ya ha sido registrado.',
     'uploaded'             => 'Subir :attribute ha fallado.',
-    'url'                  => 'El formato :attribute es inválido.',
+    'url'                  => 'El formato de :attribute es inválido.',
 
     /*
     |--------------------------------------------------------------------------

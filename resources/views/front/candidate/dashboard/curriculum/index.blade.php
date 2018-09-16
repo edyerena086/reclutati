@@ -15,6 +15,9 @@
 
 		{{-- Contact info --}}
 		@include('front.candidate.dashboard.curriculum.partials._contact-form')
+
+		{{-- Education and languages --}}
+		@include('front.candidate.dashboard.curriculum.partials._education-language-form')
 	</div>
 @stop
 

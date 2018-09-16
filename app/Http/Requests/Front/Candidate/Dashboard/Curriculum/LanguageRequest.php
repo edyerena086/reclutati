@@ -1,10 +1,10 @@
 <?php
 
-namespace ReclutaTI\Http\Requests\Front\Candidate\Account;
+namespace ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class LanguageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,15 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string',
-            'apellidoPaterno' => 'required|string',
-            'correoElectronico' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed'
+            'idioma' => 'required|integer|exists:languages,id',
+            'porcentaje' => 'required|integer|between:1,100'
         ];
     }
 
     public function messages()
     {
         return [
-            'correoElectronico.unique' => 'El correo electrónico ingresado ya ha sido registrado.'
+            'porcentaje.between' => 'El porcentaje debe de estar en 1 y 100.'
         ];
     }
 }

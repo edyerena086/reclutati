@@ -26,7 +26,7 @@ $(document).ready(function () {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 			dataType: 'json',
 			beforeSend: function () {
-				$('button.big', env).html('Cargando...');
+				$('button.big', env).html("Cargando...");
 				blockForm();
 
 				$('input, select, textarea', env).removeClass('invalid');

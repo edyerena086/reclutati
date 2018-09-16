@@ -1,10 +1,10 @@
 <?php
 
-namespace ReclutaTI\Http\Requests\Front\Candidate\Account;
+namespace ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class PhoneRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,16 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string',
-            'apellidoPaterno' => 'required|string',
-            'correoElectronico' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed'
+            'celular' => 'required|regex:/^[0-9\-\(\)\/\+\s]*$/',
+            'telefonoFijo' => 'sometimes|regex:/^[0-9\-\(\)\/\+\s]*$/'
         ];
     }
 
     public function messages()
     {
         return [
-            'correoElectronico.unique' => 'El correo electrónico ingresado ya ha sido registrado.'
+            'celular.regex' => 'El formato del celular no es válido.',
+            'telefonoFijo.regex' => 'El formato del teléfono fijo no es válido.'
         ];
     }
 }
