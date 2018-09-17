@@ -1,5 +1,63 @@
+var btnLanguages;
+
 $(document).ready(function () {
-	$('.btn-language').on('click', function (e) {
+	//Delete
+	$(this).on('click', '.btn-language-delete', function (e) {
+		e.preventDefault();
+
+		var env = this;
+
+		$.ajax({
+			type: 'GET',
+			url: $(this).attr('href'),
+			dataType: 'json',
+			beforeSend: function () {
+				blockForm();
+			}, 
+			error: function (jqXHR, textStatus, errorThrown) {
+
+				$.jnoty("No se ha podido eliminar el idioma.", {
+					header: 'Advertencia',
+                    theme: 'jnoty-danger',
+                    life: 5000,
+                    color: 'rti-danger',
+                    position: 'top-right',
+                    icon: 'fa fa-info-circle'
+				});
+
+				unblockForm();
+			},
+			success: function (response) {
+				if (response.errors == false) {
+					$.jnoty(response.message, {
+						header: 'Éxito',
+                        theme: 'jnoty-success',
+                        life: 5000,
+                        position: 'top-right',
+                        icon: 'fa fa-check-circle'
+					});
+
+					var position = $('.btn-language-delete').index(env) + 1;
+
+					$('.language-list li:eq('+position+')').remove();
+				} else {
+					$.jnoty(response.message, {
+						header: 'Advertencia',
+                        theme: 'jnoty-danger',
+                        life: 5000,
+                        color: 'rti-danger',
+                        position: 'top-right',
+                        icon: 'fa fa-info-circle'
+					});
+				}
+
+				unblockForm();
+			}
+		});
+	});
+
+
+	$(this).on('click', '.btn-language', function (e) {
 		e.preventDefault();
 
 		var actionType = $(this).attr('data-type');
@@ -9,12 +67,15 @@ $(document).ready(function () {
 
 		if (actionType == 'update'){
 			$('#frmLanguage input').val($(this).attr('data-percent'));
-			$('#frmLanguage select').val($(this).attr('data-language'));
-			$('#frmLanguage').attr('method', 'PUT');
+			$('#frmLanguage select').val($(this).attr('data-language'))
+			$('#frmLanguage').attr('data-action', 'update');
+			$('.language-title').html('Editar idioma');
+			btnLanguages = this;
 		} else {
-			$('#frmLanguage').attr('method', 'POST');
 			$('#frmLanguage input').val('');
 			$('#frmLanguage select').val('');
+			$('#frmLanguage').attr('data-action', 'store');
+			$('.language-title').html('Nuevo idioma');
 		}
 	});
 
@@ -25,6 +86,8 @@ $(document).ready(function () {
 		var route = $(this).attr('action');
 		var env = this;
 		var method = $(this).attr('method');
+		var dataAction = $(this).attr('data-action');
+
 
 		//Data
 		var data = new FormData();
@@ -35,10 +98,6 @@ $(document).ready(function () {
 				data.append($(this).attr('name'), $(this).val());
 			}
 		});
-
-		if (method == 'PUT') {
-			data.append('_method', 75);
-		}
 
 		$.ajax({
 			type: method,
@@ -92,6 +151,30 @@ $(document).ready(function () {
                         position: 'top-right',
                         icon: 'fa fa-check-circle'
 					});
+
+					if (dataAction == 'update') {
+						$(btnLanguages).attr('data-percent', $('input', env).val());
+					} else {
+						var element = `<li>
+											<div class="job-listing">
+												<div class="job-listing-details">
+													<div class="job-listing-description">
+														<h3 class="job-listing-title">${response.language_name}</h3>
+													</div>
+												</div>
+											</div>
+
+											<div class="buttons-to-right">
+												<a href="#small-dialog-2" data-type="update" class="button btn-language popup-with-zoom-anim dark ripple-effect ico" data-url="${response.url}" data-id="${response.id}" data-language="${response.language_id}" data-percent="${response.percent}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+
+												<a href="${response.url}/${response.id}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+											</div>
+										</li>`;
+
+						$('.language-list').append(element);
+
+						initMagnificPopup();
+					}
 				} else {
 					$.jnoty(response.message, {
 						header: 'Advertencia',
@@ -108,3 +191,22 @@ $(document).ready(function () {
 		});
 	});
 });
+
+function initMagnificPopup()
+{
+	$('.popup-with-zoom-anim').magnificPopup({
+		 type: 'inline',
+
+		 fixedContentPos: false,
+		 fixedBgPos: true,
+
+		 overflowY: 'auto',
+
+		 closeBtnInside: true,
+		 preloader: false,
+
+		 midClick: true,
+		 removalDelay: 300,
+		 mainClass: 'my-mfp-zoom-in'
+	});
+}

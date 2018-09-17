@@ -56,7 +56,12 @@ class LanguageController extends Controller
         if ($candidateLanguage->save()) {
             $response = [
                 'errors' => false,
-                'message' => 'Se ha guardado con éxito el nuevo idioma.'
+                'message' => 'Se ha guardado con éxito el nuevo idioma.',
+                'id' => $candidateLanguage->id,
+                'percent' => $candidateLanguage->percent,
+                'language_id' => $candidateLanguage->language_id,
+                'url' => url('candidate/dashboard/curriculum/languages'),
+                'language_name' => ucwords($candidateLanguage->language->where('id', $candidateLanguage->language_id)->first()->name)
             ];
         } else {
             $response = [

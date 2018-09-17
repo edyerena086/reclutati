@@ -40,4 +40,6 @@ Route::post('candidate/dashboard/curriculum/labor-goal', 'Front\Candidate\Curric
 Route::post('candidate/dashboard/curriculum/phones', 'Front\Candidate\Curriculum\ContactInfoController@phones');
 Route::post('candidate/dashboard/curriculum/social-media', 'Front\Candidate\Curriculum\ContactInfoController@socialMedia');
 //Languages
-Route::apiResource('candidate/dashboard/curriculum/languages', 'Front\Candidate\Curriculum\LanguageController');
+Route::post('candidate/dashboard/curriculum/languages', 'Front\Candidate\Curriculum\LanguageController@store');
+Route::post('candidate/dashboard/curriculum/languages/{id}', 'Front\Candidate\Curriculum\LanguageController@update');
+Route::get('candidate/dashboard/curriculum/languages/{id}', 'Front\Candidate\Curriculum\LanguageController@destroy');

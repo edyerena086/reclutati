@@ -18,7 +18,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url);
+    	$response = $this->json('POST', $this->url);
 
     	$response->assertStatus(422);
     }
@@ -27,7 +27,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url);
+    	$response = $this->json('POST', $this->url);
 
     	$response
     		->assertStatus(422)
@@ -44,7 +44,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url, ['idioma' => 'x001']);
+    	$response = $this->json('POST', $this->url, ['idioma' => 'x001']);
 
     	$response
     		->assertStatus(422)
@@ -61,7 +61,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url, ['idioma' => 10000]);
+    	$response = $this->json('POST', $this->url, ['idioma' => 10000]);
 
     	$response
     		->assertStatus(422)
@@ -78,7 +78,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url);
+    	$response = $this->json('POST', $this->url);
 
     	$response
     		->assertStatus(422)
@@ -95,7 +95,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url, ['porcentaje' => 'x001']);
+    	$response = $this->json('POST', $this->url, ['porcentaje' => 'x001']);
 
     	$response
     		->assertStatus(422)
@@ -112,7 +112,7 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$response = $this->json('PUT', $this->url, ['porcentaje' => 102]);
+    	$response = $this->json('POST', $this->url, ['porcentaje' => 102]);
 
     	$response
     		->assertStatus(422)
@@ -139,7 +139,7 @@ class UpdateTest extends TestCase
     	];
 
 
-    	$response = $this->json('PUT', $this->url, $data);
+    	$response = $this->json('POST', $this->url, $data);
 
     	$response
     		->assertStatus(200)
