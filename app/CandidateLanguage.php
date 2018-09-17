@@ -10,4 +10,9 @@ class CandidateLanguage extends Model
     {
     	return $this->belongsTo('ReclutaTI\Candidate');
     }
+
+    public function language()
+    {
+    	return $this->belongsTo('\ReclutaTI\Language');
+    }
 }

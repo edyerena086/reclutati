@@ -10,4 +10,9 @@ class Candidate extends Model
     {
     	return $this->belongsTo('\ReclutaTI\User');
     }
+
+    public function languages()
+    {
+    	return $this->hasMany('\ReclutaTI\CandidateLanguage');
+    }
 }

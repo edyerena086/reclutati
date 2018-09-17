@@ -1,6 +1,25 @@
 $(document).ready(function () {
-	//Forms
-	$('form').not('#frmLanguage').on('submit', function (e) {
+	$('.btn-language').on('click', function (e) {
+		e.preventDefault();
+
+		var actionType = $(this).attr('data-type');
+
+		var route = (actionType == 'store') ? $(this).attr('data-url') : $(this).attr('data-url') + '/' + $(this).attr('data-id');
+		$('#frmLanguage').attr('action', route);
+
+		if (actionType == 'update'){
+			$('#frmLanguage input').val($(this).attr('data-percent'));
+			$('#frmLanguage select').val($(this).attr('data-language'));
+			$('#frmLanguage').attr('method', 'PUT');
+		} else {
+			$('#frmLanguage').attr('method', 'POST');
+			$('#frmLanguage input').val('');
+			$('#frmLanguage select').val('');
+		}
+	});
+
+	//Form
+	$('#frmLanguage').on('submit', function (e) {
 		e.preventDefault();
 
 		var route = $(this).attr('action');
@@ -17,6 +36,10 @@ $(document).ready(function () {
 			}
 		});
 
+		if (method == 'PUT') {
+			data.append('_method', 75);
+		}
+
 		$.ajax({
 			type: method,
 			url: route,
@@ -26,7 +49,7 @@ $(document).ready(function () {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 			dataType: 'json',
 			beforeSend: function () {
-				$('button.big', env).html("Cargando...");
+				$('button.button-sliding-icon', env).html("Cargando...");
 				blockForm();
 
 				$('input, select, textarea', env).removeClass('invalid');
@@ -34,7 +57,7 @@ $(document).ready(function () {
 				$('.display-errors ul', env).empty();
 			}, 
 			error: function (jqXHR, textStatus, errorThrown) {
-				$('button.big', env).html('Guardar');
+				$('button.button-sliding-icon', env).html('Guardar');
 
 				if (jqXHR.status == 422 ){
 					$.each(jqXHR.responseJSON.errors, function (key, value) {
@@ -59,7 +82,7 @@ $(document).ready(function () {
 				unblockForm();
 			},
 			success: function (response) {
-				$('button.big', env).html('Guardar');
+				$('button.button-sliding-icon', env).html('Guardar');
 
 				if (response.errors == false) {
 					$.jnoty(response.message, {
