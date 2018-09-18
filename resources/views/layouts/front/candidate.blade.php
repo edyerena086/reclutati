@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="{{ asset('hireo/css/colors/blue.css') }}">
 	<link rel="stylesheet" href="{{ asset('js/front/plugins/sticky-alerts/jnoty.css') }}">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 	
@@ -57,6 +58,7 @@
 	<script src="{{ asset('hireo/js/magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('hireo/js/slick.min.js') }}"></script>
 	<script src="{{ asset('hireo/js/custom.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 	<script src="{{ asset('js/front/plugins/sticky-alerts/jnoty.js') }}"></script>
 	<script src="{{ asset('js/pastora.js') }}"></script>
 

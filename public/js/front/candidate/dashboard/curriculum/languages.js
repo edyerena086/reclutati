@@ -7,53 +7,70 @@ $(document).ready(function () {
 
 		var env = this;
 
-		$.ajax({
-			type: 'GET',
-			url: $(this).attr('href'),
-			dataType: 'json',
-			beforeSend: function () {
-				blockForm();
-			}, 
-			error: function (jqXHR, textStatus, errorThrown) {
+		$.confirm({
+			title: 'Confirmación',
+			content: '¿Deseas eliminar el idioma?',
+			theme: 'material',
+			buttons: {
+		        confirmar: {
+		        	text: 'Confirmar',
+		            btnClass: 'btn-blue',
+		            action: function(){
+		            	$.ajax({
+							type: 'GET',
+							url: $(env).attr('href'),
+							dataType: 'json',
+							beforeSend: function () {
+								blockForm();
+							}, 
+							error: function (jqXHR, textStatus, errorThrown) {
 
-				$.jnoty("No se ha podido eliminar el idioma.", {
-					header: 'Advertencia',
-                    theme: 'jnoty-danger',
-                    life: 5000,
-                    color: 'rti-danger',
-                    position: 'top-right',
-                    icon: 'fa fa-info-circle'
-				});
+								$.jnoty("No se ha podido eliminar el idioma.", {
+									header: 'Advertencia',
+				                    theme: 'jnoty-danger',
+				                    life: 5000,
+				                    color: 'rti-danger',
+				                    position: 'top-right',
+				                    icon: 'fa fa-info-circle'
+								});
 
-				unblockForm();
-			},
-			success: function (response) {
-				if (response.errors == false) {
-					$.jnoty(response.message, {
-						header: 'Éxito',
-                        theme: 'jnoty-success',
-                        life: 5000,
-                        position: 'top-right',
-                        icon: 'fa fa-check-circle'
-					});
+								unblockForm();
+							},
+							success: function (response) {
+								if (response.errors == false) {
+									$.jnoty(response.message, {
+										header: 'Éxito',
+				                        theme: 'jnoty-success',
+				                        life: 5000,
+				                        position: 'top-right',
+				                        icon: 'fa fa-check-circle'
+									});
 
-					var position = $('.btn-language-delete').index(env) + 1;
+									var position = $('.btn-language-delete').index(env) + 1;
 
-					$('.language-list li:eq('+position+')').remove();
-				} else {
-					$.jnoty(response.message, {
-						header: 'Advertencia',
-                        theme: 'jnoty-danger',
-                        life: 5000,
-                        color: 'rti-danger',
-                        position: 'top-right',
-                        icon: 'fa fa-info-circle'
-					});
-				}
+									$('.language-list li:eq('+position+')').remove();
+								} else {
+									$.jnoty(response.message, {
+										header: 'Advertencia',
+				                        theme: 'jnoty-danger',
+				                        life: 5000,
+				                        color: 'rti-danger',
+				                        position: 'top-right',
+				                        icon: 'fa fa-info-circle'
+									});
+								}
 
-				unblockForm();
-			}
+								unblockForm();
+							}
+						});
+		            }
+		        },
+		        cancelar: function () {
+		        }
+		    }
 		});
+
+		
 	});
 
 
