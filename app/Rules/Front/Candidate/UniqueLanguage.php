@@ -40,15 +40,9 @@ class UniqueLanguage implements Rule
                 return true;
             }
         }  else {
-            $count = CandidateLanguage::where('candidate_id', Auth::user()->candidate->id)
-                                        ->where('language_id', $value)
-                                        ->where('id', '!=', $this->id)->get()->count();
+            $query = CandidateLanguage::find($this->id);
 
-            if (!is_int($value) || $count > 0) {
-                return false;
-            } else {
-                return true;
-            }
+            return ($query->language_id == $value) ? true : false;
         }
     }
 
