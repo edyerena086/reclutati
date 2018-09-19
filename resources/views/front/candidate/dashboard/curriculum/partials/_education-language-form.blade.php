@@ -35,7 +35,7 @@
 								<div class="buttons-to-right">
 									<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="{{ ucwords($educative->school_name) }}" data-level="{{ $educative->educative_level_id }}" data-id="{{ $educative->id }}" data-title="{{ $educative->degree }}" data-description="{{ $educative->description }}" data-current="{{ $educative->current }}" data-url="{{ url('candidate/dashboard/curriculum/educative-histories') }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-									<a href="{{ url('candidate/dashboard/curriculum/languages/'.$educative->id) }}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+									<a href="{{ url('candidate/dashboard/curriculum/languages/'.$educative->id) }}" class="button  red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>
 							</li>
 						@endforeach

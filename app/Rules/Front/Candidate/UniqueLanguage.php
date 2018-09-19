@@ -34,6 +34,8 @@ class UniqueLanguage implements Rule
             $count = CandidateLanguage::where('candidate_id', Auth::user()->candidate->id)
                                         ->where('language_id', $value)->get()->count();
 
+            return ($count == 0) ? true : false;
+
             if (!is_int($value) || $count > 0) {
                 return false;
             } else {
