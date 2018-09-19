@@ -77,6 +77,14 @@ $(document).ready(function () {
 	$(this).on('click', '.btn-language', function (e) {
 		e.preventDefault();
 
+		if ($('#frmLanguage input[name=languageId]').length == 1) {
+			$('#frmLanguage input[name=languageId]').remove();
+		}
+
+		$('#frmLanguage input').removeClass('invalid');
+		$('#frmLanguage select').removeClass('invalid');
+		$('#frmLanguage .display-errors').addClass('hidden');
+
 		var actionType = $(this).attr('data-type');
 
 		var route = (actionType == 'store') ? $(this).attr('data-url') : $(this).attr('data-url') + '/' + $(this).attr('data-id');
@@ -84,7 +92,8 @@ $(document).ready(function () {
 
 		if (actionType == 'update'){
 			$('#frmLanguage input').val($(this).attr('data-percent'));
-			$('#frmLanguage select').val($(this).attr('data-language'))
+			$('#frmLanguage select').val($(this).attr('data-language'));
+			$('#frmLanguage').append('<input type="hidden" name="languageId" value="'+$(this).attr('data-id')+'" />');
 			$('#frmLanguage').attr('data-action', 'update');
 			$('.language-title').html('Editar idioma');
 			btnLanguages = this;

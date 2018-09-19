@@ -37,6 +37,10 @@ class StoreTest extends TestCase
 
     public function test_send_language_no_integer()
     {
+        $candidate = factory(\ReclutaTI\Candidate::class)->create();
+
+        Auth::attempt(['email' => $candidate->user()->first()->email, 'password' => 'secret']);
+
     	$response = $this->json('POST', $this->url, ['idioma' => 'x001']);
 
     	$response
@@ -48,10 +52,16 @@ class StoreTest extends TestCase
 	    			]
     			]
     		]);
+
+        Auth::logout();
     }
 
     public function test_send_language_no_exist()
     {
+        $candidate = factory(\ReclutaTI\Candidate::class)->create();
+
+        Auth::attempt(['email' => $candidate->user()->first()->email, 'password' => 'secret']);
+
     	$response = $this->json('POST', $this->url, ['idioma' => 10000]);
 
     	$response
@@ -63,6 +73,8 @@ class StoreTest extends TestCase
 	    			]
     			]
     		]);
+
+        Auth::logout();
     }
 
     public function test_send_no_percent()

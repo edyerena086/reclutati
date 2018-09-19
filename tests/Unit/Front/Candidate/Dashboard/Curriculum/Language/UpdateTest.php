@@ -44,6 +44,8 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
+        Auth::attempt(['email' => $this->candidateLanguage->candidate()->first()->user()->first()->email, 'password' => 'secret']);
+
     	$response = $this->json('POST', $this->url, ['idioma' => 'x001']);
 
     	$response
@@ -55,11 +57,15 @@ class UpdateTest extends TestCase
 	    			]
     			]
     		]);
+
+        Auth::logout();
     }
 
     public function test_send_language_no_exist()
     {
     	$this->init();
+
+        Auth::attempt(['email' => $this->candidateLanguage->candidate()->first()->user()->first()->email, 'password' => 'secret']);
 
     	$response = $this->json('POST', $this->url, ['idioma' => 10000]);
 
@@ -72,6 +78,8 @@ class UpdateTest extends TestCase
 	    			]
     			]
     		]);
+
+        Auth::logout();
     }
 
     public function test_send_no_percent()

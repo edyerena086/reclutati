@@ -7,6 +7,8 @@ use ReclutaTI\CandidateLanguage;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LanguageRequest;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\Language\StoreRequest;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\Language\UpdateRequest;
 
 class LanguageController extends Controller
 {
@@ -43,7 +45,7 @@ class LanguageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LanguageRequest $request)
+    public function store(StoreRequest $request)
     {
         $response;
 
@@ -109,7 +111,7 @@ class LanguageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(LanguageRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $response;
 
