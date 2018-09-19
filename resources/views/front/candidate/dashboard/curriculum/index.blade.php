@@ -24,5 +24,6 @@
 {{-- JS Page --}}
 @section('pageJS')
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum.js') }}"></script>
+	<script src="{{ asset('js/front/candidate/dashboard/curriculum/education.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/languages.js') }}"></script>
 @stop

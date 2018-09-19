@@ -15,4 +15,9 @@ class Candidate extends Model
     {
     	return $this->hasMany('\ReclutaTI\CandidateLanguage');
     }
+
+    public function educativeHistories()
+    {
+    	return $this->hasMany('\ReclutaTI\CandidateEducationHistory');
+    }
 }

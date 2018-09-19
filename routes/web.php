@@ -43,3 +43,9 @@ Route::post('candidate/dashboard/curriculum/social-media', 'Front\Candidate\Curr
 Route::post('candidate/dashboard/curriculum/languages', 'Front\Candidate\Curriculum\LanguageController@store');
 Route::post('candidate/dashboard/curriculum/languages/{id}', 'Front\Candidate\Curriculum\LanguageController@update');
 Route::get('candidate/dashboard/curriculum/languages/{id}', 'Front\Candidate\Curriculum\LanguageController@destroy');
+//Educational history
+Route::post('candidate/dashboard/curriculum/educative-histories', 'Front\Candidate\Curriculum\EducationController@store');
+Route::post('candidate/dashboard/curriculum/educative-histories/{id}', 'Front\Candidate\Curriculum\EducationController@update');
+Route::get('candidate/dashboard/curriculum/educative-histories/{id}', 'Front\Candidate\Curriculum\EducationController@destroy');
+//Settings
+Route::get('candidate/dashboard/settings', 'Front\Candidate\Setting\SettingController@index');

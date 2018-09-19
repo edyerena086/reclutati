@@ -22,7 +22,7 @@
 					</ul>
 
 					<ul data-submenu-title="Mi Cuenta">
-						<li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Configuración</a></li>
+						<li><a href="{{ url('candidate/dashboard/settings') }}"><i class="icon-material-outline-settings"></i> Configuración</a></li>
 						<li><a href="{{ url('candidate/account/logout') }}"><i class="icon-material-outline-power-settings-new"></i> Cerrar sesión</a></li>
 					</ul>
 				</div>

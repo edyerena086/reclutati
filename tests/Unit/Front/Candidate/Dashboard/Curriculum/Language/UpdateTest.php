@@ -129,8 +129,6 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	$candidate = factory(\ReclutaTI\Candidate::class)->create();
-
     	Auth::attempt(['email' => $this->candidateLanguage->candidate()->first()->user()->first()->email, 'password' => 'secret']);
 
     	$data = [

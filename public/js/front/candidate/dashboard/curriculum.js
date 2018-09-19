@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	//Forms
-	$('form').not('#frmLanguage').on('submit', function (e) {
+	$('form').not('.not-index').on('submit', function (e) {
 		e.preventDefault();
 
 		var route = $(this).attr('action');

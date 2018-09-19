@@ -7,122 +7,39 @@
 
 				{{--<div class="content with-padding padding-bottom-0">--}}
 				<div class="content">
-					{{--<ul class="fields-ul">
+					<ul class="dashboard-box-list language-list">
 						<li>
-							<form action="{{ url('candidate/dashboard/curriculum/general-info') }}" method="POST">
-								<div class="row">
-									<div class="col">
-										<div class="row">
-											<div class="col-xl-6">
-												<div class="submit-field">
-													<h5>*Primer nombre:</h5>
-													<input type="text" name="primerNombre" class="with-border" value="{{ ucwords(Auth::user()->name) }}">
-												</div>
-											</div>
+							<div class="buttons-to-right always-visible">
+								<a href="#small-dialog-1" data-url="{{ url('candidate/dashboard/curriculum/educative-histories') }}" data-type="store" class="button popup-with-zoom-anim btn-education ripple-effect"><i class="icon-feather-plus-circle"></i> Agregar historial educativo</a>
+							</div>
+						</li>
 
-											<div class="col-xl-6">
-												<div class="submit-field">
-													<h5>Segundo nombre:</h5>
-													<input type="text" name="segundoNombre" class="with-border" value="{{ ucwords(Auth::user()->candidate->second_name) }}">
-												</div>
-											</div>
-										</div>
-										
-										{{+-- last name --+}}
-										<div class="row">
-											<div class="col-xl-6">
-												<div class="submit-field">
-													<h5>*Apellido paterno:</h5>
-													<input type="text" name="apellidoPaterno" class="with-border" value="{{ ucwords(Auth::user()->candidate->last_name) }}">
-												</div>
-											</div>
+						@foreach(Auth::user()->candidate->educativeHistories->all() as $educative)
+							<li>
+								<div class="job-listing">
+									<div class="job-listing-details">
+										<div class="job-listing-description">
+											<h3 class="job-listing-title">{{ $educative->degree }}</h3>
 
-											<div class="col-xl-6">
-												<div class="submit-field">
-													<h5>Apellido materno:</h5>
-													<input type="text" name="apellidoMaterno" class="with-border" value="{{ ucwords(Auth::user()->candidate->second_last_name) }}">
-												</div>
+											<div class="job-listing-footer">
+												<ul>
+													<li><i class="icon-material-outline-business"></i> {{ ucwords($educative->school_name) }}</li>
+													<li><i class="icon-material-outline-business-center"></i> {{ ucwords($educative->educative_level_id) }}</li>
+												</ul>
 											</div>
-										</div>
-
-										{{*-- age and gender --*}}
-										<div class="row">
-											<div class="col-xl-3">
-												<div class="submit-field">
-													<h5>Edad:</h5>
-													<input type="number" min="16" max="85" name="edad" class="with-border" value="{{ Auth::user()->candidate->age }}">
-												</div>
-											</div>
-
-											<div class="col-xl-3">
-												<div class="submit-field">
-													<h5>Genero:</h5>
-													{{ Form::select('genero', \ReclutaTI\Gender::list(), Auth::user()->candidate->gender_id, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
-												</div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-xl-12">
-												<div class="notification error hidden closable display-errors">
-													<p>
-														Se han cometido los siguientes errores:
-													</p>
-
-													<ul>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										{{*-- button --*}}
-										<div class="col-xl-12">
-											<button class="button ripple-effect big">
-												Guardar
-											</button>
 										</div>
 									</div>
 								</div>
-							</form>
-						</li>
 
-						<li>
-							<form action="{{ url('candidate/dashboard/curriculum/labor-goal') }}" method="POST">
-								<div class="row">
-									<div class="col">
-										<div class="row">
-											<div class="col-xl-12">
-												<div class="submit-field">
-													<h5>*Objetivo laboral:</h5>
-													<textarea cols="30" rows="5" name="objetivoLaboral" class="with-border">{{ Auth::user()->candidate->labor_goal }}</textarea>
-												</div>
-											</div>
-										</div>
+								{{-- buttons --}}
+								<div class="buttons-to-right">
+									<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="{{ ucwords($educative->school_name) }}" data-level="{{ $educative->educative_level_id }}" data-id="{{ $educative->id }}" data-title="{{ $educative->degree }}" data-description="{{ $educative->description }}" data-current="{{ $educative->current }}" data-url="{{ url('candidate/dashboard/curriculum/educative-histories') }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-										<div class="row">
-											<div class="col-xl-12">
-												<div class="notification error closable hidden display-errors">
-													<p>
-														Se han cometido los siguientes errores:
-													</p>
-
-													<ul>
-													</ul>
-												</div>
-											</div>
-										</div>
-
-										{{+-- button --+}}
-										<div class="col-xl-12">
-											<button class="button ripple-effect big">
-												Guardar
-											</button>
-										</div>
-									</div>
+									<a href="{{ url('candidate/dashboard/curriculum/languages/'.$educative->id) }}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>
-							</form>
-						</li>
-					</ul>--}}
+							</li>
+						@endforeach
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -166,6 +83,78 @@
 			</div>
 		</div>
 
+		{{-- educative popup form --}}
+		<div id="small-dialog-1" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+			{{-- tabs --}}
+			<div class="sign-in-form">
+				<ul class="popup-tabs-nav">
+				</ul>
+
+				{{-- tab content --}}
+				<div class="popup-tab-content" id="tab2">
+					<div class="welcome-text">
+						<h3 class="educative-title">Nuevo historial</h3>
+						<span>Los campos marcados con (*) son obligatorios.</span>
+					</div>
+
+					{{-- form --}}
+					<form id="frmEducation" class="not-index" data-action="store" method="post" action="{{ url('candidate/dashboard/curriculum/educative-histories') }}">
+						<div class="row">
+							<div class="col-xl-12">
+								<strong>*Título obtenido:</strong>
+								<input type="text" placeholder="Ej. Ingeniero en Sistemas Computacionales" name="tituloObtenido" class="with-border">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-12">
+								<strong>*Institución educativa:</strong>
+								<input type="text" placeholder="Ej. UNAM" name="institucionEducativa" class="with-border">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-12">
+								<strong>*Nivel educativo:</strong>
+								{{ Form::select('nivelEducativo', \ReclutaTI\EducativeLevel::list(), null, ['class' => 'with-border', 'data-size' => '7', 'placeholder' => 'Selecciona', 'style' => 'height: 58px;']) }}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-12">
+								<strong>Descripción:</strong>
+								<textarea class="with-border" placeholder="Descripción" name="descripcion" cols="7"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="checkbox">
+									<input type="checkbox" name="estudiandoActualmente" id="estudiandoActualmente">
+									<label for="estudiandoActualmente"><span class="checkbox-icon"></span> Estudiando actualmente</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="notification error closable hidden display-errors">
+									<p>
+										Se han cometido los siguientes errores:
+									</p>
+
+									<ul>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<button class="button full-width button-sliding-icon ripple-effect" type="submit">Guardar<i class="icon-material-outline-arrow-right-alt"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+
 
 		{{-- laguages popup form --}}
 		<div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
@@ -182,7 +171,7 @@
 					</div>
 
 					{{-- form --}}
-					<form id="frmLanguage" data-action="store" method="post" action="{{ url('candidate/dashboard/curriculum/languages') }}">
+					<form id="frmLanguage" class="not-index" data-action="store" method="post" action="{{ url('candidate/dashboard/curriculum/languages') }}">
 						<div class="row">
 							<div class="col-xl-7">
 								<strong>Idioma:</strong>
@@ -191,7 +180,7 @@
 
 							<div class="col-xl-5">
 								<strong>Procentaje de dominio:</strong>
-								<input type="text" placeholder="80" name="porcentaje" class="with-border">
+								<input type="text" placeholder="Ej. 80" name="porcentaje" class="with-border">
 							</div>
 						</div>
 
