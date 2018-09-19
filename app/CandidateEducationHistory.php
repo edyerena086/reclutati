@@ -10,4 +10,9 @@ class CandidateEducationHistory extends Model
     {
     	return $this->belongsTo('ReclutaTI\Candidate');
     }
+
+    public function educativeLevel()
+    {
+    	return $this->belongsTo('\ReclutaTI\EducativeLevel');
+    }
 }

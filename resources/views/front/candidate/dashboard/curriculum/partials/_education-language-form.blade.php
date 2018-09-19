@@ -5,9 +5,8 @@
 					<h3><i class="icon-material-outline-account-circle"></i> Educación</h3>
 				</div>
 
-				{{--<div class="content with-padding padding-bottom-0">--}}
 				<div class="content">
-					<ul class="dashboard-box-list language-list">
+					<ul class="dashboard-box-list educative-list">
 						<li>
 							<div class="buttons-to-right always-visible">
 								<a href="#small-dialog-1" data-url="{{ url('candidate/dashboard/curriculum/educative-histories') }}" data-type="store" class="button popup-with-zoom-anim btn-education ripple-effect"><i class="icon-feather-plus-circle"></i> Agregar historial educativo</a>
@@ -24,7 +23,7 @@
 											<div class="job-listing-footer">
 												<ul>
 													<li><i class="icon-material-outline-business"></i> {{ ucwords($educative->school_name) }}</li>
-													<li><i class="icon-material-outline-business-center"></i> {{ ucwords($educative->educative_level_id) }}</li>
+													<li><i class="icon-material-outline-business-center"></i> {{ ucwords($educative->educativeLevel->where('id', $educative->educative_level_id)->first()->name) }}</li>
 												</ul>
 											</div>
 										</div>

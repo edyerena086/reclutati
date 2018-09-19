@@ -186,23 +186,31 @@ $(document).ready(function () {
 					if (dataAction == 'update') {
 						$(btnLanguages).attr('data-percent', $('input', env).val());
 					} else {
-						/*var element = `<li>
+						var element = `<li>
 											<div class="job-listing">
 												<div class="job-listing-details">
 													<div class="job-listing-description">
-														<h3 class="job-listing-title">${response.language_name}</h3>
+														<h3 class="job-listing-title">${response.degree}</h3>
+
+														<div class="job-listing-footer">
+															<ul>
+																<li><i class="icon-material-outline-business"></i> ${response.school_name}</li>
+																<li><i class="icon-material-outline-business-center"></i> ${response.educative_level_name}</li>
+															</ul>
+														</div>
 													</div>
 												</div>
 											</div>
 
+											
 											<div class="buttons-to-right">
-												<a href="#small-dialog-2" data-type="update" class="button btn-language popup-with-zoom-anim dark ripple-effect ico" data-url="${response.url}" data-id="${response.id}" data-language="${response.language_id}" data-percent="${response.percent}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+												<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="${response.school_name}" data-level="${response.educative_level_id}" data-id="${response.id}" data-title="${response.degree}" data-description="${response.description}" data-current="${response.current}" data-url="${response.callback_url}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-												<a href="${response.url}/${response.id}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+												<a href="${response.callback_url}/${response.id}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 											</div>
 										</li>`;
 
-						$('.language-list').append(element);*/
+						$('.educative-list').append(element);
 
 						initMagnificPopup();
 					}

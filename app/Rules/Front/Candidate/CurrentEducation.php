@@ -1,6 +1,6 @@
 <?php
 
-namespace ReclutaTI\Rules;
+namespace ReclutaTI\Rules\Front\Candidate;
 
 use Auth;
 use ReclutaTI\CandidateEducationHistory;
@@ -8,14 +8,16 @@ use Illuminate\Contracts\Validation\Rule;
 
 class CurrentEducation implements Rule
 {
+    private $id;
+
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id = 0)
     {
-        //
+        $this->id = $id;
     }
 
     /**

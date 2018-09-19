@@ -2,8 +2,8 @@
 
 namespace ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum;
 
-use ReclutaTI\Rules\CurrentEducation;
 use Illuminate\Foundation\Http\FormRequest;
+use ReclutaTI\Rules\Front\Candidate\CurrentEducation;
 
 class EducationRequest extends FormRequest
 {
