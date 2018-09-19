@@ -15,9 +15,9 @@ class SecureProtocol
      */
     public function handle($request, Closure $next)
     {
-        if($this->app->environment('production') && !$request->secure()) {
+        /*if($this->app->environment('production') && !$request->secure()) {
             return redirect()->secure($request->getRequestUri());
-        }
+        }*/
 
         return $next($request);
     }
