@@ -1,7 +1,7 @@
 var btnLanguages;
 
 $(document).ready(function () {
-	//Delete
+	//Delete education item
 	$(this).on('click', '.btn-education-delete', function (e) {
 		e.preventDefault();
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
 		
 	});
 
-
+	//Education click button add or edit
 	$(this).on('click', '.btn-education', function (e) {
 		e.preventDefault();
 
@@ -104,7 +104,7 @@ $(document).ready(function () {
 		}
 	});
 
-	//Form
+	//Form Education
 	$('#frmEducation').on('submit', function (e) {
 		e.preventDefault();
 
@@ -184,8 +184,10 @@ $(document).ready(function () {
 					});
 
 					if (dataAction == 'update') {
-						$(btnLanguages).attr('data-percent', $('input', env).val());
+						//$(btnLanguages).attr('data-percent', $('input', env).val());
 					} else {
+						$(env).trigger('reset');
+
 						var element = `<li>
 											<div class="job-listing">
 												<div class="job-listing-details">
@@ -230,22 +232,3 @@ $(document).ready(function () {
 		});
 	});
 });
-
-function initMagnificPopup()
-{
-	$('.popup-with-zoom-anim').magnificPopup({
-		 type: 'inline',
-
-		 fixedContentPos: false,
-		 fixedBgPos: true,
-
-		 overflowY: 'auto',
-
-		 closeBtnInside: true,
-		 preloader: false,
-
-		 midClick: true,
-		 removalDelay: 300,
-		 mainClass: 'my-mfp-zoom-in'
-	});
-}

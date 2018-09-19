@@ -1,8 +1,9 @@
+		{{-- Educative histories --}}
 		<div class="col-xl-7">
 			<div class="dashboard-box main-box-in-row">
 				{{--headline --}}
 				<div class="headline">
-					<h3><i class="icon-material-outline-account-circle"></i> Educación</h3>
+					<h3><i class="icon-material-outline-book"></i> Educación</h3>
 				</div>
 
 				<div class="content">
@@ -43,7 +44,7 @@
 			</div>
 		</div>
 
-		{{-- languages --}}
+		{{-- Languages --}}
 		<div class="col-xl-5">
 			<div class="dashboard-box child-box-in-row">
 				{{--headline --}}
@@ -64,14 +65,14 @@
 								<div class="job-listing">
 									<div class="job-listing-details">
 										<div class="job-listing-description">
-											<h3 class="job-listing-title">{{ ucwords($language->language->where('id', $language->language_id)->first()->name) }}</h3>
+											<h3 class="job-listing-title language-title-item">{{ ucwords($language->language->where('id', $language->language_id)->first()->name) }}</h3>
 										</div>
 									</div>
 								</div>
 
 								{{-- buttons --}}
 								<div class="buttons-to-right">
-									<a href="#small-dialog-2" data-type="update" class="button btn-language popup-with-zoom-anim dark ripple-effect ico" data-url="{{ url('candidate/dashboard/curriculum/languages') }}" data-id="{{ $language->id }}" data-language="{{ $language->language_id }}" data-percent="{{ $language->percent }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+									<a href="#small-dialog-2" data-type="update" class="button btn-language btn-language-edit popup-with-zoom-anim dark ripple-effect ico" data-url="{{ url('candidate/dashboard/curriculum/languages') }}" data-id="{{ $language->id }}" data-language="{{ $language->language_id }}" data-percent="{{ $language->percent }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
 									<a href="{{ url('candidate/dashboard/curriculum/languages/'.$language->id) }}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>

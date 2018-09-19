@@ -171,18 +171,23 @@ $(document).ready(function () {
 
 					if (dataAction == 'update') {
 						$(btnLanguages).attr('data-percent', $('input', env).val());
+						$(btnLanguages).attr('data-language', $('select', env).val());
+						var languageTitlePosition = $('.btn-language-edit').index(btnLanguages);
+						$('.language-title-item:eq('+languageTitlePosition+')').html($('select option:selected', env).text());
 					} else {
+						$(env).trigger('reset');
+
 						var element = `<li>
 											<div class="job-listing">
 												<div class="job-listing-details">
 													<div class="job-listing-description">
-														<h3 class="job-listing-title">${response.language_name}</h3>
+														<h3 class="job-listing-title language-title-item">${response.language_name}</h3>
 													</div>
 												</div>
 											</div>
 
 											<div class="buttons-to-right">
-												<a href="#small-dialog-2" data-type="update" class="button btn-language popup-with-zoom-anim dark ripple-effect ico" data-url="${response.url}" data-id="${response.id}" data-language="${response.language_id}" data-percent="${response.percent}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+												<a href="#small-dialog-2" data-type="update" class="button btn-language btn-language-edit popup-with-zoom-anim dark ripple-effect ico" data-url="${response.url}" data-id="${response.id}" data-language="${response.language_id}" data-percent="${response.percent}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
 												<a href="${response.url}/${response.id}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 											</div>
@@ -208,22 +213,3 @@ $(document).ready(function () {
 		});
 	});
 });
-
-function initMagnificPopup()
-{
-	$('.popup-with-zoom-anim').magnificPopup({
-		 type: 'inline',
-
-		 fixedContentPos: false,
-		 fixedBgPos: true,
-
-		 overflowY: 'auto',
-
-		 closeBtnInside: true,
-		 preloader: false,
-
-		 midClick: true,
-		 removalDelay: 300,
-		 mainClass: 'my-mfp-zoom-in'
-	});
-}

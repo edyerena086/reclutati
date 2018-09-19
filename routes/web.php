@@ -29,6 +29,7 @@ Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout
  * ------------------------------------------------------------------------
  * 
  */
+Route::get('candidate/dashboard', 'Front\Candidate\DashboardController@index');
 /*Route::get('candidate/dashboard', function () {
 	return view('layouts.front.candidate');
 });*/
