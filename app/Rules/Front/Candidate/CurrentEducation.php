@@ -15,7 +15,7 @@ class CurrentEducation implements Rule
      *
      * @return void
      */
-    public function __construct($id = 0)
+    public function __construct($id)
     {
         $this->id = $id;
     }

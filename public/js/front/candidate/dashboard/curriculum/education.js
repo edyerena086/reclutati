@@ -81,6 +81,12 @@ $(document).ready(function () {
 
 		var actionType = $(this).attr('data-type');
 
+		$('#frmEducation').trigger('reset');
+		$('#frmEducation input').removeClass('invalid');
+		$('#frmEducation select').removeClass('invalid');
+		$('#frmEducation textarea').removeClass('invalid');
+		$('#frmEducation .display-errors').addClass('hidden');
+
 		var route = (actionType == 'store') ? $(this).attr('data-url') : $(this).attr('data-url') + '/' + $(this).attr('data-id');
 		$('#frmEducation').attr('action', route);
 
