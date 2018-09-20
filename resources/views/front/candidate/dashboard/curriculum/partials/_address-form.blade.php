@@ -10,7 +10,7 @@
 					<ul class="fields-ul">
 						<li>
 							
-						@if (count(Auth::user()->candidate->address))
+						@if (Auth::user()->candidate->address != null)
 							<form action="{{ url('candidate/dashboard/curriculum/addresses/'.Auth::user()->candidate->address->id) }}" method="POST">
 								@method('PUT')
 						@else
@@ -22,21 +22,21 @@
 											<div class="col-xl-6">
 												<div class="submit-field">
 													<h5>*Calle:</h5>
-													<input type="text" class="with-border" name="calle" value="{{ (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->street : '' }}">
+													<input type="text" class="with-border" name="calle" value="{{ (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->street : '' }}">
 												</div>
 											</div>
 
 											<div class="col-xl-3">
 												<div class="submit-field">
 													<h5>*No. ext:</h5>
-													<input type="text" class="with-border" name="numeroExterior" value="{{ (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->external_number : '' }}">
+													<input type="text" class="with-border" name="numeroExterior" value="{{ (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->external_number : '' }}">
 												</div>
 											</div>
 
 											<div class="col-xl-3">
 												<div class="submit-field">
 													<h5>No. int:</h5>
-													<input type="text" class="with-border" name="numeroInterior" value="{{ (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->internal_number : '' }}">
+													<input type="text" class="with-border" name="numeroInterior" value="{{ (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->internal_number : '' }}">
 												</div>
 											</div>
 										</div>
@@ -45,21 +45,21 @@
 											<div class="col-xl-4">
 												<div class="submit-field">
 													<h5>*Colonia:</h5>
-													<input type="text" class="with-border" name="colonia" value="{{ (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->colony : '' }}">
+													<input type="text" class="with-border" name="colonia" value="{{ (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->colony : '' }}">
 												</div>
 											</div>
 
 											<div class="col-xl-4">
 												<div class="submit-field">
 													<h5>*Ciudad/Municipio:</h5>
-													<input type="text" class="with-border" name="ciudad" value="{{ (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->city : '' }}">
+													<input type="text" class="with-border" name="ciudad" value="{{ (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->city : '' }}">
 												</div>
 											</div>
 
 											<div class="col-xl-4">
 												<div class="submit-field">
 													<h5>*Estado:</h5>
-													{{ Form::select('estado', \ReclutaTI\State::list(), (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->state_id : null, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
+													{{ Form::select('estado', \ReclutaTI\State::list(), (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->state_id : null, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
 												</div>
 											</div>
 										</div>
@@ -68,7 +68,7 @@
 											<div class="col-xl-3">
 												<div class="submit-field">
 													<h5>*Código postal:</h5>
-													<input type="text" class="with-border" name="codigoPostal" value="{{ (count(Auth::user()->candidate->address)) ? Auth::user()->candidate->address->zipcode : '' }}">
+													<input type="text" class="with-border" name="codigoPostal" value="{{ (Auth::user()->candidate->address != null) ? Auth::user()->candidate->address->zipcode : '' }}">
 												</div>
 											</div>
 										</div>
