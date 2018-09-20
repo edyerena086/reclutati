@@ -122,6 +122,8 @@ $(document).ready(function () {
 		var dataAction = $(this).attr('data-action');
 
 
+
+
 		//Data
 		var data = new FormData();
 		$('input, select, textarea', env).not($('input[type=checkbox]', env)).each(function () {
@@ -131,6 +133,10 @@ $(document).ready(function () {
 				data.append($(this).attr('name'), $(this).val());
 			}
 		});
+
+		if (dataAction == 'update') {
+			data.append('educativeId', route.split('/').pop());
+		}
 
 		var estudiandoActualmente = ($('input[type=checkbox]', env).is(':checked')) ? 2 : 1;
 
@@ -190,11 +196,10 @@ $(document).ready(function () {
 					});
 
 					if (dataAction == 'update') {
-						console.log("Entro aqui");
 						$(btnEducative).attr('data-school', response.school_name);
 						$(btnEducative).attr('data-level', response.educative_level_id);
 						$(btnEducative).attr('data-id', response.id);
-						$(btnEducative).attr('data-id', response.degree);
+						$(btnEducative).attr('data-title', response.degree);
 						$(btnEducative).attr('data-description', response.description);
 						$(btnEducative).attr('data-current', response.current);
 						$(btnEducative).attr('data-url', response.callback_url);

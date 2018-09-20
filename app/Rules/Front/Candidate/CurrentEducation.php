@@ -31,10 +31,23 @@ class CurrentEducation implements Rule
     {
         //Checks if is true
         if ($value == 2) {
-            $count = CandidateEducationHistory::where('candidate_id', Auth::user()->candidate->id)->where('current', true)->get()->count();
 
-            return ($count > 0)  ? false : true;
-            //return false;
+            if ($this->id == 0) {
+                $count = CandidateEducationHistory::where('candidate_id', Auth::user()->candidate->id)->where('current', true)->get()->count();
+
+                return ($count > 0)  ? false : true;
+            } else {
+                //Check if there is any record with current true
+                $record = CandidateEducationHistory::where('candidate_id', Auth::user()->candidate->id)->where('current', true)->first();
+
+                if ($record == null) {
+                    return true;
+                } else if ($record->id == $this->id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         } else {
             return true;
         }

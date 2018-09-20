@@ -28,7 +28,7 @@ class EducationRequest extends FormRequest
             'institucionEducativa' => 'required',
             'nivelEducativo' => 'required|integer|exists:educative_levels,id',
             'tituloObtenido' => 'required',
-            'estudiandoActualmente' => ['required', 'integer', 'between:1,2', new CurrentEducation(0)]
+            'estudiandoActualmente' => ['required', 'integer', 'between:1,2', new CurrentEducation(($this->educativeId != null) ? $this->educativeId : 0)]
         ];
     }
 
