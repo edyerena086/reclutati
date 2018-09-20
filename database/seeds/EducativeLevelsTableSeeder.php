@@ -27,8 +27,20 @@ class EducativeLevelsTableSeeder extends Seeder
         		],
 
         		[
-        			'name' => 'universidad'
-        		]
+        			'name' => 'licenciatura/ingeniería'
+        		],
+
+                [
+                    'name' => 'maestría'
+                ],
+
+                [
+                    'name' => 'doctorado'
+                ],
+
+                [
+                    'name' => 'otro'
+                ]
         	];
 
         	foreach ($levels as $level) {
