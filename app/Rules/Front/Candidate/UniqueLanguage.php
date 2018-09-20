@@ -35,12 +35,6 @@ class UniqueLanguage implements Rule
                                         ->where('language_id', $value)->get()->count();
 
             return ($count == 0) ? true : false;
-
-            if (!is_int($value) || $count > 0) {
-                return false;
-            } else {
-                return true;
-            }
         }  else {
             $query = CandidateLanguage::find($this->id);
 

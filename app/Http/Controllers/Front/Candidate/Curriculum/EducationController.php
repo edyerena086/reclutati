@@ -45,7 +45,8 @@ class EducationController extends Controller
                 'school_name' => ucwords($candidateEducation->school_name),
                 'description' => ($candidateEducation->description == null) ? '' : $candidateEducation->description,
                 'educative_level_id' => $candidateEducation->educative_level_id,
-                'educative_level_name' => ucwords($candidateEducation->educativeLevel->first()->name)
+                'educative_level_name' => ucwords($candidateEducation->educativeLevel->first()->name),
+                'callback_url' => url('candidate/dashboard/curriculum/educative-histories')
             ];
         } else {
             $response = [

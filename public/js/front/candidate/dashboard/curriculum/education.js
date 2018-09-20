@@ -7,9 +7,11 @@ $(document).ready(function () {
 
 		var env = this;
 
+		var position = $('.btn-education-delete').index(env) + 1;
+
 		$.confirm({
 			title: 'Confirmación',
-			content: '¿Deseas eliminar el idioma?',
+			content: '¿Deseas eliminar el historial educativo?',
 			theme: 'material',
 			buttons: {
 		        confirmar: {
@@ -46,9 +48,9 @@ $(document).ready(function () {
 				                        icon: 'fa fa-check-circle'
 									});
 
-									var position = $('.btn-language-delete').index(env) + 1;
+									var position = $('.btn-education-delete').index(env) + 1;
 
-									$('.language-list li:eq('+position+')').remove();
+									$('.educative-list li.educative-li:eq('+position+')').remove();
 								} else {
 									$.jnoty(response.message, {
 										header: 'Advertencia',
@@ -188,7 +190,7 @@ $(document).ready(function () {
 					} else {
 						$(env).trigger('reset');
 
-						var element = `<li>
+						var element = `<li class="educative-li">
 											<div class="job-listing">
 												<div class="job-listing-details">
 													<div class="job-listing-description">
@@ -208,7 +210,7 @@ $(document).ready(function () {
 											<div class="buttons-to-right">
 												<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="${response.school_name}" data-level="${response.educative_level_id}" data-id="${response.id}" data-title="${response.degree}" data-description="${response.description}" data-current="${response.current}" data-url="${response.callback_url}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-												<a href="${response.callback_url}/${response.id}" class="button btn-language-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+												<a href="${response.callback_url}/${response.id}" class="button btn-education-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 											</div>
 										</li>`;
 

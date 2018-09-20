@@ -8,14 +8,14 @@
 
 				<div class="content">
 					<ul class="dashboard-box-list educative-list">
-						<li>
+						<li class="educative-li">
 							<div class="buttons-to-right always-visible">
 								<a href="#small-dialog-1" data-url="{{ url('candidate/dashboard/curriculum/educative-histories') }}" data-type="store" class="button popup-with-zoom-anim btn-education ripple-effect"><i class="icon-feather-plus-circle"></i> Agregar historial educativo</a>
 							</div>
 						</li>
 
 						@foreach(Auth::user()->candidate->educativeHistories->all() as $educative)
-							<li>
+							<li class="educative-li">
 								<div class="job-listing">
 									<div class="job-listing-details">
 										<div class="job-listing-description">
@@ -35,7 +35,7 @@
 								<div class="buttons-to-right">
 									<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="{{ ucwords($educative->school_name) }}" data-level="{{ $educative->educative_level_id }}" data-id="{{ $educative->id }}" data-title="{{ $educative->degree }}" data-description="{{ $educative->description }}" data-current="{{ $educative->current }}" data-url="{{ url('candidate/dashboard/curriculum/educative-histories') }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-									<a href="{{ url('candidate/dashboard/curriculum/languages/'.$educative->id) }}" class="button  red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+									<a href="{{ url('candidate/dashboard/curriculum/educative-histories/'.$educative->id) }}" class="button btn-education-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>
 							</li>
 						@endforeach
