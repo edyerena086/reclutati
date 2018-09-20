@@ -48,5 +48,7 @@ Route::get('candidate/dashboard/curriculum/languages/{id}', 'Front\Candidate\Cur
 Route::post('candidate/dashboard/curriculum/educative-histories', 'Front\Candidate\Curriculum\EducationController@store');
 Route::post('candidate/dashboard/curriculum/educative-histories/{id}', 'Front\Candidate\Curriculum\EducationController@update');
 Route::get('candidate/dashboard/curriculum/educative-histories/{id}', 'Front\Candidate\Curriculum\EducationController@destroy');
+//Address
+Route::resource('candidate/dashboard/curriculum/addresses', 'Front\Candidate\Curriculum\AddressController');
 //Settings
 Route::get('candidate/dashboard/settings', 'Front\Candidate\Setting\SettingController@index');

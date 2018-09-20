@@ -1,4 +1,4 @@
-var btnLanguages;
+var btnEducative;
 
 $(document).ready(function () {
 	//Delete education item
@@ -100,7 +100,7 @@ $(document).ready(function () {
 			}
 			$('#frmEducation').attr('data-action', 'update');
 			$('.educative-title').html('Editar historial');
-			btnLanguages = this;
+			btnEducative = this;
 		} else {
 			$('#frmEducation input[name=tituloObtenido]').val('');
 			$('#frmEducation input[name=institucionEducativa]').val('');
@@ -135,8 +135,6 @@ $(document).ready(function () {
 		var estudiandoActualmente = ($('input[type=checkbox]', env).is(':checked')) ? 2 : 1;
 
 		data.append('estudiandoActualmente', estudiandoActualmente);
-
-		console.log(estudiandoActualmente);
 
 		$.ajax({
 			type: method,
@@ -192,7 +190,14 @@ $(document).ready(function () {
 					});
 
 					if (dataAction == 'update') {
-						//$(btnLanguages).attr('data-percent', $('input', env).val());
+						console.log("Entro aqui");
+						$(btnEducative).attr('data-school', response.school_name);
+						$(btnEducative).attr('data-level', response.educative_level_id);
+						$(btnEducative).attr('data-id', response.id);
+						$(btnEducative).attr('data-id', response.degree);
+						$(btnEducative).attr('data-description', response.description);
+						$(btnEducative).attr('data-current', response.current);
+						$(btnEducative).attr('data-url', response.callback_url);
 					} else {
 						$(env).trigger('reset');
 

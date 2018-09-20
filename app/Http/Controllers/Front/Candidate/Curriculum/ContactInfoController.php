@@ -10,6 +10,11 @@ use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\SocialMediaRequ
 
 class ContactInfoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('candidate.auth');
+    }
+
 	/**
 	 * [phones description]
 	 * @param  PhoneRequest $request [description]

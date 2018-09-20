@@ -46,7 +46,8 @@ class EducationController extends Controller
                 'description' => ($candidateEducation->description == null) ? '' : $candidateEducation->description,
                 'educative_level_id' => $candidateEducation->educative_level_id,
                 'educative_level_name' => ucwords($candidateEducation->educativeLevel->first()->name),
-                'callback_url' => url('candidate/dashboard/curriculum/educative-histories')
+                'callback_url' => url('candidate/dashboard/curriculum/educative-histories'),
+                'current' => ($candidateEducation->current) ? 1 : 0
             ];
         } else {
             $response = [
@@ -85,7 +86,15 @@ class EducationController extends Controller
             if ($candidateEducation->save()) {
                 $response = [
                     'errors' => false,
-                    'message' => 'Se ha actualizado con éxito el historial educativo.'
+                    'message' => 'Se ha actualizado con éxito el historial educativo.',
+                    'id' => $candidateEducation->id,
+                    'degree' => $candidateEducation->degree,
+                    'school_name' => ucwords($candidateEducation->school_name),
+                    'description' => ($candidateEducation->description == null) ? '' : $candidateEducation->description,
+                    'educative_level_id' => $candidateEducation->educative_level_id,
+                    'educative_level_name' => ucwords($candidateEducation->educativeLevel->first()->name),
+                    'callback_url' => url('candidate/dashboard/curriculum/educative-histories'),
+                    'current' => ($candidateEducation->current) ? 1 : 0
                 ];
             } else {
                 $response = [
