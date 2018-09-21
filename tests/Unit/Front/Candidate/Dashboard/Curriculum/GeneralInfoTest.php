@@ -110,6 +110,36 @@ class GeneralInfoTest extends TestCase
     		]);
     }
 
+    public function test_send_civil_status_alpha()
+    {
+        $response = $this->json('POST', $this->url, ['estadoCivil' => 'h1l']);
+
+        $response
+            ->assertStatus(422)
+            ->assertJson([
+                'errors' => [
+                    'estadoCivil' => [
+                        'El campo estado civil debe ser un número entero.'
+                    ]
+                ]
+            ]);
+    }
+
+    public function test_send_civil_status_not_exists()
+    {
+        $response = $this->json('POST', $this->url, ['estadoCivil' => 1000]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJson([
+                'errors' => [
+                    'estadoCivil' => [
+                        'El campo estado civil es inválido.'
+                    ]
+                ]
+            ]);
+    }
+
     public function test_success_with_no_second_name()
     {
     	$candidate = factory(\ReclutaTI\Candidate::class)->create();
@@ -226,7 +256,8 @@ class GeneralInfoTest extends TestCase
     		'apellidoPaterno' => $candidate->last_name,
     		'apellidoMaterno' => $this->faker->lastName,
     		'edad' => rand(16, 85),
-    		'genero' => factory(\ReclutaTI\Gender::class)->create()->id
+    		'genero' => factory(\ReclutaTI\Gender::class)->create()->id,
+            'estadoCivil' => factory(\ReclutaTI\CivilStatus::class)->create()->id
     	];
 
 

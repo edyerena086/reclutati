@@ -49,6 +49,10 @@ class CurriculumController extends Controller
     			$user->candidate->gender_id = $request->genero;
     		}
 
+            if ($request->has('estadoCivil')) {
+                $user->candidate->civil_status_id = $request->estadoCivil;
+            }
+
     		if ($user->candidate->save()) {
     			$response = [
     				'errors' => false,

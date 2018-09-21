@@ -60,6 +60,13 @@
 													{{ Form::select('genero', \ReclutaTI\Gender::list(), Auth::user()->candidate->gender_id, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
 												</div>
 											</div>
+
+											<div class="col-xl-3">
+												<div class="submit-field">
+													<h5>Estado civil:</h5>
+													{{ Form::select('estadoCivil', \ReclutaTI\CivilStatus::list(), Auth::user()->candidate->civil_status_id, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
+												</div>
+											</div>
 										</div>
 
 										<div class="row">

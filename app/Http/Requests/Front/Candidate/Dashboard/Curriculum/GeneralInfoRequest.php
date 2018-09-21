@@ -29,7 +29,8 @@ class GeneralInfoRequest extends FormRequest
             'apellidoPaterno' => 'required|string',
             'apellidoMaterno' => 'sometimes|string',
             'edad' => 'sometimes|integer|between:16,85',
-            'genero' => 'sometimes|integer|exists:genders,id'
+            'genero' => 'sometimes|integer|exists:genders,id',
+            'estadoCivil' => 'sometimes|integer|exists:civil_statuses,id'
         ];
     }
 
