@@ -50,5 +50,7 @@ Route::post('candidate/dashboard/curriculum/educative-histories/{id}', 'Front\Ca
 Route::get('candidate/dashboard/curriculum/educative-histories/{id}', 'Front\Candidate\Curriculum\EducationController@destroy');
 //Address
 Route::resource('candidate/dashboard/curriculum/addresses', 'Front\Candidate\Curriculum\AddressController');
+//Job Histories
+Route::resource('candidate/dashboard/curriculum/job-histories', 'Front\Candidate\Curriculum\JobHistoryController');
 //Settings
 Route::get('candidate/dashboard/settings', 'Front\Candidate\Setting\SettingController@index');
