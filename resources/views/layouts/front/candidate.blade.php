@@ -38,6 +38,9 @@
 
 					{{-- Content --}}
 					@yield('content')
+
+					{{-- Footer --}}
+					@include('layouts.front.partials.candidate.footer')
 				</div>
 			</div>
 		</div>
