@@ -43,7 +43,8 @@ class JobHistoryController extends Controller
                 'job_title' => $jobHistory->job_title,
                 'duration' => $jobHistory->duration,
                 'description' => $jobHistory->description,
-                'current' => ($jobHistory->current == true) ? 1 : 0
+                'current' => ($jobHistory->current == true) ? 1 : 0,
+                'callback_url' => url('candidate/dashboard/curriculum/job-histories')
             ];
         } else {
             $response = [
@@ -86,7 +87,8 @@ class JobHistoryController extends Controller
                     'job_title' => $jobHistory->job_title,
                     'duration' => $jobHistory->duration,
                     'description' => $jobHistory->description,
-                    'current' => ($jobHistory->current == true) ? 1 : 0
+                    'current' => ($jobHistory->current == true) ? 1 : 0,
+                    'callback_url' => url('candidate/dashboard/curriculum/job-histories')
                 ];
             } else {
                 $response = [
