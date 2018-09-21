@@ -337,7 +337,7 @@ $(document).ready(function(){
 	    };
 	   
 	    $(".file-upload").on('change', function(){
-	        readURL(this);
+	        //readURL(this);
 	    });
 	    
 	    $(".upload-button").on('click', function() {

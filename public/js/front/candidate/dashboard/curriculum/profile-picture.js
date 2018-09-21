@@ -5,6 +5,7 @@ $(document).ready(function () {
 			console.log('ha cambiado');
 
 			var env = this;
+			var standarProfilePicture = $('.profile-pic').attr('src');
 
 			var data = new FormData();
 			data.append('imagenDePerfil', $(env)[0].files[0]);
@@ -20,13 +21,19 @@ $(document).ready(function () {
 	            dataType: 'json',
 	            beforeSend: function () {
 					blockForm();
+
+					var ajaxLoader = $('meta[name="base-url"]').attr('content') + '/images/ajax-loader.gif';
+
+					$('.profile-pic').attr('src', ajaxLoader);
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
+					$('.profile-pic').attr('src', standarProfilePicture);
+
 					if (jqXHR.status == 422 ){
 						var message;
 
 						$.each(jqXHR.responseJSON.errors, function (key, value) {
-							message = value;
+							message = value[0];
 						});
 
 						$.jnoty(message, {
@@ -40,6 +47,32 @@ $(document).ready(function () {
 					}
 
 					unblockForm();
+				},
+				success: function (response) { 
+					unblockForm();
+
+					if (!response.errors) {
+						$('.profile-pic').attr('src', response.image_url);
+
+						$.jnoty(response.message, {
+							header: 'Éxito',
+				            theme: 'jnoty-success',
+				            life: 5000,
+				            position: 'top-right',
+				            icon: 'fa fa-check-circle'
+						});
+					} else {
+						$('.profile-pic').attr('src', standarProfilePicture);
+
+						$.jnoty(response.message, {
+							header: 'Advertencia',
+	                        theme: 'jnoty-danger',
+	                        life: 5000,
+	                        color: 'rti-danger',
+	                        position: 'top-right',
+	                        icon: 'fa fa-info-circle'
+						});
+					}
 				}
 			});
 		} 

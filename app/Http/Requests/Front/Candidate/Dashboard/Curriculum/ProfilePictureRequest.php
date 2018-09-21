@@ -27,4 +27,12 @@ class ProfilePictureRequest extends FormRequest
             'imagenDePerfil' => 'required|image|max:1000|dimensions:max_width=400.max_height=400'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'imagenDePerfil.max' => 'Tu imagen de perfil debe pesar menos de un 1 MB',
+            'imagenDePerfil.dimensions' => 'Las dimensiones de la imagen no deben superar los 400px.'
+        ];
+    }
 }

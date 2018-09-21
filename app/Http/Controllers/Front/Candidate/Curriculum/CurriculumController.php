@@ -4,6 +4,7 @@ namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
 use ReclutaTI\Gender;
+use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LaborGoalRequest;
@@ -113,14 +114,15 @@ class CurriculumController extends Controller
 
         $request->file('imagenDePerfil')->storeAs($folderName, $fileName, 'public');
 
-        $candidate = Auth::user()->candidate;
+        $candidate = Candidate::find(Auth::user()->candidate->id);
 
-        $candidate->profilePicture($fileName);
+        $candidate->profile_picture = $fileName;
 
         if ($candidate->save()) {
             $response = [
                 'errors' => false,
-                'message' => 'Se ha actualizado con éxito tu imagen de perfil.'
+                'message' => 'Se ha actualizado con éxito tu imagen de perfil.',
+                'image_url' => asset('storage/candidates/'.$candidate->id.'/'.$candidate->profile_picture)
             ];
         } else {
             $response = [
