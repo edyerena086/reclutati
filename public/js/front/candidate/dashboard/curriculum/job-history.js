@@ -229,7 +229,7 @@ $(document).ready(function () {
 											<div class="buttons-to-right">
 												<a href="#small-dialog-3" data-type="update" class="button btn-job-history popup-with-zoom-anim dark ripple-effect ico" data-company="${response.company}" data-id="${response.id}" data-job-title="${response.job_title}" data-duration="${response.duration}" data-current="${response.current}" data-url="${response.callback_url}" title="Editar" data-tippy-placement="top" data-description="${response.description}"><i class="icon-line-awesome-pencil"></i></a>
 
-												<a href="${response.callback_url}" class="button btn-job-historie-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+												<a href="${response.callback_url}/${response.id}" class="button btn-job-historie-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 											</div>
 										</li>`;
 
