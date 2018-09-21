@@ -39,13 +39,15 @@ class AccountController extends Controller
 	 */
 	public function login(LoginRequest $request)
 	{
+		$remember = ($request->has('remember')) ? true : false;
+
 		$credentials = [
 			'email' => $request->correoElectronico,
 			'password' => $request->password,
 			'role_id' => \ReclutaTI\Role::CANDIDATE
 		];
 
-		if (Auth::attempt($credentials)) {
+		if (Auth::attempt($credentials, $remember)) {
 			return redirect()->intended('candidate/dashboard');
 		} else {
 			return back()->withErrors(['loginError']);

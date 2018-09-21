@@ -1,7 +1,7 @@
 @extends('layouts.front.app')
 
 {{-- Page Title --}}
-@section('pageTitle', 'Crea tu cuenta')
+@section('pageTitle', 'Inicia tu sesión')
 
 {{-- Content --}}
 @section('content')
@@ -43,6 +43,13 @@
 						<div class="input-with-icon-left">
 							<input class="with-border" name="password" type="password" placeholder="Contraseña" />
 							<i id="i-password" class="icon-line-awesome-pencil"></i>
+						</div>
+
+						<div>
+							<div class="checkbox">
+								<input type="checkbox" value="on" name="trabajoActual" id="remember">
+								<label for="remember"><span class="checkbox-icon"></span> Recuerdame</label>
+							</div>
 						</div>
 
 						<button class="submit button margin-top-15" id="submit">Iniciar sesión</button>
