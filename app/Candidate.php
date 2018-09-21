@@ -25,4 +25,9 @@ class Candidate extends Model
     {
         return $this->hasOne('\ReclutaTI\CandidateAddress');
     }
+
+    public function jobHistories()
+    {
+        return $this->hasMany('\ReclutaTI\CandidateJobHistory');
+    }
 }

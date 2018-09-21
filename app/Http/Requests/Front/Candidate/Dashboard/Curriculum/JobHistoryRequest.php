@@ -29,7 +29,7 @@ class JobHistoryRequest extends FormRequest
             'puesto' => 'required',
             'duracion' => 'required|numeric',
             'descripcion' => 'required',
-            'trabajoActual' => ['required', 'integer', 'between:1,2', new CurrentJobHistory(($this->educativeId != null) ? $this->educativeId : 0)]
+            'trabajoActual' => ['required', 'integer', 'between:1,2', new CurrentJobHistory(($this->jobHistoryId != null) ? $this->jobHistoryId : 0)]
         ];
     }
 

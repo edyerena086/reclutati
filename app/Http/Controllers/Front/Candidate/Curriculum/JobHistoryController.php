@@ -37,7 +37,12 @@ class JobHistoryController extends Controller
         if ($jobHistory->save()) {
             $response = [
                 'errors' => false,
-                'message' => 'Se ha guardado con éxito el historial laboral.'
+                'message' => 'Se ha guardado con éxito el historial laboral.',
+                'company' => $jobHistory->company_name,
+                'job_title' => $jobHistory->job_title,
+                'duration' => $jobHistory->duration,
+                'description' => $jobHistory->description,
+                'current' => ($jobHistory->current == true) ? 1 : 0
             ];
         } else {
             $response = [

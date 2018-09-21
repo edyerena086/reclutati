@@ -21,6 +21,9 @@
 
 		{{-- Education and languages --}}
 		@include('front.candidate.dashboard.curriculum.partials._education-language-form')
+
+		{{-- Job histories and skills --}}
+		@include('front.candidate.dashboard.curriculum.partials._job-history-skills-form')
 	</div>
 @stop
 
@@ -29,4 +32,5 @@
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/education.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/languages.js') }}"></script>
+	<script src="{{ asset('js/front/candidate/dashboard/curriculum/job-history.js') }}"></script>
 @stop

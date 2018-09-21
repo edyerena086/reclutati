@@ -1,17 +1,17 @@
-var btnEducative;
+var btnjob;
 
 $(document).ready(function () {
 	//Delete education item
-	$(this).on('click', '.btn-education-delete', function (e) {
+	$(this).on('click', '.btn-job-historie-delete', function (e) {
 		e.preventDefault();
 
 		var env = this;
 
-		var position = $('.btn-education-delete').index(env) + 1;
+		var position = $('.btn-job-historie-delete').index(env) + 1;
 
 		$.confirm({
 			title: 'Confirmación',
-			content: '¿Deseas eliminar el historial educativo?',
+			content: '¿Deseas eliminar el historial laboral?',
 			theme: 'material',
 			buttons: {
 		        confirmar: {
@@ -19,7 +19,7 @@ $(document).ready(function () {
 		            btnClass: 'btn-blue',
 		            action: function(){
 		            	$.ajax({
-							type: 'GET',
+							type: 'DELETE',
 							url: $(env).attr('href'),
 							dataType: 'json',
 							beforeSend: function () {
@@ -27,7 +27,7 @@ $(document).ready(function () {
 							}, 
 							error: function (jqXHR, textStatus, errorThrown) {
 
-								$.jnoty("No se ha podido eliminar el historial educativo.", {
+								$.jnoty("No se ha podido eliminar el historial laboral.", {
 									header: 'Advertencia',
 				                    theme: 'jnoty-danger',
 				                    life: 5000,
@@ -48,9 +48,9 @@ $(document).ready(function () {
 				                        icon: 'fa fa-check-circle'
 									});
 
-									var position = $('.btn-education-delete').index(env) + 1;
+									var position = $('.btn-job-historie-delete').index(env) + 1;
 
-									$('.educative-list li.educative-li:eq('+position+')').remove();
+									$('.job-list li.job-li:eq('+position+')').remove();
 								} else {
 									$.jnoty(response.message, {
 										header: 'Advertencia',
@@ -76,44 +76,43 @@ $(document).ready(function () {
 	});
 
 	//Education click button add or edit
-	$(this).on('click', '.btn-education', function (e) {
+	$(this).on('click', '.btn-job-history', function (e) {
 		e.preventDefault();
 
 		var actionType = $(this).attr('data-type');
 
-		$('#frmEducation').trigger('reset');
-		$('#frmEducation input').removeClass('invalid');
-		$('#frmEducation select').removeClass('invalid');
-		$('#frmEducation textarea').removeClass('invalid');
-		$('#frmEducation .display-errors').addClass('hidden');
+		$('#frmJobHistory').trigger('reset');
+		$('#frmJobHistory input').removeClass('invalid');
+		$('#frmJobHistory textarea').removeClass('invalid');
+		$('#frmJobHistory .display-errors').addClass('hidden');
 
 		var route = (actionType == 'store') ? $(this).attr('data-url') : $(this).attr('data-url') + '/' + $(this).attr('data-id');
-		$('#frmEducation').attr('action', route);
+		$('#frmJobHistory').attr('action', route);
 
 		if (actionType == 'update'){
-			$('#frmEducation input[name=tituloObtenido]').val($(this).attr('data-title'));
-			$('#frmEducation input[name=institucionEducativa]').val($(this).attr('data-school'));
-			$('#frmEducation textarea').val($(this).attr('data-description'));
-			$('#frmEducation select').val($(this).attr('data-level'));
+			$('#frmJobHistory input[name=tituloObtenido]').val($(this).attr('data-title'));
+			$('#frmJobHistory input[name=institucionEducativa]').val($(this).attr('data-school'));
+			$('#frmJobHistory textarea').val($(this).attr('data-description'));
+			$('#frmJobHistory select').val($(this).attr('data-level'));
 			if ($(this).attr('data-current') == 1) {
-				$('#frmEducation input[name=estudiandoActualmente]').prop('checked', true);
+				$('#frmJobHistory input[name=trabajoActual]').prop('checked', true);
 			}
-			$('#frmEducation').attr('data-action', 'update');
-			$('.educative-title').html('Editar historial');
-			btnEducative = this;
+			$('#frmJobHistory').attr('data-action', 'update');
+			$('.job-title').html('Editar historial');
+			btnjob = this;
 		} else {
-			$('#frmEducation input[name=tituloObtenido]').val('');
-			$('#frmEducation input[name=institucionEducativa]').val('');
-			$('#frmEducation textarea').val('');
-			$('#frmEducation select').val('');
-			$('#frmEducation').attr('data-action', 'store');
-			$('.educative-title').html('Nuevo historial');
-			$('#frmEducation input[name=estudiandoActualmente]').prop('checked', false);
+			$('#frmJobHistory input[name=tituloObtenido]').val('');
+			$('#frmJobHistory input[name=institucionEducativa]').val('');
+			$('#frmJobHistory textarea').val('');
+			$('#frmJobHistory select').val('');
+			$('#frmJobHistory').attr('data-action', 'store');
+			$('.job-title').html('Nuevo historial');
+			$('#frmJobHistory input[name=trabajoActual]').prop('checked', false);
 		}
 	});
 
-	//Form Education
-	$('#frmEducation').on('submit', function (e) {
+	//Form Job History
+	$('#frmJobHistory').on('submit', function (e) {
 		e.preventDefault();
 
 		var route = $(this).attr('action');
@@ -126,7 +125,7 @@ $(document).ready(function () {
 
 		//Data
 		var data = new FormData();
-		$('input, select, textarea', env).not($('input[type=checkbox]', env)).each(function () {
+		$('input, textarea', env).not($('input[type=checkbox]', env)).each(function () {
 			var temporalValue = $(this).val();
 
 			if ($.trim(temporalValue) != '') {
@@ -135,12 +134,12 @@ $(document).ready(function () {
 		});
 
 		if (dataAction == 'update') {
-			data.append('educativeId', route.split('/').pop());
+			data.append('jobHistoryId', route.split('/').pop());
 		}
 
-		var estudiandoActualmente = ($('input[type=checkbox]', env).is(':checked')) ? 2 : 1;
+		var trabajoActual = ($('input[type=checkbox]', env).is(':checked')) ? 2 : 1;
 
-		data.append('estudiandoActualmente', estudiandoActualmente);
+		data.append('trabajoActual', trabajoActual);
 
 		$.ajax({
 			type: method,
@@ -154,7 +153,7 @@ $(document).ready(function () {
 				$('button.button-sliding-icon', env).html("Cargando...");
 				blockForm();
 
-				$('input, select, textarea', env).removeClass('invalid');
+				$('input, textarea', env).removeClass('invalid');
 				$('.display-errors', env).addClass('hidden');
 				$('.display-errors ul', env).empty();
 			}, 
@@ -164,7 +163,6 @@ $(document).ready(function () {
 				if (jqXHR.status == 422 ){
 					$.each(jqXHR.responseJSON.errors, function (key, value) {
 						$('input[name=' + key +']', env).addClass('invalid');
-						$('select[name=' + key +']', env).addClass('invalid');
 						$('textarea[name=' + key +']', env).addClass('invalid');
 						$('.display-errors ul', env).append('<li>' + value + '</li>');
 					});
@@ -196,32 +194,32 @@ $(document).ready(function () {
 					});
 
 					if (dataAction == 'update') {
-						$(btnEducative).attr('data-school', response.school_name);
-						$(btnEducative).attr('data-level', response.educative_level_id);
-						$(btnEducative).attr('data-id', response.id);
-						$(btnEducative).attr('data-title', response.degree);
-						$(btnEducative).attr('data-description', response.description);
-						$(btnEducative).attr('data-current', response.current);
-						$(btnEducative).attr('data-url', response.callback_url);
+						$(btnjob).attr('data-school', response.school_name);
+						$(btnjob).attr('data-level', response.job_level_id);
+						$(btnjob).attr('data-id', response.id);
+						$(btnjob).attr('data-title', response.degree);
+						$(btnjob).attr('data-description', response.description);
+						$(btnjob).attr('data-current', response.current);
+						$(btnjob).attr('data-url', response.callback_url);
 
-						var position = $('.btn-education').index(btnEducative) - 1;
-						$('.educative-list-item-title:eq('+position+')').html(response.degree);
-						$('.educative-list-item-school:eq('+position+')').html('<i class="icon-material-outline-business"></i> ' + response.school_name);
-						$('.educative-list-item-level:eq('+position+')').html('<i class="icon-material-outline-business-center"></i> ' + $('select option:selected', env).text());
+						var position = $('.btn-education').index(btnjob) - 1;
+						$('.job-list-item-title:eq('+position+')').html(response.degree);
+						$('.job-list-item-school:eq('+position+')').html('<i class="icon-material-outline-business"></i> ' + response.school_name);
+						$('.job-list-item-level:eq('+position+')').html('<i class="icon-material-outline-business-center"></i> ' + $('select option:selected', env).text());
 
 					} else {
 						$(env).trigger('reset');
 
-						var element = `<li class="educative-li">
+						var element = `<li class="job-li">
 											<div class="job-listing">
 												<div class="job-listing-details">
 													<div class="job-listing-description">
-														<h3 class="job-listing-title educative-list-item-title">${response.degree}</h3>
+														<h3 class="job-listing-title job-list-item-title">${response.degree}</h3>
 
 														<div class="job-listing-footer">
 															<ul>
-																<li class="educative-list-item-school"><i class="icon-material-outline-business"></i> ${response.school_name}</li>
-																<li class="educative-list-item-level"><i class="icon-material-outline-business-center"></i> ${response.educative_level_name}</li>
+																<li class="job-list-item-school"><i class="icon-material-outline-business"></i> ${response.school_name}</li>
+																<li class="job-list-item-level"><i class="icon-material-outline-business-center"></i> ${response.job_level_name}</li>
 															</ul>
 														</div>
 													</div>
@@ -230,13 +228,13 @@ $(document).ready(function () {
 
 											
 											<div class="buttons-to-right">
-												<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="${response.school_name}" data-level="${response.educative_level_id}" data-id="${response.id}" data-title="${response.degree}" data-description="${response.description}" data-current="${response.current}" data-url="${response.callback_url}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+												<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="${response.school_name}" data-level="${response.job_level_id}" data-id="${response.id}" data-title="${response.degree}" data-description="${response.description}" data-current="${response.current}" data-url="${response.callback_url}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-												<a href="${response.callback_url}/${response.id}" class="button btn-education-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+												<a href="${response.callback_url}/${response.id}" class="button btn-job-historie-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 											</div>
 										</li>`;
 
-						$('.educative-list').append(element);
+						$('.job-list').append(element);
 
 						initMagnificPopup();
 					}
