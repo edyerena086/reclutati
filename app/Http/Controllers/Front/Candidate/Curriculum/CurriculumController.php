@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LaborGoalRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\GeneralInfoRequest;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\ProfilePictureRequest;
 
 class CurriculumController extends Controller
 {
@@ -96,5 +97,39 @@ class CurriculumController extends Controller
     	}
 
     	return response()->json($response);
+    }
+
+    /**
+     * [profilePicture description]
+     * @param  ProfilePictureRequest $request [description]
+     * @return [type]                         [description]
+     */
+    public function profilePicture(ProfilePictureRequest $request)
+    {
+        $response;
+
+        $fileName = rand(10000, 99999).'_profile.'.$request->file('imagenDePerfil')->getClientOriginalExtension();
+        $folderName = 'candidates/'.Auth::user()->candidate->id;
+
+        $request->file('imagenDePerfil')->storeAs($folderName, $fileName, 'public');
+
+        $candidate = Auth::user()->candidate;
+
+        $candidate->profilePicture($fileName);
+
+        if ($candidate->save()) {
+            $response = [
+                'errors' => false,
+                'message' => 'Se ha actualizado con éxito tu imagen de perfil.'
+            ];
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'No se ha podido actualizar tu imagen de perfil.',
+                'error_code' => 'pp0001'
+            ];
+        }
+
+        return response()->json($response);
     }
 }

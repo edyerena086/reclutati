@@ -1,5 +1,5 @@
 		<div class="col-xl-12">
-			<div class="dashboard-box margin-top-0">
+			<div class="dashboard-box">
 				{{--headline --}}
 				<div class="headline">
 					<h3><i class="icon-material-outline-account-circle"></i> Datos Generales</h3>

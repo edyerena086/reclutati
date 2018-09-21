@@ -10,6 +10,9 @@
 @section('content')
 	<div class="row">
 
+		{{-- Profile Picture --}}
+		@include('front.candidate.dashboard.curriculum.partials._profile-picture-form')
+
 		{{-- General Info --}}
 		@include('front.candidate.dashboard.curriculum.partials._general-form')
 
@@ -30,6 +33,7 @@
 {{-- JS Page --}}
 @section('pageJS')
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum.js') }}"></script>
+	<script src="{{ asset('js/front/candidate/dashboard/curriculum/profile-picture.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/education.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/languages.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/job-history.js') }}"></script>
