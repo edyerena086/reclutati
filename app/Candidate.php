@@ -30,4 +30,9 @@ class Candidate extends Model
     {
         return $this->hasMany('\ReclutaTI\CandidateJobHistory')->orderBy('current', 'DESC');
     }
+
+    public function skills()
+    {
+        return $this->hasMany('\ReclutaTI\CandidateSkill');
+    }
 }

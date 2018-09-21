@@ -37,4 +37,5 @@
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/education.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/languages.js') }}"></script>
 	<script src="{{ asset('js/front/candidate/dashboard/curriculum/job-history.js') }}"></script>
+	<script src="{{ asset('js/front/candidate/dashboard/curriculum/skills.js') }}"></script>
 @stop
