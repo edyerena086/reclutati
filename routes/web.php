@@ -57,3 +57,4 @@ Route::resource('candidate/dashboard/curriculum/job-histories', 'Front\Candidate
 Route::resource('candidate/dashboard/curriculum/skills', 'Front\Candidate\Curriculum\SkillController');
 //Settings
 Route::get('candidate/dashboard/settings', 'Front\Candidate\Setting\SettingController@index');
+Route::post('candidate/dashboard/settings/password', 'Front\Candidate\Setting\PasswordController@newPassword');

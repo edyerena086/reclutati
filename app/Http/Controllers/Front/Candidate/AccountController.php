@@ -82,6 +82,7 @@ class AccountController extends Controller
 
     		$candidate->user_id = $user->id;
     		$candidate->last_name = strtolower($request->apellidoPaterno);
+    		$candidate->hash = $request->password;
 
     		if ($candidate->save()) {
     			//Send welcome Mail

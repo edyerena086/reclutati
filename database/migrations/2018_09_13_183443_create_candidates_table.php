@@ -22,6 +22,7 @@ class CreateCandidatesTable extends Migration
             $table->integer('age')->nullable();
             $table->unsignedInteger('gender_id')->nullable();
             $table->unsignedInteger('civil_status_id')->nullable();
+            $table->string('hash')->nullable();
             //Contact info
             $table->string('phone')->nullable();
             $table->string('cellphone')->nullable();
