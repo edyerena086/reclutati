@@ -159,6 +159,32 @@ class UpdateTest extends TestCase
     		]);
     }
 
+    public function test_success()
+    {
+        $this->init();
+
+        Auth::attempt(['email' => $this->candidateEducationHistory->candidate()->first()->user()->first()->email, 'password' => 'secret']);
+
+        $data = [
+            'empresa' => $this->faker->company,
+    		'puesto' => $this->faker->jobTitle,
+    		'duracion' => rand(1,3),
+    		'descripcion' => $this->faker->paragraph(),
+    		'trabajoActual' => 1
+        ];
+
+
+        $response = $this->json('PUT', $this->url, $data);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'errors' => false
+            ]);
+
+        Auth::logout();
+    }
+
 	private function init()
 	{
 		$candidateJobHistory = factory(\ReclutaTI\CandidateJobHistory::class)->create(['current' => 1]);

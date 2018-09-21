@@ -3,6 +3,7 @@
 namespace ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum;
 
 use Illuminate\Foundation\Http\FormRequest;
+use ReclutaTI\Rules\Front\Candidate\CurrentJobHistory;
 
 class JobHistoryRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class JobHistoryRequest extends FormRequest
             'puesto' => 'required',
             'duracion' => 'required|numeric',
             'descripcion' => 'required',
-            'trabajoActual' => 'required|integer|between:1,2'
+            'trabajoActual' => ['required', 'integer', 'between:1,2', new CurrentJobHistory(($this->educativeId != null) ? $this->educativeId : 0)]
         ];
     }
 
