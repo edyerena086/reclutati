@@ -78,9 +78,7 @@ class EducationController extends Controller
             $candidateEducation->school_name = strtolower($request->institucionEducativa);
             $candidateEducation->educative_level_id = $request->nivelEducativo;
             $candidateEducation->degree = $request->tituloObtenido;
-            if ($request->has('descripcion')) {
-                $candidateEducation->description = $request->descripcion;
-            }
+            $candidateEducation->description = $request->descripcion;
             $candidateEducation->current = ($request->estudiandoActualmente == 1) ? false : true;
 
             if ($candidateEducation->save()) {
