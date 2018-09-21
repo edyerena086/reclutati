@@ -33,7 +33,7 @@
 
 								{{-- buttons --}}
 								<div class="buttons-to-right">
-									<a href="#small-dialog-1" data-type="update" class="button btn-job-history popup-with-zoom-anim dark ripple-effect ico" data-company="{{ ucwords($job->company_name) }}" data-job-title="{{ $job->job_title }}" data-duration="{{ $job->duration }}" data-current="{{ $job->current }}" data-description="{{ $job->description }}" data-url="{{ url('candidate/dashboard/curriculum/job-histories') }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+									<a href="#small-dialog-3" data-type="update" class="button btn-job-history popup-with-zoom-anim dark ripple-effect ico" data-id="{{ $job->id }}" data-company="{{ ucwords($job->company_name) }}" data-job-title="{{ $job->job_title }}" data-duration="{{ $job->duration }}" data-current="{{ $job->current }}" data-description="{{ $job->description }}" data-url="{{ url('candidate/dashboard/curriculum/job-histories') }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
 									<a href="{{ url('candidate/dashboard/curriculum/job-histories/'.$job->id) }}" class="button btn-job-historie-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>
@@ -54,7 +54,7 @@
 				{{-- tab content --}}
 				<div class="popup-tab-content" id="tab2">
 					<div class="welcome-text">
-						<h3 class="job-title">Nuevo historial</h3>
+						<h3 class="job-title-modal">Nuevo historial</h3>
 						<span>Los campos marcados con (*) son obligatorios.</span>
 					</div>
 

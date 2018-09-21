@@ -41,7 +41,7 @@ class CurrentJobHistory implements Rule
                 return ($records->count() > 0) ? false : true;
             } else {
                 //Check if there is any record with current true
-                $records = CandidateJobHistory::where('candidate_id', Auth::user()->candidate->id)
+                $record = CandidateJobHistory::where('candidate_id', Auth::user()->candidate->id)
                                             ->where('current', true)
                                             ->first();
 
@@ -65,6 +65,6 @@ class CurrentJobHistory implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Ya tienes un empleo seleccionado como trabajo actual.';
     }
 }

@@ -28,6 +28,6 @@ class Candidate extends Model
 
     public function jobHistories()
     {
-        return $this->hasMany('\ReclutaTI\CandidateJobHistory');
+        return $this->hasMany('\ReclutaTI\CandidateJobHistory')->orderBy('current', 'DESC');
     }
 }

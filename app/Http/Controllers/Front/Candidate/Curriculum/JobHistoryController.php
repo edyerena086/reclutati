@@ -28,7 +28,7 @@ class JobHistoryController extends Controller
         $jobHistory = new CandidateJobHistory();
 
         $jobHistory->candidate_id = Auth::user()->candidate->id;
-        $jobHistory->company_name = strtolower($request->empresa);
+        $jobHistory->company_name = $request->empresa;
         $jobHistory->job_title = $request->puesto;
         $jobHistory->duration = $request->duracion;
         $jobHistory->description = $request->descripcion;
@@ -38,7 +38,8 @@ class JobHistoryController extends Controller
             $response = [
                 'errors' => false,
                 'message' => 'Se ha guardado con éxito el historial laboral.',
-                'company' => $jobHistory->company_name,
+                'id' => $jobHistory->id,
+                'company' => ucwords($jobHistory->company_name),
                 'job_title' => $jobHistory->job_title,
                 'duration' => $jobHistory->duration,
                 'description' => $jobHistory->description,
@@ -70,7 +71,7 @@ class JobHistoryController extends Controller
         $jobHistory = CandidateJobHistory::where('id', $id)->where('candidate_id', Auth::user()->candidate->id)->first();
 
         if ($jobHistory != null) {
-            $jobHistory->company_name = strtolower($request->empresa);
+            $jobHistory->company_name = $request->empresa;
             $jobHistory->job_title = $request->puesto;
             $jobHistory->duration = $request->duracion;
             $jobHistory->description = $request->descripcion;
@@ -79,7 +80,13 @@ class JobHistoryController extends Controller
             if ($jobHistory->save()) {
                 $response = [
                     'errors' => false,
-                    'message' => 'Se ha actualizado con éxito el historial laboral.'
+                    'message' => 'Se ha actualizado con éxito el historial laboral.',
+                    'id' => $jobHistory->id,
+                    'company' => ucwords($jobHistory->company_name),
+                    'job_title' => $jobHistory->job_title,
+                    'duration' => $jobHistory->duration,
+                    'description' => $jobHistory->description,
+                    'current' => ($jobHistory->current == true) ? 1 : 0
                 ];
             } else {
                 $response = [

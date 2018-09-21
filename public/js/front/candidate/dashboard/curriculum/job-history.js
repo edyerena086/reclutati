@@ -22,6 +22,7 @@ $(document).ready(function () {
 							type: 'DELETE',
 							url: $(env).attr('href'),
 							dataType: 'json',
+							headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 							beforeSend: function () {
 								blockForm();
 							}, 
@@ -75,7 +76,7 @@ $(document).ready(function () {
 		
 	});
 
-	//Education click button add or edit
+	//Job click button add or edit
 	$(this).on('click', '.btn-job-history', function (e) {
 		e.preventDefault();
 
@@ -90,24 +91,19 @@ $(document).ready(function () {
 		$('#frmJobHistory').attr('action', route);
 
 		if (actionType == 'update'){
-			$('#frmJobHistory input[name=tituloObtenido]').val($(this).attr('data-title'));
-			$('#frmJobHistory input[name=institucionEducativa]').val($(this).attr('data-school'));
+			$('#frmJobHistory input[name=empresa]').val($(this).attr('data-company'));
+			$('#frmJobHistory input[name=puesto]').val($(this).attr('data-job-title'));
+			$('#frmJobHistory input[name=duracion]').val($(this).attr('data-duration'));
 			$('#frmJobHistory textarea').val($(this).attr('data-description'));
-			$('#frmJobHistory select').val($(this).attr('data-level'));
 			if ($(this).attr('data-current') == 1) {
 				$('#frmJobHistory input[name=trabajoActual]').prop('checked', true);
 			}
 			$('#frmJobHistory').attr('data-action', 'update');
-			$('.job-title').html('Editar historial');
+			$('.job-title-modal').html('Editar historial');
 			btnjob = this;
 		} else {
-			$('#frmJobHistory input[name=tituloObtenido]').val('');
-			$('#frmJobHistory input[name=institucionEducativa]').val('');
-			$('#frmJobHistory textarea').val('');
-			$('#frmJobHistory select').val('');
-			$('#frmJobHistory').attr('data-action', 'store');
-			$('.job-title').html('Nuevo historial');
-			$('#frmJobHistory input[name=trabajoActual]').prop('checked', false);
+			$('#frmJobHistory').trigger('reset');
+			$('.job-title-modal').html('Nuevo historial');
 		}
 	});
 
@@ -117,8 +113,8 @@ $(document).ready(function () {
 
 		var route = $(this).attr('action');
 		var env = this;
-		var method = $(this).attr('method');
 		var dataAction = $(this).attr('data-action');
+		var method = (dataAction == 'update') ? 'PUT' : 'POST';
 
 
 
@@ -135,6 +131,7 @@ $(document).ready(function () {
 
 		if (dataAction == 'update') {
 			data.append('jobHistoryId', route.split('/').pop());
+			data.append('_method', 'PUT');
 		}
 
 		var trabajoActual = ($('input[type=checkbox]', env).is(':checked')) ? 2 : 1;
@@ -142,7 +139,7 @@ $(document).ready(function () {
 		data.append('trabajoActual', trabajoActual);
 
 		$.ajax({
-			type: method,
+			type: 'POST',
 			url: route,
 			data: data,
 			processData: false,
@@ -194,18 +191,18 @@ $(document).ready(function () {
 					});
 
 					if (dataAction == 'update') {
-						$(btnjob).attr('data-school', response.school_name);
-						$(btnjob).attr('data-level', response.job_level_id);
+						$(btnjob).attr('data-company', response.company);
+						$(btnjob).attr('data-job-title', response.job_title);
 						$(btnjob).attr('data-id', response.id);
-						$(btnjob).attr('data-title', response.degree);
+						$(btnjob).attr('data-duration', response.duration);
 						$(btnjob).attr('data-description', response.description);
 						$(btnjob).attr('data-current', response.current);
-						$(btnjob).attr('data-url', response.callback_url);
+						//$(btnjob).attr('data-url', response.callback_url);
 
-						var position = $('.btn-education').index(btnjob) - 1;
-						$('.job-list-item-title:eq('+position+')').html(response.degree);
-						$('.job-list-item-school:eq('+position+')').html('<i class="icon-material-outline-business"></i> ' + response.school_name);
-						$('.job-list-item-level:eq('+position+')').html('<i class="icon-material-outline-business-center"></i> ' + $('select option:selected', env).text());
+						var position = $('.btn-job-history').index(btnjob) - 1;
+						$('.job-list-item-title:eq('+position+')').html(response.job_title);
+						$('.job-list-item-company:eq('+position+')').html('<i class="icon-material-outline-business"></i> ' + response.company);
+						$('.job-list-item-duration:eq('+position+')').html('<i class="icon-material-outline-business-center"></i> ' + response.duration + ' años');
 
 					} else {
 						$(env).trigger('reset');
@@ -214,23 +211,22 @@ $(document).ready(function () {
 											<div class="job-listing">
 												<div class="job-listing-details">
 													<div class="job-listing-description">
-														<h3 class="job-listing-title job-list-item-title">${response.degree}</h3>
+														<h3 class="job-listing-title job-list-item-title">${response.job_title}</h3>
 
 														<div class="job-listing-footer">
 															<ul>
-																<li class="job-list-item-school"><i class="icon-material-outline-business"></i> ${response.school_name}</li>
-																<li class="job-list-item-level"><i class="icon-material-outline-business-center"></i> ${response.job_level_name}</li>
+																<li class="job-list-item-company"><i class="icon-material-outline-business"></i> ${response.company}</li>
+																<li class="job-list-item-duration"><i class="icon-feather-clock"></i> ${response.duration} años</li>
 															</ul>
 														</div>
 													</div>
 												</div>
 											</div>
 
-											
 											<div class="buttons-to-right">
-												<a href="#small-dialog-1" data-type="update" class="button btn-education popup-with-zoom-anim dark ripple-effect ico" data-school="${response.school_name}" data-level="${response.job_level_id}" data-id="${response.id}" data-title="${response.degree}" data-description="${response.description}" data-current="${response.current}" data-url="${response.callback_url}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
+												<a href="#small-dialog-3" data-type="update" class="button btn-job-history popup-with-zoom-anim dark ripple-effect ico" data-company="${response.company}" data-id="${response.id}" data-job-title="${response.job_title}" data-duration="${response.duration}" data-current="${response.current}" data-description="${response.description}" data-url="{{ url('candidate/dashboard/curriculum/job-histories') }}" title="Editar" data-tippy-placement="top"><i class="icon-line-awesome-pencil"></i></a>
 
-												<a href="${response.callback_url}/${response.id}" class="button btn-job-historie-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+												<a href="{{ url('candidate/dashboard/curriculum/job-histories/'.$job->id) }}" class="button btn-job-historie-delete red ripple-effect ico" title="Eliminar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 											</div>
 										</li>`;
 
