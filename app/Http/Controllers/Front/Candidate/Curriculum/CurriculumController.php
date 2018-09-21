@@ -6,6 +6,7 @@ use Auth;
 use ReclutaTI\Gender;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LaborGoalRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\GeneralInfoRequest;
@@ -115,6 +116,11 @@ class CurriculumController extends Controller
         $request->file('imagenDePerfil')->storeAs($folderName, $fileName, 'public');
 
         $candidate = Candidate::find(Auth::user()->candidate->id);
+
+        //Delete a file if exists
+        if ($candidate->profile_picture != '') {
+            Storage::disk('public')->delete($folderName.'/'.$candidate->profile_picture);
+        }
 
         $candidate->profile_picture = $fileName;
 
