@@ -19,12 +19,12 @@
 								<div class="job-listing">
 									<div class="job-listing-details">
 										<div class="job-listing-description">
-											<h3 class="job-listing-title">{{ $educative->degree }}</h3>
+											<h3 class="job-listing-title educative-list-item-title">{{ $educative->degree }}</h3>
 
 											<div class="job-listing-footer">
 												<ul>
-													<li><i class="icon-material-outline-business"></i> {{ ucwords($educative->school_name) }}</li>
-													<li><i class="icon-material-outline-business-center"></i> {{ ucwords($educative->educativeLevel->where('id', $educative->educative_level_id)->first()->name) }}</li>
+													<li class="educative-list-item-school"><i class="icon-material-outline-business"></i> {{ ucwords($educative->school_name) }}</li>
+													<li class="educative-list-item-level"><i class="icon-material-outline-business-center"></i> {{ ucwords($educative->educativeLevel->where('id', $educative->educative_level_id)->first()->name) }}</li>
 												</ul>
 											</div>
 										</div>

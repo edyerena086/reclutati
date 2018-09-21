@@ -203,6 +203,12 @@ $(document).ready(function () {
 						$(btnEducative).attr('data-description', response.description);
 						$(btnEducative).attr('data-current', response.current);
 						$(btnEducative).attr('data-url', response.callback_url);
+
+						var position = $('.btn-education').index(btnEducative) - 1;
+						$('.educative-list-item-title:eq('+position+')').html(response.degree);
+						$('.educative-list-item-school:eq('+position+')').html('<i class="icon-material-outline-business"></i> ' + response.school_name);
+						$('.educative-list-item-level:eq('+position+')').html('<i class="icon-material-outline-business-center"></i> ' + $('select option:selected', env).text());
+
 					} else {
 						$(env).trigger('reset');
 
@@ -210,12 +216,12 @@ $(document).ready(function () {
 											<div class="job-listing">
 												<div class="job-listing-details">
 													<div class="job-listing-description">
-														<h3 class="job-listing-title">${response.degree}</h3>
+														<h3 class="job-listing-title educative-list-item-title">${response.degree}</h3>
 
 														<div class="job-listing-footer">
 															<ul>
-																<li><i class="icon-material-outline-business"></i> ${response.school_name}</li>
-																<li><i class="icon-material-outline-business-center"></i> ${response.educative_level_name}</li>
+																<li class="educative-list-item-school"><i class="icon-material-outline-business"></i> ${response.school_name}</li>
+																<li class="educative-list-item-level"><i class="icon-material-outline-business-center"></i> ${response.educative_level_name}</li>
 															</ul>
 														</div>
 													</div>
