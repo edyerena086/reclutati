@@ -18,7 +18,7 @@
 	{{-- forms contents --}}
 	<div class="container">
 		<div class="row">
-			<diiv class="col-xl-6">
+			<div class="col-xl-6">
 				<section id="contact" class="margin-bottom-60">
 					<h3 class="headline margin-top-15 margin-bottom-35">
 						Registrate usando tu correo
@@ -66,7 +66,35 @@
 						<button class="submit button margin-top-15" id="submit">Crear cuenta</button>
 					</form>
 				</section>
-			</diiv>
+			</div>
+
+			<div class="col-xl-6">
+				<section id="contact" class="margin-bottom-60 social-login">
+					<h3 class="headline margin-top-15 margin-bottom-35">
+						Registrate utilizando tus redes sociales
+					</h3>
+
+					<ul>
+						<li>
+							<a href="{{ route('social_auth', ['driver' => 'facebook']) }}" class="loginBtn loginBtn--facebook">
+							  Registrate con Facebook
+							</a>
+						</li>
+
+						<li>
+							<a href="{{ route('social_auth', ['driver' => 'google']) }}" class="loginBtn loginBtn--google">
+							  Registrate con Google
+							</a>
+						</li>
+
+						<li>
+							<a href="{{ route('social_auth', ['driver' => 'github']) }}" class="loginBtn loginBtn--github">
+							  Registrate con GitHub
+							<a>
+						</li>
+					</ul>
+				</section>
+			</div>
 		</div>
 	</div>
 @stop

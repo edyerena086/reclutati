@@ -3,6 +3,7 @@
 namespace ReclutaTI\Http\Controllers\Front\Candidate;
 
 use Auth;
+use Session;
 use Socialite;
 use ReclutaTI\User;
 use ReclutaTI\Candidate;
@@ -153,6 +154,7 @@ class AccountController extends Controller
     	$socialUser = Socialite::driver($driver)->user();
 
     	if (!request()->has('code') || request()->has('denied')) {
+    		Session::flash('error', 'Se ha cancelado la petición');
     		return redirect()->intnded('candidate');
     	}
 
@@ -160,7 +162,6 @@ class AccountController extends Controller
     	$user = User::where('email', $socialUser->email)->where('role_id', \ReclutaTI\Role::CANDIDATE)->first();
     	if ($user) {
     		Auth::loginUsingId($user->id);
-
     		return redirect()->intended('candidate/dashboard');
     	} else {
     		$user = new User();
@@ -184,12 +185,17 @@ class AccountController extends Controller
     				} else {
     					$candidate->delete();
     					$user->delete();
+    					Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
+    					return redirect()->intnded('candidate');
     				}
     			} else {
     				$user->delete();
+    				Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
+    				return redirect()->intnded('candidate');
     			}
     		} else {
-
+    			Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
+    			return redirect()->intnded('candidate');
     		}
     	}
     }

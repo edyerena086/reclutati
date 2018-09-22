@@ -17,6 +17,18 @@
 
 	{{-- forms contents --}}
 	<div class="container">
+		@if (session('error'))
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="notification error closable">
+						<p>
+							{{ session('error') }}
+						</p>
+					</div>
+				</div>
+			</div>
+		@endif
+
 		<div class="row">
 			<div class="col-xl-6">
 				<section id="contact" class="margin-bottom-60">
