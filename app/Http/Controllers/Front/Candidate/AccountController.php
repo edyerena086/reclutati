@@ -3,6 +3,7 @@
 namespace ReclutaTI\Http\Controllers\Front\Candidate;
 
 use Auth;
+use Socialite;
 use ReclutaTI\User;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
@@ -129,6 +130,18 @@ class AccountController extends Controller
     	Auth::logout();
 
     	return redirect()->intended('candidate');
+    }
+
+    public function redirectToProvider($driver)
+    {
+    	return Socialite::driver($driver)->redirect();
+    }
+
+    public function handlerProviderCallback($driver)
+    {
+    	$socialUser = Socialite::driver($driver)->user();
+
+    	dd($socialUser);
     }
 
     /**

@@ -23,6 +23,9 @@ Route::post('candidate', 'Front\Candidate\AccountController@login');
 Route::get('candidate/account', 'Front\Candidate\AccountController@create');
 Route::post('candidate/account', 'Front\Candidate\AccountController@store');
 Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout');
+//Social login
+Route::get('candidate/login/{driver}', 'Front\Candidate\AccountController@redirectToProvider')->name('social_auth');
+Route::get('candidate/login/{driver}/callback', 'Front\Candidate\AccountController@handlerProviderCallback');
 //Password reset
 Route::get('candidate/account/password/recover', 'Front\Candidate\AccountController@passwordRecover');
 Route::get('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordReset')->name('unsubscribe');
