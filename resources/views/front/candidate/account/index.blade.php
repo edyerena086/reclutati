@@ -81,9 +81,15 @@
 						</li>
 
 						<li>
-							<button class="loginBtn loginBtn--google">
+							<a href="{{ route('social_auth', ['driver' => 'google']) }}" class="loginBtn loginBtn--google">
 							  Iniciar sesión con Google
-							</button>
+							</a>
+						</li>
+
+						<li>
+							<a href="{{ route('social_auth', ['driver' => 'github']) }}" class="loginBtn loginBtn--google">
+							  Iniciar sesión con GitHub
+							<a>
 						</li>
 					</ul>
 				</section>

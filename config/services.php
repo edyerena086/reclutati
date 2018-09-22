@@ -39,7 +39,7 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'candidate/login/github/callback'
+        'redirect' => 'https://reclutati.com/candidate/login/github/callback'
     ],
 
     'facebook' => [
@@ -51,7 +51,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'candidate/login/google/callback'
+        'redirect' => 'https://reclutati.com/candidate/login/google/callback'
     ]
 
 ];
