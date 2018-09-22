@@ -18,7 +18,7 @@
 	{{-- forms contents --}}
 	<div class="container">
 		<div class="row">
-			<diiv class="col-xl-6">
+			<div class="col-xl-6">
 				<section id="contact" class="margin-bottom-60">
 					<h3 class="headline margin-top-15 margin-bottom-35">
 						Inicia tu sesión por correo electrónico
@@ -65,7 +65,29 @@
 						</ul>
 					</form>
 				</section>
-			</diiv>
+			</div>
+
+			<div class="col-xl-6">
+				<section id="contact" class="margin-bottom-60">
+					<h3 class="headline margin-top-15 margin-bottom-35">
+						Inicia tu sesión por redes sociales
+					</h3>
+
+					<ul>
+						<li>
+							<button class="loginBtn loginBtn--facebook">
+							  Iniciar sesión con Facebook
+							</button>
+						</li>
+
+						<li>
+							<button class="loginBtn loginBtn--google">
+							  Iniciar sesión con Google
+							</button>
+						</li>
+					</ul>
+				</section>
+			</div>
 		</div>
 	</div>
 @stop

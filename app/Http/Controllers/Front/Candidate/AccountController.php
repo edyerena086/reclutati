@@ -6,6 +6,7 @@ use Auth;
 use ReclutaTI\User;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Mail\Candidate\Account\Welcome;
@@ -119,10 +120,34 @@ class AccountController extends Controller
     	return response()->json($response);
     }
 
+    /**
+     * [logout description]
+     * @return [type] [description]
+     */
     public function logout()
     {
     	Auth::logout();
 
     	return redirect()->intended('candidate');
     }
+
+    /**
+     * [passwordReset description]
+     * @return [type] [description]
+     */
+    public function passwordRecover()
+	{
+		return URL::temporarySignedRoute(
+		    'unsubscribe', now()->addMinutes(30), ['user' => 1]
+		);
+
+		//return view('front.candidate.account.password-recover');
+	}
+
+	public function passwordRecoverSend(PasswordRecoverRequest $request)
+	{
+		$response;
+
+		//
+	}
 }

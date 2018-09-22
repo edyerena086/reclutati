@@ -23,6 +23,9 @@ Route::post('candidate', 'Front\Candidate\AccountController@login');
 Route::get('candidate/account', 'Front\Candidate\AccountController@create');
 Route::post('candidate/account', 'Front\Candidate\AccountController@store');
 Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout');
+//Password reset
+Route::get('candidate/account/password/recover', 'Front\Candidate\AccountController@passwordRecover');
+Route::get('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordReset')->name('unsubscribe');
 /**
  * ------------------------------------------------------------------------
  * Candidate Dashboard Routes
