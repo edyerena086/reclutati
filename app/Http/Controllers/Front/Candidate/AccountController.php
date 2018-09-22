@@ -144,6 +144,9 @@ class AccountController extends Controller
     	if (!request()->has('code') || request()->has('denied')) {
     		return redirect()->intnded('candidate');
     	}
+
+    	//Save new candidate record
+    	dd($socialUser);
     }
 
     /**
