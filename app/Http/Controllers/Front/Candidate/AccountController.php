@@ -174,7 +174,7 @@ class AccountController extends Controller
     			if ($candidate->save()) {
     				$candidateSocialLogin = new CandidateSocialLogin();
     				$candidateSocialLogin->candidate_id = $candidate->id;
-    				$candidateSocialLogin->social_media = $driver;
+    				$candidateSocialLogin->social_network = $driver;
     				$candidateSocialLogin->uuid = $socialUser->id;
 
     				if ($candidateSocialLogin->save()) {
