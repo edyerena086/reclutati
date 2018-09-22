@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Front\Candidate;
 use Auth;
 use Session;
 use Socialite;
+use Notification;
 use ReclutaTI\User;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
@@ -15,6 +16,9 @@ use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Mail\Candidate\Account\Welcome;
 use ReclutaTI\Http\Requests\Front\Candidate\Account\LoginRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Account\StoreRequest;
+use ReclutaTI\Notifications\Front\Candidate\Account\PasswordReset;
+use ReclutaTI\Http\Requests\Front\Candidate\Account\PasswordResetRequest;
+use ReclutaTI\Http\Requests\Front\Candidate\Account\PasswordRecoverRequest;
 
 class AccountController extends Controller
 {
@@ -206,17 +210,82 @@ class AccountController extends Controller
      */
     public function passwordRecover()
 	{
-		return URL::temporarySignedRoute(
-		    'unsubscribe', now()->addMinutes(30), ['user' => 1]
-		);
-
-		//return view('front.candidate.account.password-recover');
+		return view('front.candidate.account.password-recover');
 	}
 
+    /**
+     * [passwordRecoverSend description]
+     * @param  PasswordRecoverRequest $request [description]
+     * @return [type]                          [description]
+     */
 	public function passwordRecoverSend(PasswordRecoverRequest $request)
 	{
 		$response;
 
-		//
+		//Check if the email gives is candidate and it's not a social account
+        $user = User::whereEmail($request->correoElectronico)->first();
+
+        if ($user->role_id != \ReclutaTI\Role::CANDIDATE || $user->candidate->socialLogin != null) {
+            $response = [
+                'errors' => true,
+                'message' => 'El correo electrónico ingresado es inválido.',
+                'error_code' => 'prs0001'
+            ];
+        } else {
+            $signedUrl = URL::temporarySignedRoute(
+                'candidate_password_reset', now()->addMinutes(11), ['id' => $user->id]
+            );
+
+            Notification::send($user, new PasswordReset($user->name, $signedUrl));
+
+            $response = [
+                'errors' => false,
+                'message' => 'Se ha enviado un correo con instrucciones, revisa tu bandeja de entrada.'
+            ];
+        }
+
+        return response()->json($response);
 	}
+
+    public function passwordReset(Request $request, $id)
+    {
+        if (! $request->hasValidSignature()) {
+            return redirect()->intended('candidate');
+        }
+
+        return view('front.candidate.account.password-reset', ['id' => $id]);
+    }
+
+    /**
+     * [passwordResetSave description]
+     * @param  PasswordResetRequest $request [description]
+     * @param  [type]               $id      [description]
+     * @return [type]                        [description]
+     */
+    public function passwordResetSave(PasswordResetRequest $request, $id)
+    {
+        $response;
+
+        $user = User::find($id);
+
+        $user->password = bcrypt($request->password);
+        $user->candidate->hash = $request->password;
+
+        if ($user->save() && $user->candidate->save()) {
+            $response = [
+                'errors' => false,
+                'message' => 'Se ha reestablecido con éxito tu contraseña.',
+                'callback_url' => url('candidate'),
+                'redirect' => true
+            ];
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'No se ha podido actualizar',
+                'error_code' => 'prs0001'
+            ];
+        }
+
+        return response()->json($response);
+    }
 }

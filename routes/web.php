@@ -28,7 +28,9 @@ Route::get('candidate/login/{driver}', 'Front\Candidate\AccountController@redire
 Route::get('candidate/login/{driver}/callback', 'Front\Candidate\AccountController@handlerProviderCallback');
 //Password reset
 Route::get('candidate/account/password/recover', 'Front\Candidate\AccountController@passwordRecover');
-Route::get('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordReset')->name('unsubscribe');
+Route::post('candidate/account/password/recover', 'Front\Candidate\AccountController@passwordRecoverSend');
+Route::get('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordReset')->name('candidate_password_reset');
+Route::post('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordResetSave');
 /**
  * ------------------------------------------------------------------------
  * Candidate Dashboard Routes
