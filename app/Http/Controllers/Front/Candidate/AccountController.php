@@ -8,6 +8,7 @@ use ReclutaTI\User;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use ReclutaTI\CandidateSocialLogin;
 use Illuminate\Support\Facades\Mail;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Mail\Candidate\Account\Welcome;
@@ -132,11 +133,21 @@ class AccountController extends Controller
     	return redirect()->intended('candidate');
     }
 
+    /**
+     * [redirectToProvider description]
+     * @param  [type] $driver [description]
+     * @return [type]         [description]
+     */
     public function redirectToProvider($driver)
     {
     	return Socialite::driver($driver)->redirect();
     }
 
+    /**
+     * [handlerProviderCallback description]
+     * @param  [type] $driver [description]
+     * @return [type]         [description]
+     */
     public function handlerProviderCallback($driver)
     {
     	$socialUser = Socialite::driver($driver)->user();
@@ -145,8 +156,42 @@ class AccountController extends Controller
     		return redirect()->intnded('candidate');
     	}
 
-    	//Save new candidate record
-    	dd($socialUser);
+    	//Check if user is already registered
+    	$user = User::where('email', $socialUser->email)->where('role_id', \ReclutaTI\Role::CANDIDATE)->first();
+    	if ($user) {
+    		Auth::loginUsingId($user->id);
+
+    		return redirect()->intended('candidate/dashboard');
+    	} else {
+    		$user = new User();
+    		$user->name = ($socialUser->name == '' || $socialUser->name == null) ? $socialUser->nickname : strtolower($socialUser->name);
+    		$user->email = $socialUser->email;
+
+    		if ($user->save()) {
+    			$candidate = new Candidate();
+    			$candidate->user_id = $user->id;
+
+    			if ($candidate->save()) {
+    				$candidateSocialLogin = new CandidateSocialLogin();
+    				$candidateSocialLogin->candidate_id = $candidate->id;
+    				$candidateSocialLogin->social_media = $driver;
+    				$candidateSocialLogin->uuid = $socialUser->id;
+
+    				if ($candidateSocialLogin->save()) {
+    					Auth::loginUsingId($user->id);
+
+    					return redirect()->intended('candidate/dashboard');
+    				} else {
+    					$candidate->delete();
+    					$user->delete();
+    				}
+    			} else {
+    				$user->delete();
+    			}
+    		} else {
+
+    		}
+    	}
     }
 
     /**
