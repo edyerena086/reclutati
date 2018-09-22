@@ -75,9 +75,9 @@
 
 					<ul>
 						<li>
-							<button class="loginBtn loginBtn--facebook">
+							<a href="{{ route('social_auth', ['driver' => 'facebook']) }}" class="loginBtn loginBtn--facebook">
 							  Iniciar sesión con Facebook
-							</button>
+							</a>
 						</li>
 
 						<li>
