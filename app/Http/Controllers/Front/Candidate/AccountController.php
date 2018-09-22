@@ -141,7 +141,9 @@ class AccountController extends Controller
     {
     	$socialUser = Socialite::driver($driver)->user();
 
-    	dd($socialUser);
+    	if (!request()->has('code') || request()->has('denied')) {
+    		return redirect()->intnded('candidate');
+    	}
     }
 
     /**
