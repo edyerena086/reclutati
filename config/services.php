@@ -45,7 +45,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => url('candidate/login/facebook/callback')
+        'redirect' => 'https://reclutati.com/candidate/login/facebook/callback'
     ],
 
     'google' => [
