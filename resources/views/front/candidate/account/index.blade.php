@@ -68,7 +68,7 @@
 			</div>
 
 			<div class="col-xl-6">
-				<section id="contact" class="margin-bottom-60">
+				<section id="contact" class="margin-bottom-60 social-login">
 					<h3 class="headline margin-top-15 margin-bottom-35">
 						Inicia tu sesión por redes sociales
 					</h3>
@@ -87,7 +87,7 @@
 						</li>
 
 						<li>
-							<a href="{{ route('social_auth', ['driver' => 'github']) }}" class="loginBtn loginBtn--google">
+							<a href="{{ route('social_auth', ['driver' => 'github']) }}" class="loginBtn loginBtn--github">
 							  Iniciar sesión con GitHub
 							<a>
 						</li>
