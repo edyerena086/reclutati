@@ -10,11 +10,13 @@
 @section('content')
 	<div class="row">
 
-		{{-- Email --}}
-		@include('front.candidate.dashboard.settings.partials._email-form')
+		@if (Auth::user()->candidate->socialLogin == null)
+			{{-- Email --}}
+			@include('front.candidate.dashboard.settings.partials._email-form')
 
-		{{-- Password --}}
-		@include('front.candidate.dashboard.settings.partials._password-form')
+			{{-- Password --}}
+			@include('front.candidate.dashboard.settings.partials._password-form')
+		@endif
 	</div>
 @stop
 

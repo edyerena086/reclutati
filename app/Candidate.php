@@ -35,4 +35,9 @@ class Candidate extends Model
     {
         return $this->hasMany('\ReclutaTI\CandidateSkill');
     }
+
+    public function socialLogin()
+    {
+        return $this->hasOne('\ReclutaTI\CandidateSocialLogin');
+    }
 }
