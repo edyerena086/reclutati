@@ -8,5 +8,6 @@ $factory->define(ReclutaTI\Candidate::class, function (Faker $faker) {
         'second_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'second_last_name' => $faker->lastName,
+        'hash' => 'secret'
     ];
 });

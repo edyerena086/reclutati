@@ -15,11 +15,12 @@ class CreateRecruitersTable extends Migration
     {
         Schema::create('recruiters', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('users_id');
+            $table->unsignedInteger('user_id');
             $table->string('second_name')->nullable();
             $table->string('last_name');
             $table->string('second_last_name')->nullable();
             $table->string('validation_phone');
+            $table->string('hash')->nullable();
             $table->timestamps();
         });
     }

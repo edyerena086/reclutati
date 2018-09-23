@@ -38,9 +38,6 @@ Route::post('candidate/account/password/reset/{id}', 'Front\Candidate\AccountCon
  * 
  */
 Route::get('candidate/dashboard', 'Front\Candidate\DashboardController@index');
-/*Route::get('candidate/dashboard', function () {
-	return view('layouts.front.candidate');
-});*/
 //Curriculum
 Route::get('candidate/dashboard/curriculum', 'Front\Candidate\Curriculum\CurriculumController@index');
 Route::post('candidate/dashboard/curriculum/general-info', 'Front\Candidate\Curriculum\CurriculumController@generalInfo');
@@ -66,3 +63,23 @@ Route::resource('candidate/dashboard/curriculum/skills', 'Front\Candidate\Curric
 //Settings
 Route::get('candidate/dashboard/settings', 'Front\Candidate\Setting\SettingController@index');
 Route::post('candidate/dashboard/settings/password', 'Front\Candidate\Setting\PasswordController@newPassword');
+
+
+/**
+ * ------------------------------------------------------------------------
+ * Recruiter Account Routes
+ * ------------------------------------------------------------------------
+ * 
+ */
+Route::get('recruiter', 'Front\Recruiter\AccountController@index');
+Route::post('recruiter', 'Front\Recruiter\AccountController@login');
+Route::get('recruiter/account', 'Front\Recruiter\AccountController@create');
+Route::post('recruiter/account', 'Front\Recruiter\AccountController@store');
+Route::get('recruiter/account/logout', 'Front\Recruiter\AccountController@logout');
+/**
+ * ------------------------------------------------------------------------
+ * Recruiter Dashboard Routes
+ * ------------------------------------------------------------------------
+ * 
+ */
+Route::get('recruiter/dashboard', 'Front\Recruiter\DashboardController@index');

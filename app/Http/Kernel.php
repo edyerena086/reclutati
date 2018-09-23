@@ -61,5 +61,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'candidate.guest' => \ReclutaTI\Http\Middleware\CandidateGuest::class,
         'candidate.auth' => \ReclutaTI\Http\Middleware\CandidateAuth::class,
+        'recruiter.guest' => \ReclutaTI\Http\Middleware\RecruiterGuest::class,
+        'recruiter.auth' => \ReclutaTI\Http\Middleware\RecruiterAuth::class,
     ];
 }

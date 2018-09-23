@@ -3,6 +3,10 @@
 				{{--headline --}}
 				<div class="headline">
 					<h3><i class="icon-material-outline-lock"></i> Seguridad</h3>
+
+					<p>
+						Si deseas cambair tu contraseña por favor completa el siguiente formulario, te enviaremos una notificación a tu correo validando el hecho al términar el proceso.
+					</p>
 				</div>
 
 				{{--<div class="content with-padding padding-bottom-0">--}}
