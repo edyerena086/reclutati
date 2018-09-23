@@ -17,6 +17,10 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+	{{-- Page CSS --}}
+	@section('pageCSS')
+	@show
 </head>
 	
 <body class="gray">
@@ -35,6 +39,9 @@
 						<h3>
 							@yield('sectionTitle')
 						</h3>
+
+						@section('actionButton')
+						@show
 					</div>
 
 					{{-- Content --}}

@@ -35,4 +35,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('\ReclutaTI\Candidate');
     }
+
+    public function recruiter()
+    {
+        return $this->hasOne('\ReclutaTI\Recruiter');
+    }
 }

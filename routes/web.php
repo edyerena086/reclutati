@@ -83,3 +83,5 @@ Route::get('recruiter/account/logout', 'Front\Recruiter\AccountController@logout
  * 
  */
 Route::get('recruiter/dashboard', 'Front\Recruiter\DashboardController@index');
+//vacancies
+Route::resource('recruiter/dashboard/vacancies', 'Front\Recruiter\Dashboard\VacancyController');
