@@ -4,6 +4,7 @@ namespace ReclutaTI\Http\Controllers\Front\Recruiter;
 
 use DB;
 use Auth;
+use Notification;
 use ReclutaTI\User;
 use ReclutaTI\Role;
 use ReclutaTI\Company;
@@ -11,6 +12,7 @@ use ReclutaTI\Recruiter;
 use Illuminate\Http\Request;
 use ReclutaTI\CompanyContact;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Notifications\Front\Recruiter\Account\Welcome;
 use ReclutaTI\Http\Requests\Front\Recruiter\Account\LoginRequest;
 use ReclutaTI\Http\Requests\Front\Recruiter\Account\StoreRequest;
 
@@ -119,6 +121,8 @@ class AccountController extends Controller
     	}
 
     	DB::commit();
+
+        Notification::send($user, new Welcome($user->name));
 
     	$response = [
     		'errors' => false,

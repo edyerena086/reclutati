@@ -16,7 +16,7 @@
 				<div class="dashboard-nav-inner">
 					<ul data-submenu-title="Inicio">
 						<li><a href="{{ url('recruiter/dashboard') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-						<li><a href="dashboard-bookmarks.html"><i class="icon-brand-wpforms"></i> Mis Vacantes</a></li>
+						<li><a href="{{ url('recruiter/dashboard/vacancies') }}"><i class="icon-brand-wpforms"></i> Mis Vacantes</a></li>
 						<li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Mensajes <span class="nav-tag">0</span></a></li>
 					</ul>
 

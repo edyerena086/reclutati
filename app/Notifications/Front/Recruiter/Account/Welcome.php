@@ -1,28 +1,26 @@
 <?php
 
-namespace ReclutaTI\Notifications\Front\Candidate\Account;
+namespace ReclutaTI\Notifications\Front\Recruiter\Account;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PasswordReset extends Notification
+class Welcome extends Notification
 {
     use Queueable;
 
     private $userName;
-    private $url;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($userName, $url)
+    public function __construct($userName)
     {
         $this->userName = $userName;
-        $this->url = $url;
     }
 
     /**
@@ -44,8 +42,8 @@ class PasswordReset extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject('Recuperación de contraseña.')
-                                ->markdown('emails.front.candidate.account.password-reset', ['userName' => $this->userName, 'url' => $this->url]);
+        return (new MailMessage)->subject('Bienvenido a ReclutaTI.')
+                                ->markdown('emails.front.recruiter.account.welcome', ['userName' => $this->userName]);
     }
 
     /**
