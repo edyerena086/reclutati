@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Front\StaticController@index');
+Route::get('vacante/{id}', 'Front\VacancyController@detail');
 /**
  * ------------------------------------------------------------------------
  * Candidate Account Routes
@@ -83,5 +84,7 @@ Route::get('recruiter/account/logout', 'Front\Recruiter\AccountController@logout
  * 
  */
 Route::get('recruiter/dashboard', 'Front\Recruiter\DashboardController@index');
+Route::post('recruiter/dashboard/company/update', 'Front\Recruiter\DashboardController@company');
+Route::post('recruiter/dashboard/company/profile-picture', 'Front\Recruiter\DashboardController@companyProfilePicture');
 //vacancies
 Route::resource('recruiter/dashboard/vacancies', 'Front\Recruiter\Dashboard\VacancyController');

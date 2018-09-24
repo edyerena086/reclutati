@@ -15,4 +15,9 @@ class Recruiter extends Model
     {
     	return $this->hasMany('\ReclutaTI\Vacancy')->orderBy('created_at', 'DESC');
     }
+
+    public function companyContact()
+    {
+    	return $this->hasOne('\ReclutaTI\companyContact');
+    }
 }

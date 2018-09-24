@@ -65,7 +65,7 @@
 					{{-- Jobs --}}
 					<div class="listings-container compact-list-layout margin-top-35">
 						@foreach ($vacancies as $vacancy)
-							<a href="single-job-page.html" class="job-listing with-apply-button">
+							<a href="{{ url('vacante/'.$vacancy->id) }}" class="job-listing with-apply-button">
 								<!-- Job Listing Details -->
 								<div class="job-listing-details">
 
@@ -81,7 +81,7 @@
 										<!-- Job Listing Footer -->
 										<div class="job-listing-footer">
 											<ul>
-												<li><i class="icon-material-outline-business"></i> {{ $vacancy->recruiter->first()->last_name }}</li>
+												<li><i class="icon-material-outline-business"></i> {{ $vacancy->recruiter->first()->companyContact->companies->first()->name }}</li>
 												<li><i class="icon-material-outline-location-on"></i> {{ $vacancy->state->first()->name }}</li>
 												<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy->jobType->where('id', $vacancy->job_type_id)->first()->name) }}</li>
 												<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
