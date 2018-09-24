@@ -69,8 +69,8 @@
 								{{-- buttons --}}
 								<div class="buttons-to-right always-visible">
 									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Manage Candidates <span class="button-info">0</span></a>
-									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico" title="Edit" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
-									<a href="#" class="button gray ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico" title="Editar" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
+									<a href="#" class="button gray ripple-effect ico" title="Borrar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>
 							</li>
 						@endforeach

@@ -22,6 +22,9 @@
 
 		{{-- Content --}}
 		@yield('content')
+
+		{{-- Footer --}}
+		@include('layouts.front.partials.footer')
 	</div>
 	
 
