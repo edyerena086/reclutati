@@ -61,11 +61,10 @@
 						</div>
 
 						<div class="row">
-							<div class="col-xl-4">
+							<div class="col-xl-3">
 								<div class="submit-field">
 									<h5>
 										*Ubicación de la vacante
-										<i class="help-icon" data-tippy-placement="right" data-tippy="" data-original-title="Maximum of 10 tags"></i>
 									</h5>
 									{{ Form::select('estado', \ReclutaTI\State::list(), $vacancy->state_id, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
 								</div>
@@ -85,10 +84,10 @@
 								</div>
 							</div>
 
-							<div class="col-xl-2">
+							<div class="col-xl-3">
 								<div class="submit-field">
-									<h5>¿Mostrar salario?</h5>
-									{{ Form::select('segunAptitudes', [1 => 'No', 2 => 'Si'], ($vacancy->salary_show) ? 2 : 1, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
+									<h5>Formación mínima</h5>
+									{{ Form::select('nivelEducativo', \ReclutaTI\EducativeLevel::list(), $vacancy->educative_level_id, ['class' => 'with-border selectpicker', 'data-size' => '7', 'title' => 'Selecciona']) }}
 								</div>
 							</div>
 						</div>

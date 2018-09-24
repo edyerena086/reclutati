@@ -275,49 +275,49 @@ class StoreTest extends TestCase
     		]);
     }
 
-    public function test_send_no_salary_show()
+    public function test_send_no_educative_level_id()
     {
-    	$response = $this->json('POST', $this->url);
+        $response = $this->json('POST', $this->url);
 
-    	$response
-    		->assertStatus(422)
-    		->assertJson([
-    			'errors' => [
-    				'segunAptitudes' => [
-	    				'El campo segun aptitudes es obligatorio.'
-	    			]
-    			]
-    		]);
+        $response
+            ->assertStatus(422)
+            ->assertJson([
+                'errors' => [
+                    'nivelEducativo' => [
+                        'El campo nivel educativo es obligatorio.'
+                    ]
+                ]
+            ]);
     }
 
-    public function test_send_no_salary_show_integer()
+    public function test_send_no_educative_level_id_integer()
     {
-    	$response = $this->json('POST', $this->url, ['segunAptitudes' => 'hk10']);
+        $response = $this->json('POST', $this->url, ['nivelEducativo' => 'hk10']);
 
-    	$response
-    		->assertStatus(422)
-    		->assertJson([
-    			'errors' => [
-    				'segunAptitudes' => [
-	    				'El campo segun aptitudes es inválido.'
-	    			]
-    			]
-    		]);
+        $response
+            ->assertStatus(422)
+            ->assertJson([
+                'errors' => [
+                    'nivelEducativo' => [
+                        'El campo nivel educativo es inválido.'
+                    ]
+                ]
+            ]);
     }
 
-    public function test_send_no_salary_show_in_range()
+    public function test_send_no_educative_level_id_exists()
     {
-    	$response = $this->json('POST', $this->url, ['segunAptitudes' => 3]);
+        $response = $this->json('POST', $this->url, ['nivelEducativo' => 1000]);
 
-    	$response
-    		->assertStatus(422)
-    		->assertJson([
-    			'errors' => [
-    				'segunAptitudes' => [
-	    				'El campo segun aptitudes es inválido.'
-	    			]
-    			]
-    		]);
+        $response
+            ->assertStatus(422)
+            ->assertJson([
+                'errors' => [
+                    'nivelEducativo' => [
+                        'El campo nivel educativo es inválido.'
+                    ]
+                ]
+            ]);
     }
 
     public function test_success()
@@ -333,7 +333,7 @@ class StoreTest extends TestCase
     		'tipoDeVacante' => factory(\ReclutaTI\JobType::class)->create()->id,
     		'estado' => factory(\ReclutaTI\State::class)->create()->id,
     		'publicar' => 1,
-    		'segunAptitudes' => 1,
+            'nivelEducativo' => factory(\ReclutaTI\EducativeLevel::class)->create()->id,
     		'salarioMinimo' => '10000',
     		'salarioMaximo' => '20000'
     	];
@@ -363,37 +363,7 @@ class StoreTest extends TestCase
     		'tipoDeVacante' => factory(\ReclutaTI\JobType::class)->create()->id,
     		'estado' => factory(\ReclutaTI\State::class)->create()->id,
     		'publicar' => 2,
-    		'segunAptitudes' => 1,
-    		'salarioMinimo' => '10000',
-    		'salarioMaximo' => '20000'
-    	];
-
-
-    	$response = $this->json('POST', $this->url, $data);
-
-    	$response
-    		->assertStatus(200)
-    		->assertJson([
-    			'errors' => false
-    		]);
-
-    	Auth::logout();
-    }
-
-    public function test_success_published_vacancy_not_show_salaries()
-    {
-    	$recruiter = factory(\ReclutaTI\Recruiter::class)->create();
-
-    	Auth::attempt(['email' => $recruiter->user()->first()->email, 'password' => 'secret']);
-
-    	$data = [
-    		'puesto' => $this->faker->jobTitle,
-    		'descripcionBreve' => $this->faker->text(250),
-    		'descripcion' => $this->faker->text(1000),
-    		'tipoDeVacante' => factory(\ReclutaTI\JobType::class)->create()->id,
-    		'estado' => factory(\ReclutaTI\State::class)->create()->id,
-    		'publicar' => 1,
-    		'segunAptitudes' => 2,
+    		'nivelEducativo' => factory(\ReclutaTI\EducativeLevel::class)->create()->id,
     		'salarioMinimo' => '10000',
     		'salarioMaximo' => '20000'
     	];

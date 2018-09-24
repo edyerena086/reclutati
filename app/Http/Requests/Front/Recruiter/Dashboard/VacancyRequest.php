@@ -32,7 +32,7 @@ class VacancyRequest extends FormRequest
             'publicar' => 'required|integer|between:1,2',
             'salarioMinimo' => 'sometimes|numeric|regex:/^\d*(\.\d{1,2})?$/',
             'salarioMaximo' => 'sometimes|numeric|regex:/^\d*(\.\d{1,2})?$/',
-            'segunAptitudes' => 'required|integer|between:1,2'
+            'nivelEducativo' => 'required|integer|exists:educative_levels,id'
         ];
     }
 
@@ -44,7 +44,8 @@ class VacancyRequest extends FormRequest
             'publicar.integer' => 'El campo publicar es inválido.',
             'publicar.between' => 'El campo publicar es inválido.',
             'segunAptitudes.integer' => 'El campo segun aptitudes es inválido.',
-            'segunAptitudes.between' => 'El campo segun aptitudes es inválido.'
+            'segunAptitudes.between' => 'El campo segun aptitudes es inválido.',
+            'nivelEducativo.integer' => 'El campo nivel educativo es inválido.'
         ];
     }
 }

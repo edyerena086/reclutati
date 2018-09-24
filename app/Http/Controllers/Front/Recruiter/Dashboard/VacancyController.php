@@ -56,11 +56,7 @@ class VacancyController extends Controller
         $vacancy->job_type_id = $request->tipoDeVacante;
         $vacancy->state_id = $request->estado;
         $vacancy->publish = ($request->publicar == 1) ? false : true;
-        if ($request->segunAptitudes == 1) {
-            $vacancy->salary_show = false;
-        } else {
-            $vacancy->salary_show = true;
-        }
+        $vacancy->educative_level_id = $request->nivelEducativo;
         if ($request->has('salarioMinimo')) {
             $vacancy->salary_min = $request->salarioMinimo;
         }
@@ -133,11 +129,7 @@ class VacancyController extends Controller
             $vacancy->job_type_id = $request->tipoDeVacante;
             $vacancy->state_id = $request->estado;
             $vacancy->publish = ($request->publicar == 1) ? false : true;
-            if ($request->segunAptitudes == 1) {
-                $vacancy->salary_show = false;
-            } else {
-                $vacancy->salary_show = true;
-            }
+            $vacancy->educative_level_id = $request->nivelEducativo;
             if ($request->has('salarioMinimo')) {
                 $vacancy->salary_min = $request->salarioMinimo;
             }
