@@ -77,6 +77,7 @@ $(document).ready(function () {
 
 					if (response.create) {
 						$(env).trigger('reset');
+						$('.richText-editor').html('');
 					}
 				} else {
 					$.jnoty(response.message, {
