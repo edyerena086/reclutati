@@ -32,7 +32,7 @@
 				<div class="content">
 					<ul class="dashboard-box-list">
 						@foreach ($vacancies as $vacancy)
-							<li>
+							<li class="vacancy-item">
 								{{-- vacancy description --}}
 								<div class="job-listing">
 									<div class="job-listing-details">
@@ -69,8 +69,10 @@
 								{{-- buttons --}}
 								<div class="buttons-to-right always-visible">
 									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Manage Candidates <span class="button-info">0</span></a>
+
 									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico" title="Editar" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
-									<a href="#" class="button gray ripple-effect ico" title="Borrar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+
+									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico btn-vacancy-delete" title="Borrar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 								</div>
 							</li>
 						@endforeach
@@ -85,4 +87,5 @@
 
 {{-- JS Page --}}
 @section('pageJS')
+	<script src="{{ asset('js/front/recruiter/dashboard/vacancy/index.js') }}"></script>
 @stop

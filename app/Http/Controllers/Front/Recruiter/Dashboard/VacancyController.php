@@ -169,6 +169,31 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response;
+
+        $vacancy = Vacancy::find($id);
+
+        if ($vacancy) {
+            if ($vacancy->delete()) {
+                $response = [
+                    'errors' => false,
+                    'message' => 'Se ha eliminado con éxito la vacante.'
+                ];
+            } else {
+                $response = [
+                    'errors' => true,
+                    'message' => 'No se ha podido eliminar la vacante.',
+                    'error_code' => 'd0002'
+                ];
+            }
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'La vacante es inválida.',
+                'error_code' => 'd0001'
+            ];
+        }
+
+        return response()->json($response);
     }
 }
