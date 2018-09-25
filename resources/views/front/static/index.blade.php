@@ -90,7 +90,7 @@
 									</div>
 
 									<!-- Apply Button -->
-									<span class="list-apply-button ripple-effect">Apply Now</span>
+									<span class="list-apply-button ripple-effect">Ver detalle</span>
 								</div>
 							</a>
 						@endforeach

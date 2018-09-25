@@ -168,3 +168,11 @@
   color: #fff;
 }
 
+/**
+ * Apply
+ */
+
+.btn-has-applied {
+  background-color: #30ab4a !important;
+}
+

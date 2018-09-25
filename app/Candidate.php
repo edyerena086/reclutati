@@ -40,4 +40,9 @@ class Candidate extends Model
     {
         return $this->hasOne('\ReclutaTI\CandidateSocialLogin');
     }
+
+    public function vacancies()
+    {
+        return $this->hasMany('\ReclutaTI\CandidateVacancy');
+    }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.front.app');
+@extends('layouts.front.app')
 
 {{-- Page Title --}}
 @section('pageTitle', 'Vacante: '.$vacancy->job_title)
@@ -33,8 +33,15 @@
 						</div>
 						<div class="right-side">
 							<div class="salary-box">
-								<div class="salary-type">Annual Salary</div>
-								<div class="salary-amount">$35k - $38k</div>
+								<div class="salary-type">Salario</div>
+								<div class="salary-amount">
+									@if ($vacancy->salary_min != '' && $vacancy->salary_max != '')
+										${{ $vacancy->salary_min }} - ${{ $vacancy->salary_max }}
+
+									@else
+										No se muestra
+									@endif
+								</div>
 							</div>
 						</div>
 					</div>
@@ -59,8 +66,12 @@
 				<div class="sidebar-container">
 					@if (!Auth::check())
 						<a href="#small-dialog" class="apply-now-button popup-with-zoom-anim">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
-					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE)
-						<a href="#small-dialog" class="apply-now-button popup-with-zoom-anim">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
+					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy->id)->first() == null)
+						<a href="{{ url('vacante/aplicar/'.$vacancy->id) }}" class="apply-now-button lets-apply">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
+
+					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy->id)->first())
+
+						<a href="" class="apply-now-button btn-has-applied">Ya haz aplicado <i class="icon-material-outline-check-circle"></i></a>
 					@endif
 
 					<div class="sidebar-widget">
@@ -103,4 +114,9 @@
 			</div>
 		</div>
 	</div>
+@stop
+
+{{-- Page JS --}}
+@section('pageJS')
+	<script src="{{ asset('js/front/vacancy.js') }}"></script>
 @stop
