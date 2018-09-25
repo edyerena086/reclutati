@@ -62,6 +62,38 @@ class AccountController extends Controller
 		}
 	}
 
+    /**
+     * [getLoginVacancy description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function getLoginVacancy($id)
+    {
+        return view('front.candidate.account.login-vacancy', ['id' => $id]);
+    }
+
+    /**
+     * [login description]
+     * @param  LoginRequest $request [description]
+     * @return [type]                [description]
+     */
+    public function postLoginVacancy(LoginRequest $request, $id)
+    {
+        $remember = ($request->has('remember')) ? true : false;
+
+        $credentials = [
+            'email' => $request->correoElectronico,
+            'password' => $request->password,
+            'role_id' => \ReclutaTI\Role::CANDIDATE
+        ];
+
+        if (Auth::attempt($credentials, $remember)) {
+            return redirect()->intended('vacante/'.$id);
+        } else {
+            return back()->withErrors(['loginError']);
+        }
+    }
+
 	/**
 	 * [create description]
 	 * @return [type] [description]

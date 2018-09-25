@@ -23,6 +23,8 @@ Route::post('vacante/aplicar/{id}', 'Front\VacancyController@apply');
  */
 Route::get('candidate', 'Front\Candidate\AccountController@index');
 Route::post('candidate', 'Front\Candidate\AccountController@login');
+Route::get('candidate/login/vacancy/{id}', 'Front\Candidate\AccountController@getLoginVacancy');
+Route::post('candidate/login/vacancy/{id}', 'Front\Candidate\AccountController@postLoginVacancy');
 Route::get('candidate/account', 'Front\Candidate\AccountController@create');
 Route::post('candidate/account', 'Front\Candidate\AccountController@store');
 Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout');
@@ -40,7 +42,7 @@ Route::post('candidate/account/password/reset/{id}', 'Front\Candidate\AccountCon
  * ------------------------------------------------------------------------
  * 
  */
-Route::get('candidate/dashboard', 'Front\Candidate\DashboardController@index');
+Route::get('candidate/dashboard', 'Front\Candidate\DashboardController@index')->middleware('candidate.auth');
 //Curriculum
 Route::get('candidate/dashboard/curriculum', 'Front\Candidate\Curriculum\CurriculumController@index');
 Route::post('candidate/dashboard/curriculum/general-info', 'Front\Candidate\Curriculum\CurriculumController@generalInfo');

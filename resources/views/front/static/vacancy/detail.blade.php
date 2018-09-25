@@ -65,7 +65,7 @@
 			<div class="col-xl-4 col-lg-4">
 				<div class="sidebar-container">
 					@if (!Auth::check())
-						<a href="#small-dialog" class="apply-now-button popup-with-zoom-anim">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
+						<a href="{{ url('candidate/login/vacancy/'.$vacancy->id) }}" class="apply-now-button">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
 					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy->id)->first() == null)
 						<a href="{{ url('vacante/aplicar/'.$vacancy->id) }}" class="apply-now-button lets-apply">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
 
