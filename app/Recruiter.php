@@ -18,6 +18,6 @@ class Recruiter extends Model
 
     public function companyContact()
     {
-    	return $this->hasOne('\ReclutaTI\companyContact');
+    	return $this->hasOne('\ReclutaTI\CompanyContact');
     }
 }
