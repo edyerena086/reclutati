@@ -20,4 +20,9 @@ class Vacancy extends Model
     {
     	return $this->belongsTo('\ReclutaTI\JobType');
     }
+
+    function educativeLevel()
+    {
+        return $this->belongsTo('\ReclutaTI\EducativeLevel');
+    }
 }
