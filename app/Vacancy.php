@@ -13,16 +13,16 @@ class Vacancy extends Model
 
     function state()
     {
-    	return $this->belongsTo('\ReclutaTI\State');
+    	return $this->hasOne('\ReclutaTI\State', 'id', 'state_id');
     }
 
     function jobType()
     {
-    	return $this->belongsTo('\ReclutaTI\JobType');
+    	return $this->hasOne('\ReclutaTI\JobType', 'id', 'job_type_id');
     }
 
     function educativeLevel()
     {
-        return $this->belongsTo('\ReclutaTI\EducativeLevel');
+        return $this->hasOne('\ReclutaTI\EducativeLevel', 'id', 'educative_level_id');
     }
 }

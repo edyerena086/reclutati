@@ -8,6 +8,6 @@ class CompanyContact extends Model
 {
     public function companies()
     {
-    	return $this->belongsTo('\ReclutaTI\Company', 'company_id', 'id');
+    	return $this->hasOne('\ReclutaTI\Company', 'id', 'company_id');
     }
 }

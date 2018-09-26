@@ -180,6 +180,13 @@ class AccountController extends Controller
     	return Socialite::driver($driver)->redirect();
     }
 
+    public function redirectToProviderWithVacancy($vacancy, $driver)
+    {
+        session('vacancy_callback', $vacancy);
+
+        return Socialite::driver($driver)->redirect();
+    }
+
     /**
      * [handlerProviderCallback description]
      * @param  [type] $driver [description]
@@ -217,7 +224,11 @@ class AccountController extends Controller
     				if ($candidateSocialLogin->save()) {
     					Auth::loginUsingId($user->id);
 
-    					return redirect()->intended('candidate/dashboard');
+                        if (session('vacancy_callback')) {
+                            return redirect()->intended('vacante/'.session('vacancy_callback'));
+                        } else {
+                            return redirect()->intended('candidate/dashboard');
+                        }
     				} else {
     					$candidate->delete();
     					$user->delete();

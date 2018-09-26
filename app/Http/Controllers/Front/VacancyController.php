@@ -22,7 +22,29 @@ class VacancyController extends Controller
 	 */
     public function detail($id)
     {
-    	$vacancy = Vacancy::where('id', $id)->with(['recruiter'])->first();
+    	$vacancy = Vacancy::where('id', $id)->with(['recruiter.companyContact.companies', 'state', 'jobType', 'educativeLevel'])->first();
+
+        $vacancy = [
+            'id' => $vacancy->id,
+            'job_title' => $vacancy->job_title,
+            'job_description' => $vacancy->job_description,
+            'job_location' => $vacancy->state->name,
+            'job_type' => $vacancy->jobType->name,
+            'educative_level' => $vacancy->educativeLevel->name,
+            'salary_min' => $vacancy->salary_min,
+            'salary_max' => $vacancy->salary_max,
+            'company_id' => $vacancy->recruiter->companyContact
+                                                        ->companies
+                                                        ->id,
+            'company_name' => $vacancy->recruiter->companyContact
+                                                        ->companies
+                                                        ->name,
+            'company_profile' => $vacancy->recruiter->companyContact
+                                                        ->companies
+                                                        ->profile_picture
+        ];
+
+        //dd($vacancy);
 
     	if ($vacancy) {
     		return view('front.static.vacancy.detail', ['vacancy' => $vacancy]);

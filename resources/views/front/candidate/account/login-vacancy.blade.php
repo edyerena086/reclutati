@@ -87,19 +87,19 @@
 
 					<ul>
 						<li>
-							<a href="{{ route('social_auth', ['driver' => 'facebook']) }}" class="loginBtn loginBtn--facebook">
+							<a href="{{ route('social_auth_vacancy', ['vacancy' => $id,'driver' => 'facebook']) }}" class="loginBtn loginBtn--facebook">
 							  Iniciar sesión con Facebook
 							</a>
 						</li>
 
 						<li>
-							<a href="{{ route('social_auth', ['driver' => 'google']) }}" class="loginBtn loginBtn--google">
+							<a href="{{ route('social_auth_vacancy', ['vacancy' => $id, 'driver' => 'google']) }}" class="loginBtn loginBtn--google">
 							  Iniciar sesión con Google
 							</a>
 						</li>
 
 						<li>
-							<a href="{{ route('social_auth', ['driver' => 'github']) }}" class="loginBtn loginBtn--github">
+							<a href="{{ route('social_auth_vacancy', ['vacancy' => $id, 'driver' => 'github']) }}" class="loginBtn loginBtn--github">
 							  Iniciar sesión con GitHub
 							<a>
 						</li>

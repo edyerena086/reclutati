@@ -65,30 +65,30 @@
 					{{-- Jobs --}}
 					<div class="listings-container compact-list-layout margin-top-35">
 						@foreach ($vacancies as $vacancy)
-							<a href="{{ url('vacante/'.$vacancy->id) }}" class="job-listing with-apply-button">
+							<a href="{{ url('vacante/'.$vacancy['id']) }}" class="job-listing with-apply-button">
 								<!-- Job Listing Details -->
 								<div class="job-listing-details">
 
 									<!-- Logo -->
 									<div class="job-listing-company-logo">
-										@if ($vacancy->recruiter->companyContact->companies->first()->profile_picture == '')
+										@if ($vacancy['company_profile'] == '')
 											<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
 										@else
-											<img src="{{ asset('storage/recruiter/companies/'. $vacancy->recruiter->companyContact->companies->first()->id.'/'.$vacancy->recruiter->companyContact->companies->first()->profile_picture) }}" alt="">
+											<img src="{{ asset('storage/recruiter/companies/'. $vacancy['company_id'].'/'.$vacancy['company_profile']) }}" alt="">
 										@endif
 									</div>
 
 									<!-- Details -->
 									<div class="job-listing-description">
-										<h3 class="job-listing-title">{{ $vacancy->job_title }}</h3>
+										<h3 class="job-listing-title">{{ $vacancy['job_title'] }}</h3>
 
 										<!-- Job Listing Footer -->
 										<div class="job-listing-footer">
 											<ul>
-												<li><i class="icon-material-outline-business"></i> {{ $vacancy->recruiter->first()->companyContact->companies->first()->name }}</li>
-												<li><i class="icon-material-outline-location-on"></i> {{ $vacancy->state->first()->name }}</li>
-												<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy->jobType->where('id', $vacancy->job_type_id)->first()->name) }}</li>
-												<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+												<li><i class="icon-material-outline-business"></i> {{ $vacancy['company_name'] }}</li>
+												<li><i class="icon-material-outline-location-on"></i> {{ $vacancy['job_location'] }}</li>
+												<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy['job_type']) }}</li>
+												<li><i class="icon-material-outline-access-time"></i> {{ ($vacancy['created_at'] == 1) ? '1 día' : $vacancy['created_at'].' días' }}</li>
 											</ul>
 										</div>
 									</div>
