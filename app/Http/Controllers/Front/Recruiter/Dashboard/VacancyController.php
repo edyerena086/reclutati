@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Front\Recruiter\Dashboard;
 use Auth;
 use ReclutaTI\Vacancy;
 use Illuminate\Http\Request;
+use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Recruiter\Dashboard\VacancyRequest;
 
@@ -22,7 +23,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)->orderBy('created_at', 'DESC')->paginate(10);
+        $vacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)->orderBy('created_at', 'DESC')->with(['candidates'])->paginate(10);
 
         return view('front.recruiter.dashboard.vacancy.index', ['vacancies' => $vacancies]);
     }
@@ -92,7 +93,7 @@ class VacancyController extends Controller
         $vacancy = Vacancy::find($id);
 
         if ($vacancy) {
-            return view('front.recruiter.dashboard.vacancy.edit', ['vacancy' => $vacancy]);
+            return redirect('vacante/'.$id);
         } else {
             return back();
         }
@@ -174,6 +175,12 @@ class VacancyController extends Controller
         $vacancy = Vacancy::find($id);
 
         if ($vacancy) {
+            $relationships = CandidateVacancy::where('vacancy_id', $vacancy->id)->get();
+
+            $relationships->each(function ($item) {
+                $item->delete();
+            });
+
             if ($vacancy->delete()) {
                 $response = [
                     'errors' => false,

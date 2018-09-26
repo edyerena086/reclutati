@@ -37,7 +37,7 @@
 								<div class="job-listing">
 									<div class="job-listing-details">
 										<div class="job-listing-description">
-											<h3 class="job-listing-title"><a href="#">
+											<h3 class="job-listing-title"><a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" target="_blank">
 												{{ $vacancy->job_title }}</a> 
 												@if ($vacancy->publish)
 													<span class="dashboard-status-button green">Publicada</span>
@@ -47,7 +47,6 @@
 											</h3>
 
 											<p>
-												Hola
 												{{ $vacancy->job_small_description }}
 											</p>
 
@@ -68,11 +67,13 @@
 
 								{{-- buttons --}}
 								<div class="buttons-to-right always-visible">
-									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Manage Candidates <span class="button-info">0</span></a>
+									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Candidatos registrados <span class="button-info">{{ $vacancy->candidates->count() }}</span></a>
 
 									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico" title="Editar" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
 
 									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico btn-vacancy-delete" title="Borrar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+
+									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button gray ripple-effect ico" title="Ver" target="_blank" data-tippy-placement="top"><i class="icon-feather-eye"></i></a>
 								</div>
 							</li>
 						@endforeach

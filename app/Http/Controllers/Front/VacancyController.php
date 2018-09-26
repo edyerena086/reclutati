@@ -3,10 +3,13 @@
 namespace ReclutaTI\Http\Controllers\Front;
 
 use Auth;
+use Notification;
 use ReclutaTI\Vacancy;
+use ReclutaTI\Recruiter;
 use Illuminate\Http\Request;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Notifications\Front\Recruiter\Vacancy\CandidateApplied;
 
 class VacancyController extends Controller
 {
@@ -72,6 +75,12 @@ class VacancyController extends Controller
     		$apply->vacancy_id = $id;
 
     		if ($apply->save()) {
+                $recruiter = Recruiter::find($vacancy->recruiter_id);
+                $recruiterName = ucwords($recruiter->user->name);
+                $candidateName = ucwords(Auth::user()->name.' '.Auth::user()->candidate->last_name);
+
+                Notification::send($recruiter->user, new CandidateApplied($recruiterName, $candidateName,  $vacancy->job_title));
+
     			$response = [
     				'errors' => false,
     				'message' => '¡Perfecto!, ya aplicaste para la vacante.'

@@ -20,7 +20,7 @@
 							</ul>
 						</li>
 
-						<li><a href="{{ url('candidate') }}">Reclutadores</a>
+						<li><a href="{{ url('recruiter') }}">Reclutadores</a>
 							<ul class="dropdown-nav">
 								<li><a href="{{ url('recruiter/account') }}">Publica una vacante</a></li>
 								<li><a href="{{ url('recruiter') }}">Inicia tu sesión</a></li>

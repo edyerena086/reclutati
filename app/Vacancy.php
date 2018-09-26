@@ -25,4 +25,9 @@ class Vacancy extends Model
     {
         return $this->hasOne('\ReclutaTI\EducativeLevel', 'id', 'educative_level_id');
     }
+
+    function candidates()
+    {
+        return $this->hasMany('\ReclutaTI\CandidateVacancy');
+    }
 }
