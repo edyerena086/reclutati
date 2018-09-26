@@ -226,7 +226,11 @@ class AccountController extends Controller
     				if ($candidateSocialLogin->save()) {
     					Auth::loginUsingId($user->id);
 
-    					return redirect()->intended('candidate/dashboard');
+    					if (session('vacancy_callback')) {
+                            return redirect()->intended('vacante/'.session('vacancy_callback'));
+                        } else {
+                            return redirect()->intended('candidate/dashboard');
+                        }
     				} else {
     					$candidate->delete();
     					$user->delete();
