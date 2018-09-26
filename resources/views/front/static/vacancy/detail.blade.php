@@ -14,7 +14,7 @@
 							<div class="header-image">
 								<a href="{{ url('empresa/'. $vacancy->recruiter->companyContact->companies->first()->id) }}">
 									@if ($vacancy->recruiter->companyContact->companies->first()->profile_picture == '')
-										<img src="{{ asset('hireo/images/company-logo-03a.png') }}" alt="">
+										<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
 									@else
 										<img src="{{ asset('storage/recruiter/companies/'. $vacancy->recruiter->companyContact->companies->first()->id.'/'.$vacancy->recruiter->companyContact->companies->first()->profile_picture) }}" alt="">
 									@endif

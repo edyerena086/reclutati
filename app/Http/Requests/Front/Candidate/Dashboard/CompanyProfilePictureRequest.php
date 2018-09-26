@@ -24,7 +24,7 @@ class CompanyProfilePictureRequest extends FormRequest
     public function rules()
     {
         return [
-            'imagenDePerfil' => 'required|image|max:2000|dimensions:max_width=1000.max_height=1000'
+            'imagenDePerfil' => 'required|image|max:2000|dimensions:max_width=1100.max_height=1100'
         ];
     }
 }

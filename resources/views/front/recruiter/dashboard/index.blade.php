@@ -24,10 +24,10 @@
 						<div class="row">
 							<div class="col-xl-3">
 								<div class="avatar-wrapper" data-tippy-placement="bottom" title="Cambiar imagen">
-									@if (Auth::user()->recruiter->companyContact->companies->first()->profile_picture == '')
+									@if (Auth::user()->recruiter->companyContact->companies->where('id', Auth::user()->recruiter->companyContact->company_id)->first()->profile_picture == '')
 										<img class="profile-pic" src="{{  asset('hireo') }}/images/user-avatar-placeholder.png" alt="" />
 									@else
-										<img class="profile-pic" src="{{  asset('storage/recruiter/companies/'.Auth::user()->recruiter->companyContact->companies->first()->id.'/'.Auth::user()->recruiter->companyContact->companies->first()->profile_picture) }}" alt="" />
+										<img class="profile-pic" src="{{  asset('storage/recruiter/companies/'.Auth::user()->recruiter->companyContact->companies->where('id', Auth::user()->recruiter->companyContact->company_id)->first()->id.'/'.Auth::user()->recruiter->companyContact->companies->where('id', Auth::user()->recruiter->companyContact->company_id)->first()->profile_picture) }}" alt="" />
 									@endif
 									<div class="upload-button"></div>
 									<input class="file-upload" data-url="{{ url('recruiter/dashboard/company/profile-picture') }}" type="file" id="profilePicture" accept="image/*"/>
@@ -40,7 +40,7 @@
 										<div class="col-xl-6">
 											<div class="submit-field">
 												<h5>*Nombre de empresa:</h5>
-												<input type="text" name="empresa" class="with-border" value="{{ Auth::user()->recruiter->companyContact->companies->first()->name }}">
+												<input type="text" name="empresa" class="with-border" value="{{ Auth::user()->recruiter->companyContact->companies->where('id', Auth::user()->recruiter->companyContact->company_id)->first()->name }}">
 											</div>
 										</div>
 
@@ -56,7 +56,7 @@
 										<div class="col-xl-12">
 											<div class="submit-field">
 												<h5>Acerca de:</h5>
-												<textarea name="acercaDe" cols="30" rows="5" class="with-border"></textarea>
+												<textarea name="acercaDe" cols="30" rows="5" class="with-border">{{ Auth::user()->recruiter->companyContact->companies->where('id', Auth::user()->recruiter->companyContact->company_id)->first()->about }}</textarea>
 											</div>
 										</div>
 									</div>

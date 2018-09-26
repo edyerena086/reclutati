@@ -71,7 +71,11 @@
 
 									<!-- Logo -->
 									<div class="job-listing-company-logo">
-										<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
+										@if ($vacancy->recruiter->companyContact->companies->first()->profile_picture == '')
+											<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
+										@else
+											<img src="{{ asset('storage/recruiter/companies/'. $vacancy->recruiter->companyContact->companies->first()->id.'/'.$vacancy->recruiter->companyContact->companies->first()->profile_picture) }}" alt="">
+										@endif
 									</div>
 
 									<!-- Details -->

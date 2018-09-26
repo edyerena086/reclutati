@@ -37,7 +37,7 @@ class DashboardController extends Controller
     	$response;
 
     	$recruiter = Auth::user()->recruiter;
-    	$company = Company::find($recruiter->companyContact->companies->first()->id);
+    	$company = Company::find($recruiter->companyContact->companies->where('id', $recruiter->companyContact->company_id)->first()->id);
 
     	$fileName = rand(10000, 99999).'_profile.'.$request->file('imagenDePerfil')->getClientOriginalExtension();
         $folderName = 'recruiter/companies/'.$company->id;
@@ -78,7 +78,7 @@ class DashboardController extends Controller
     	$response;
 
     	$recruiter = Auth::user()->recruiter;
-    	$company = Company::find($recruiter->companyContact->companies->first()->id);
+    	$company = Company::find($recruiter->companyContact->companies->where('id', $recruiter->companyContact->company_id)->first()->id);
 
         $company->name = $request->empresa;
         if ($request->has('acercaDe')) {
