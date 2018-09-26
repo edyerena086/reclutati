@@ -30,7 +30,7 @@ Route::post('candidate/account', 'Front\Candidate\AccountController@store');
 Route::get('candidate/account/logout', 'Front\Candidate\AccountController@logout');
 //Social login
 Route::get('candidate/login/{driver}', 'Front\Candidate\AccountController@redirectToProvider')->name('social_auth');
-Route::get('candidate/login/{vacancy}/{driver}', 'Front\Candidate\AccountController@redirectToProviderWithVacancy')->name('social_auth_vacancy');
+Route::get('candidate/social-login/{vacancy}/{driver}', 'Front\Candidate\AccountController@redirectToProviderWithVacancy')->name('social_auth_vacancy');
 Route::get('candidate/login/{driver}/callback', 'Front\Candidate\AccountController@handlerProviderCallback');
 //Password reset
 Route::get('candidate/account/password/recover', 'Front\Candidate\AccountController@passwordRecover');
