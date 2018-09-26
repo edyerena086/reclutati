@@ -208,6 +208,8 @@ class AccountController extends Controller
     	if ($user) {
     		Auth::loginUsingId($user->id);
 
+            return session('vacancy_callback');
+
             if (session('vacancy_callback')) {
                 return redirect()->intended('vacante/'.session('vacancy_callback'));
             } else {
