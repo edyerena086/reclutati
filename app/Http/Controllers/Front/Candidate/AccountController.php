@@ -180,13 +180,6 @@ class AccountController extends Controller
     	return Socialite::driver($driver)->redirect();
     }
 
-    public function redirectToProviderWithVacancy($vacancy, $driver)
-    {
-        session('vacancy_callback', $vacancy);
-
-        return Socialite::driver($driver)->redirect();
-    }
-
     /**
      * [handlerProviderCallback description]
      * @param  [type] $driver [description]
@@ -194,7 +187,9 @@ class AccountController extends Controller
      */
     public function handlerProviderCallback($driver)
     {
-    	$socialUser = Socialite::driver($driver)->user();
+        return $driver;
+
+    	/*$socialUser = Socialite::driver($driver)->user();
 
     	if (!request()->has('code') || request()->has('denied')) {
     		Session::flash('error', 'Se ha cancelado la petición');
@@ -240,7 +235,7 @@ class AccountController extends Controller
     			Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
     			return redirect()->intnded('candidate');
     		}
-    	}
+    	}*/
     }
 
     /**
