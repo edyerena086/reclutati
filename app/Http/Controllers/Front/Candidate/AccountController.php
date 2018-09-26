@@ -194,8 +194,6 @@ class AccountController extends Controller
      */
     public function handlerProviderCallback($driver)
     {
-        //return $driver;
-
     	$socialUser = Socialite::driver($driver)->user();
 
     	if (!request()->has('code') || request()->has('denied')) {
@@ -207,8 +205,6 @@ class AccountController extends Controller
     	$user = User::where('email', $socialUser->email)->where('role_id', \ReclutaTI\Role::CANDIDATE)->first();
     	if ($user) {
     		Auth::loginUsingId($user->id);
-
-            return session('vacancy_callback');
 
             if (session('vacancy_callback')) {
                 return redirect()->intended('vacante/'.session('vacancy_callback'));
