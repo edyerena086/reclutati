@@ -182,7 +182,7 @@ class AccountController extends Controller
 
     public function redirectToProviderWithVacancy($id, $driver)
     {
-        session('vacancy_callback', $id);
+        Session::put('vacancy_callback', $id);
 
         return Socialite::driver($driver)->redirect();
     }
