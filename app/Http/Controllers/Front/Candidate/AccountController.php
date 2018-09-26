@@ -180,6 +180,13 @@ class AccountController extends Controller
     	return Socialite::driver($driver)->redirect();
     }
 
+    public function redirectToProviderWithVacancy($id, $driver)
+    {
+        session('vacancy_callback', $id);
+
+        return Socialite::driver($driver)->redirect();
+    }
+
     /**
      * [handlerProviderCallback description]
      * @param  [type] $driver [description]
