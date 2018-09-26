@@ -207,7 +207,9 @@ class AccountController extends Controller
     		Auth::loginUsingId($user->id);
 
             if (session('vacancy_callback')) {
-                return redirect()->intended('vacante/'.session('vacancy_callback'));
+                $vacancy = session('vacancy_callback');
+                Session::forget('vacancy_callback');
+                return redirect()->intended('vacante/'.$vacancy);
             } else {
                 return redirect()->intended('candidate/dashboard');
             }
@@ -231,7 +233,9 @@ class AccountController extends Controller
     					Auth::loginUsingId($user->id);
 
     					if (session('vacancy_callback')) {
-                            return redirect()->intended('vacante/'.session('vacancy_callback'));
+                            $vacancy = session('vacancy_callback');
+                            Session::forget('vacancy_callback');
+                            return redirect()->intended('vacante/'.$vacancy);
                         } else {
                             return redirect()->intended('candidate/dashboard');
                         }
