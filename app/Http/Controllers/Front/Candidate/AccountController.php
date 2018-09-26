@@ -207,7 +207,13 @@ class AccountController extends Controller
     	$user = User::where('email', $socialUser->email)->where('role_id', \ReclutaTI\Role::CANDIDATE)->first();
     	if ($user) {
     		Auth::loginUsingId($user->id);
-    		return redirect()->intended('candidate/dashboard');
+
+            if (session('vacancy_callback')) {
+                return redirect()->intended('vacante/'.session('vacancy_callback'));
+            } else {
+                return redirect()->intended('candidate/dashboard');
+            }
+    		
     	} else {
     		$user = new User();
     		$user->name = ($socialUser->name == '' || $socialUser->name == null) ? $socialUser->nickname : strtolower($socialUser->name);
@@ -226,9 +232,8 @@ class AccountController extends Controller
     				if ($candidateSocialLogin->save()) {
     					Auth::loginUsingId($user->id);
 
-                        $vacancy = session('vacancy_callback');
-    					if ($vacancy != null) {
-                            return redirect()->intended('vacante/'.$vacancy);
+    					if (session('vacancy_callback')) {
+                            return redirect()->intended('vacante/'.session('vacancy_callback'));
                         } else {
                             return redirect()->intended('candidate/dashboard');
                         }
