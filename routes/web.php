@@ -82,6 +82,11 @@ Route::post('recruiter', 'Front\Recruiter\AccountController@login');
 Route::get('recruiter/account', 'Front\Recruiter\AccountController@create');
 Route::post('recruiter/account', 'Front\Recruiter\AccountController@store');
 Route::get('recruiter/account/logout', 'Front\Recruiter\AccountController@logout');
+//Password
+Route::get('recruiter/account/password/recover', 'Front\Recruiter\AccountController@passwordRecover');
+Route::post('recruiter/account/password/recover', 'Front\Recruiter\AccountController@passwordRecoverSend');
+Route::get('recruiter/account/password/reset/{id}', 'Front\Recruiter\AccountController@passwordReset')->name('recruiter_password_reset');
+Route::post('recruiter/account/password/reset/{id}', 'Front\Recruiter\AccountController@passwordResetSave');
 /**
  * ------------------------------------------------------------------------
  * Recruiter Dashboard Routes
