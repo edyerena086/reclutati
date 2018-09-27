@@ -215,45 +215,53 @@ class AccountController extends Controller
             }
     		
     	} else {
-    		$user = new User();
-    		$user->name = ($socialUser->name == '' || $socialUser->name == null) ? $socialUser->nickname : strtolower($socialUser->name);
-    		$user->email = $socialUser->email;
+            //Check if it's a recruiter account
+            $user = User::where('email', $socialUser->email)->where('role_id', '!=',\ReclutaTI\Role::CANDIDATE)->first();
 
-    		if ($user->save()) {
-    			$candidate = new Candidate();
-    			$candidate->user_id = $user->id;
+            if (!$user) {
+                $user = new User();
+                $user->name = ($socialUser->name == '' || $socialUser->name == null) ? $socialUser->nickname : strtolower($socialUser->name);
+                $user->email = $socialUser->email;
 
-    			if ($candidate->save()) {
-    				$candidateSocialLogin = new CandidateSocialLogin();
-    				$candidateSocialLogin->candidate_id = $candidate->id;
-    				$candidateSocialLogin->social_network = $driver;
-    				$candidateSocialLogin->uuid = $socialUser->id;
+                if ($user->save()) {
+                    $candidate = new Candidate();
+                    $candidate->user_id = $user->id;
 
-    				if ($candidateSocialLogin->save()) {
-    					Auth::loginUsingId($user->id);
+                    if ($candidate->save()) {
+                        $candidateSocialLogin = new CandidateSocialLogin();
+                        $candidateSocialLogin->candidate_id = $candidate->id;
+                        $candidateSocialLogin->social_network = $driver;
+                        $candidateSocialLogin->uuid = $socialUser->id;
 
-    					if (session('vacancy_callback')) {
-                            $vacancy = session('vacancy_callback');
-                            Session::forget('vacancy_callback');
-                            return redirect()->intended('vacante/'.$vacancy);
+                        if ($candidateSocialLogin->save()) {
+                            Auth::loginUsingId($user->id);
+
+                            if (session('vacancy_callback')) {
+                                $vacancy = session('vacancy_callback');
+                                Session::forget('vacancy_callback');
+                                return redirect()->intended('vacante/'.$vacancy);
+                            } else {
+                                return redirect()->intended('candidate/dashboard');
+                            }
                         } else {
-                            return redirect()->intended('candidate/dashboard');
+                            $candidate->delete();
+                            $user->delete();
+                            Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
+                            return redirect()->intnded('candidate');
                         }
-    				} else {
-    					$candidate->delete();
-    					$user->delete();
-    					Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
-    					return redirect()->intnded('candidate');
-    				}
-    			} else {
-    				$user->delete();
-    				Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
-    				return redirect()->intnded('candidate');
-    			}
-    		} else {
-    			Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
-    			return redirect()->intnded('candidate');
-    		}
+                    } else {
+                        $user->delete();
+                        Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
+                        return redirect()->intended('candidate');
+                    }
+                } else {
+                    Session::flash('error', 'No se ha podido crear tu cuenta en ReclutaTI.');
+                    return redirect()->intended('candidate');
+                }
+            } else {
+                Session::flash('error', 'Ya existe una cuenta con esa información.');
+                return redirect()->intended('candidate');
+            }
     	}
     }
 
