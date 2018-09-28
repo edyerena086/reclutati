@@ -8,7 +8,7 @@ class Candidate extends Model
 {
     public function user()
     {
-    	return $this->belongsTo('\ReclutaTI\User');
+    	return $this->hasOne('\ReclutaTI\User', 'id', 'user_id');
     }
 
     public function languages()

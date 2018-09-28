@@ -67,7 +67,7 @@
 
 								{{-- buttons --}}
 								<div class="buttons-to-right always-visible">
-									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id) }}" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Candidatos registrados <span class="button-info">{{ $vacancy->candidates->count() }}</span></a>
+									<a href="{{ url('recruiter/dashboard/vacancies/candidates/'.$vacancy->id) }}" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Candidatos registrados <span class="button-info">{{ $vacancy->candidates->count() }}</span></a>
 
 									<a href="{{ url('recruiter/dashboard/vacancies/'.$vacancy->id.'/edit') }}" class="button gray ripple-effect ico" title="Editar" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
 

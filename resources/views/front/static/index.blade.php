@@ -27,18 +27,18 @@
 					<div class="intro-banner-search-form margin-top-95">
 
 						<!-- Search Field -->
-						<div class="intro-search-field with-autocomplete">
+						<div class="intro-search-field">
+							<label for ="intro-keywords" class="field-title ripple-effect">¿Qué estas buscando?</label>
+							<input id="intro-keywords" type="text" placeholder="Ej. Desarrollador .Net">
+						</div>
+
+						<!-- Search Field -->
+						<div class="intro-search-field">
 							<label for="autocomplete-input" class="field-title ripple-effect">¿Dónde?</label>
 							<div class="input-with-icon">
 								<input id="autocomplete-input" type="text" placeholder="¿En qué estado estas buscando?">
 								<i class="icon-material-outline-location-on"></i>
 							</div>
-						</div>
-
-						<!-- Search Field -->
-						<div class="intro-search-field">
-							<label for ="intro-keywords" class="field-title ripple-effect">¿Qué estas buscando?</label>
-							<input id="intro-keywords" type="text" placeholder="Ej. Desarrollador .Net">
 						</div>
 
 						<!-- Button -->

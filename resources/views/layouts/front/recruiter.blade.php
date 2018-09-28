@@ -39,6 +39,8 @@
 						<h3>
 							@yield('sectionTitle')
 						</h3>
+						@section('sectionSubTitle')
+						@show
 
 						@section('actionButton')
 						@show

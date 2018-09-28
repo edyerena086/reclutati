@@ -97,4 +97,6 @@ Route::get('recruiter/dashboard', 'Front\Recruiter\DashboardController@index');
 Route::post('recruiter/dashboard/company/update', 'Front\Recruiter\DashboardController@company');
 Route::post('recruiter/dashboard/company/profile-picture', 'Front\Recruiter\DashboardController@companyProfilePicture');
 //vacancies
+Route::get('recruiter/dashboard/vacancies/candidates/{id}', 'Front\Recruiter\Dashboard\VacancyCandidateController@index');
 Route::resource('recruiter/dashboard/vacancies', 'Front\Recruiter\Dashboard\VacancyController');
+Route::post('recruiter/dashboard/candidate/{id}/{vacancy}/remove', 'Front\Recruiter\Dashboard\VacancyCandidateController@remove');
