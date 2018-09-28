@@ -1,6 +1,17 @@
 var btnApply = true;
 
 $(document).ready(function () {
+	var $share = $('#share');
+	$("#share").jsSocials({
+		showLabel: false,
+		shareIn: "popup",
+		url: $share.attr('data-url'),
+		text: $share.attr('data-text'),
+        shares: ["email", "twitter", "facebook", "googleplus"]
+    });
+
+
+
 	$('.lets-apply').on('click', function (e) {
 		e.preventDefault();
 

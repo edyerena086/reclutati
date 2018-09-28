@@ -52,55 +52,57 @@
 	</div>
 
 	{{-- Últimas vacantes --}}
-	<div class="section gray padding-top-65 padding-bottom-75">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-12">
-					<!-- Section Headline -->
-					<div class="section-headline margin-top-0 margin-bottom-35">
-						<h3>Últimas vacantes</h3>
-						<a href="jobs-list-layout-full-page-map.html" class="headline-link">Todas las vacantes</a>
-					</div>
+	@if (count($vacancies) >= 5)
+		<div class="section gray padding-top-65 padding-bottom-75">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12">
+						<!-- Section Headline -->
+						<div class="section-headline margin-top-0 margin-bottom-35">
+							<h3>Últimas vacantes</h3>
+							<a href="jobs-list-layout-full-page-map.html" class="headline-link">Todas las vacantes</a>
+						</div>
 
-					{{-- Jobs --}}
-					<div class="listings-container compact-list-layout margin-top-35">
-						@foreach ($vacancies as $vacancy)
-							<a href="{{ url('vacante/'.$vacancy['id']) }}" class="job-listing with-apply-button">
-								<!-- Job Listing Details -->
-								<div class="job-listing-details">
+						{{-- Jobs --}}
+						<div class="listings-container compact-list-layout margin-top-35">
+							@foreach ($vacancies as $vacancy)
+								<a href="{{ url('vacante/'.$vacancy['id']) }}" class="job-listing with-apply-button">
+									<!-- Job Listing Details -->
+									<div class="job-listing-details">
 
-									<!-- Logo -->
-									<div class="job-listing-company-logo">
-										@if ($vacancy['company_profile'] == '')
-											<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
-										@else
-											<img src="{{ asset('storage/recruiter/companies/'. $vacancy['company_id'].'/'.$vacancy['company_profile']) }}" alt="">
-										@endif
-									</div>
-
-									<!-- Details -->
-									<div class="job-listing-description">
-										<h3 class="job-listing-title">{{ $vacancy['job_title'] }}</h3>
-
-										<!-- Job Listing Footer -->
-										<div class="job-listing-footer">
-											<ul>
-												<li><i class="icon-material-outline-business"></i> {{ $vacancy['company_name'] }}</li>
-												<li><i class="icon-material-outline-location-on"></i> {{ $vacancy['job_location'] }}</li>
-												<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy['job_type']) }}</li>
-												<li><i class="icon-material-outline-access-time"></i> {{ ($vacancy['created_at'] == 1) ? '1 día' : $vacancy['created_at'].' días' }}</li>
-											</ul>
+										<!-- Logo -->
+										<div class="job-listing-company-logo">
+											@if ($vacancy['company_profile'] == '')
+												<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
+											@else
+												<img src="{{ asset('storage/recruiter/companies/'. $vacancy['company_id'].'/'.$vacancy['company_profile']) }}" alt="">
+											@endif
 										</div>
-									</div>
 
-									<!-- Apply Button -->
-									<span class="list-apply-button ripple-effect">Ver detalle</span>
-								</div>
-							</a>
-						@endforeach
+										<!-- Details -->
+										<div class="job-listing-description">
+											<h3 class="job-listing-title">{{ $vacancy['job_title'] }}</h3>
+
+											<!-- Job Listing Footer -->
+											<div class="job-listing-footer">
+												<ul>
+													<li><i class="icon-material-outline-business"></i> {{ $vacancy['company_name'] }}</li>
+													<li><i class="icon-material-outline-location-on"></i> {{ $vacancy['job_location'] }}</li>
+													<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy['job_type']) }}</li>
+													<li><i class="icon-material-outline-access-time"></i> {{ ($vacancy['created_at'] == 1) ? '1 día' : $vacancy['created_at'].' días' }}</li>
+												</ul>
+											</div>
+										</div>
+
+										<!-- Apply Button -->
+										<span class="list-apply-button ripple-effect">Ver detalle</span>
+									</div>
+								</a>
+							@endforeach
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 @stop

@@ -14,12 +14,22 @@
 	<link rel="stylesheet" href="{{ asset('hireo/css/colors/blue.css') }}">
 	<link rel="stylesheet" href="{{ asset('js/front/plugins/sticky-alerts/jnoty.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+	{{-- Page CSS --}}
+	@section('pageCSS')
+	@show
 </head>
 	
 <body>
 	<div id="wrapper">
 		{{-- Heder --}}
-		@include('layouts.front.partials.header')
+		@if (Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE)
+			@include('layouts.front.partials.header-candidate')
+		@elseif (Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::RECRUITER)
+			@include('layouts.front.partials.header-recruiter')
+		@else
+			@include('layouts.front.partials.header')
+		@endif
 
 		{{-- Content --}}
 		@yield('content')

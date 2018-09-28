@@ -3,6 +3,13 @@
 {{-- Page Title --}}
 @section('pageTitle', 'Vacante: '.$vacancy['job_title'])
 
+{{-- Page CSS --}}
+@section('pageCSS')
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ asset('js/plugin/shareButton/jssocials.css') }}" />
+	<link rel="stylesheet" href="{{ asset('js/plugin/shareButton/jssocials-theme-flat.css') }}" />
+@stop
+
 {{-- Content --}}
 @section('content')
 	<div class="single-page-header" data-background-image="{{ asset('hireo/images/single-job.jpg') }}">
@@ -110,6 +117,15 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="sidebar-widget">
+						<h3>
+							Comparte la vacante
+						</h3>
+
+						{{-- social networks --}}
+						<div id="share" data-url="{{ url('vacante/'.$vacancy['id']) }}" data-text="Vacante: {{ $vacancy['job_title'] }} en {{ $vacancy['job_location'] }}" class="text-center"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -118,5 +134,6 @@
 
 {{-- Page JS --}}
 @section('pageJS')
+	<script src="{{ asset('js/plugin/shareButton/jssocials.min.js') }}"></script>
 	<script src="{{ asset('js/front/vacancy.js') }}"></script>
 @stop
