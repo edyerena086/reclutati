@@ -100,3 +100,6 @@ Route::post('recruiter/dashboard/company/profile-picture', 'Front\Recruiter\Dash
 Route::get('recruiter/dashboard/vacancies/candidates/{id}', 'Front\Recruiter\Dashboard\VacancyCandidateController@index');
 Route::resource('recruiter/dashboard/vacancies', 'Front\Recruiter\Dashboard\VacancyController');
 Route::post('recruiter/dashboard/candidate/{id}/{vacancy}/remove', 'Front\Recruiter\Dashboard\VacancyCandidateController@remove');
+//Settings
+Route::get('recruiter/dashboard/settings', 'Front\Recruiter\Setting\SettingController@index');
+Route::post('recruiter/dashboard/settings/password', 'Front\Recruiter\Setting\PasswordController@newPassword');

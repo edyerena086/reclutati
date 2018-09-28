@@ -21,6 +21,9 @@
 					</ul>
 
 					<ul data-submenu-title="Mi Cuenta">
+						<li>
+							<a href="{{ url('recruiter/dashboard/settings') }}"><i class="icon-material-outline-settings"></i> Configuración</a>
+						</li>
 						<li><a href="{{ url('recruiter/account/logout') }}"><i class="icon-material-outline-power-settings-new"></i> Cerrar sesión</a></li>
 					</ul>
 				</div>

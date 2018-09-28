@@ -46,7 +46,7 @@
 												</a>
 											</h4>
 
-											<span class="freelancer-detail-item"><a href="#"><i class="icon-feather-mail"></i> {{ $candidate['email'] }}</a></span>
+											<span class="freelancer-detail-item"><a href="mailto:{{$candidate['email']}}"><i class="icon-feather-mail"></i> {{ $candidate['email'] }}</a></span>
 
 											@if ($candidate['cellphone'] != '')
 												<span class="freelancer-detail-item"><i class="icon-feather-phone"></i> {{ $candidate['cellphone'] }}</span>
