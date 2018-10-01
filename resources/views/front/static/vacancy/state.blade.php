@@ -19,7 +19,7 @@
 					<div class="single-page-header-inner">
 						<div class="left-side">
 							<div class="header-image">
-								<a href="{{ url('perfil/empresa/'. $vacancy['company_id']) }}">
+								<a href="{{ url('empresa/'. $vacancy['company_id']) }}">
 									@if ($vacancy['company_profile'] == '')
 										<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
 									@else

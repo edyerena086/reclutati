@@ -15,6 +15,9 @@ Route::get('/', 'Front\StaticController@index');
 //Vacancies
 Route::get('vacante/{id}', 'Front\VacancyController@detail');
 Route::post('vacante/aplicar/{id}', 'Front\VacancyController@apply');
+Route::get('vacante/por-estado/', 'Front\StateVacancy@states');
+//Company Profile
+Route::get('perfil/empresa/{id}', 'Front\CompanyController@index');
 /**
  * ------------------------------------------------------------------------
  * Candidate Account Routes
