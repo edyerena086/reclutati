@@ -10,4 +10,9 @@ class CompanyContact extends Model
     {
     	return $this->hasOne('\ReclutaTI\Company', 'id', 'company_id');
     }
+
+    public function recruiters()
+    {
+    	return $this->hasMany('\ReclutaTI\Recruiter', 'id', 'recruiter_id');
+    }
 }

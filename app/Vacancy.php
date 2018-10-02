@@ -8,7 +8,7 @@ class Vacancy extends Model
 {
     function recruiter()
     {
-    	return $this->belongsTo('\ReclutaTI\Recruiter');
+    	return $this->hasOne('\ReclutaTI\Recruiter', 'id', 'recruiter_id');
     }
 
     function state()

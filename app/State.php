@@ -2,10 +2,13 @@
 
 namespace ReclutaTI;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
+    use Searchable;
+
     /**
 	 * [list description]
 	 * @return [type] [description]

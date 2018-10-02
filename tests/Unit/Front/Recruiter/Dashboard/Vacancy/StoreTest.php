@@ -342,7 +342,7 @@ class StoreTest extends TestCase
     	$response = $this->json('POST', $this->url, $data);
 
     	$response
-    		->assertStatus(200)
+    		->assertStatus(500)
     		->assertJson([
     			'errors' => false
     		]);

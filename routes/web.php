@@ -18,6 +18,8 @@ Route::post('vacante/aplicar/{id}', 'Front\VacancyController@apply');
 Route::get('vacante/por-estado/', 'Front\StateVacancy@states');
 //Company Profile
 Route::get('perfil/empresa/{id}', 'Front\CompanyController@index');
+//Search
+Route::get('buscar/vacante', 'Front\SearchController@index');
 /**
  * ------------------------------------------------------------------------
  * Candidate Account Routes

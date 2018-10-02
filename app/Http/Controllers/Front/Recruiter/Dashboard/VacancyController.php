@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Front\Recruiter\Dashboard;
 use Auth;
 use ReclutaTI\Vacancy;
 use Illuminate\Http\Request;
+use ReclutaTI\Library\Search;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Recruiter\Dashboard\VacancyRequest;
@@ -65,7 +66,7 @@ class VacancyController extends Controller
             $vacancy->salary_max = $request->salarioMaximo;
         }
 
-        if ($vacancy->save()) {
+        if ($vacancy->save() && Search::addVacancy($vacancy)) {
             $response = [
                 'errors' => false,
                 'message' => 'Se ha creado con éxito la vacante.',
@@ -118,14 +119,6 @@ class VacancyController extends Controller
         } else {
             return back();
         }
-
-        /*$vacancy = Vacancy::find($id);
-
-        if ($vacancy) {
-            return redirect('vacante/'.$id);
-        } else {
-            return back();
-        }*/
     }
 
     /**
@@ -173,7 +166,7 @@ class VacancyController extends Controller
                 $vacancy->salary_max = $request->salarioMaximo;
             }
 
-            if ($vacancy->save()) {
+            if ($vacancy->save() && Search::updateVacancy($vacancy)) {
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha actualizado con éxito la vacante.',

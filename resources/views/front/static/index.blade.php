@@ -24,28 +24,29 @@
 			<!-- Search Bar -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="intro-banner-search-form margin-top-95">
+					<form action="{{ url('buscar/vacante') }}" method="GET" autocomplete="off">
+						<div class="intro-banner-search-form margin-top-95">
+							<!-- Search Field -->
+							<div class="intro-search-field">
+								<label for ="intro-keywords" class="field-title ripple-effect">¿Qué estas buscando?</label>
+								<input id="intro-keywords" name="string" type="text" placeholder="Ej. Desarrollador .Net medio tiempo">
+							</div>
 
-						<!-- Search Field -->
-						<div class="intro-search-field">
-							<label for ="intro-keywords" class="field-title ripple-effect">¿Qué estas buscando?</label>
-							<input id="intro-keywords" type="text" placeholder="Ej. Desarrollador .Net">
-						</div>
+							<!-- Search Field -->
+							<div class="intro-search-field">
+								<label for="autocomplete-input" class="field-title ripple-effect">¿Dónde?</label>
+								<div class="input-with-icon">
+									<input id="autocomplete-input" name="state" type="text" placeholder="¿En qué estado estas buscando?">
+									<i class="icon-material-outline-location-on"></i>
+								</div>
+							</div>
 
-						<!-- Search Field -->
-						<div class="intro-search-field">
-							<label for="autocomplete-input" class="field-title ripple-effect">¿Dónde?</label>
-							<div class="input-with-icon">
-								<input id="autocomplete-input" type="text" placeholder="¿En qué estado estas buscando?">
-								<i class="icon-material-outline-location-on"></i>
+							<!-- Button -->
+							<div class="intro-search-button">
+								<button type="submit" class="button ripple-effect">Buscar</button>
 							</div>
 						</div>
-
-						<!-- Button -->
-						<div class="intro-search-button">
-							<button class="button ripple-effect" onclick="window.location.href='jobs-list-layout-full-page-map.html'">Buscar</button>
-						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
