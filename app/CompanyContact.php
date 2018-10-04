@@ -13,6 +13,6 @@ class CompanyContact extends Model
 
     public function recruiters()
     {
-    	return $this->hasMany('\ReclutaTI\Recruiter', 'id', 'recruiter_id');
+    	return $this->hasOne('\ReclutaTI\Recruiter', 'id', 'recruiter_id');
     }
 }

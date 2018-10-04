@@ -174,5 +174,7 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'currentEmail'          => 'correo actual',
+        'newEmail'              => 'nuevo correo',
     ],
 ];

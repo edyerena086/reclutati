@@ -11,6 +11,11 @@ use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Settings\PasswordRequest;
 
 class PasswordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('candidate.auth');
+    }
+
 	/**
 	 * [newPassword description]
 	 * @param  Request $request [description]
@@ -30,7 +35,8 @@ class PasswordController extends Controller
 
     			$response = [
     				'errors' => false,
-    				'message' => 'Se ha actualizado tu contraseña.'
+    				'message' => 'Se ha actualizado tu contraseña.',
+                    'resetForm' => true
     			];
     		} else {
     			$response = [

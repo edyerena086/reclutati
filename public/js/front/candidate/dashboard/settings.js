@@ -61,7 +61,9 @@ $(document).ready(function () {
 			success: function (response) {
 				$('button.big', env).html('Guardar');
 
-				$(env).trigger('reset');
+				if (response.resetForm == true) {
+					$(env).trigger('reset');
+				}
 
 				if (response.errors == false) {
 					$.jnoty(response.message, {
