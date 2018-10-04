@@ -42,6 +42,9 @@ Route::get('candidate/account/password/recover', 'Front\Candidate\AccountControl
 Route::post('candidate/account/password/recover', 'Front\Candidate\AccountController@passwordRecoverSend');
 Route::get('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordReset')->name('candidate_password_reset');
 Route::post('candidate/account/password/reset/{id}', 'Front\Candidate\AccountController@passwordResetSave');
+//Vacancies
+Route::get('candidate/dashboard/vacancies/applied', 'Front\Candidate\Vacancy\AppliedController@index');
+Route::delete('candidate/dashboard/vacancies/applied/{id}', 'Front\Candidate\Vacancy\AppliedController@destroy');
 /**
  * ------------------------------------------------------------------------
  * Candidate Dashboard Routes

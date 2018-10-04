@@ -11,7 +11,7 @@
 				<nav id="navigation">
 					<ul id="responsive">
 						<li>
-							<a href="{{ url('job-search') }}">Buscar empleo</a>
+							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
 						</li>
 					</ul>
 				</nav>

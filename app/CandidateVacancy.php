@@ -10,4 +10,9 @@ class CandidateVacancy extends Model
     {
     	return $this->hasOne('\ReclutaTI\Candidate', 'id', 'candidate_id');
     }
+
+    public function vacancy()
+    {
+    	return $this->hasOne('\ReclutaTI\Vacancy', 'id', 'vacancy_id');
+    }
 }
