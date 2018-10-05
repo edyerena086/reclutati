@@ -67,6 +67,12 @@ class VacancyController extends Controller
     	$apply = CandidateVacancy::where('candidate_id', Auth::user()->candidate->id)->where('vacancy_id', $id)->first();
     	$vacancy = Vacancy::find($id);
 
+        //Check if the vacancy has been saved before
+        if ($apply && $apply->status = 2) {
+            $apply->delete();
+            $apply = CandidateVacancy::where('candidate_id', Auth::user()->candidate->id)->where('vacancy_id', $id)->first();
+        }
+
     	if (!$apply && $vacancy) {
     		$apply = new CandidateVacancy();
 
@@ -100,5 +106,53 @@ class VacancyController extends Controller
     	}
 
     	return response()->json($response);
+    }
+
+    public function bookmark($id)
+    {
+        $response;
+
+        //Check if vacancy exist and it's publish
+        $vacancy = Vacancy::whereId($id)->wherePublish(true)->first();
+
+        if ($vacancy) {
+            //Check if candidate has applied for the vacancy
+            $candidateVacancy = CandidateVacancy::where('candidate_id', Auth::user()->candidate->id)->where('vacancy_id', $id)->first();
+
+            if ($candidateVacancy == null) {
+                $candidateVacancy = new CandidateVacancy();
+
+                $candidateVacancy->candidate_id = Auth::user()->candidate->id;
+                $candidateVacancy->vacancy_id = $id;
+                $candidateVacancy->status = 2;
+
+                if ($candidateVacancy->save()) {
+                    $response = [
+                        'errors' => false,
+                        'message' => 'Se ha guardado con éxito la vacante en tus favoritos.'
+                    ];
+                } else {
+                    $response = [
+                        'errors' => true,
+                        'message' => 'No se ha podido guarda la vacante en tus favoritos.',
+                        'error_code' => 'b0003'
+                    ];
+                }
+            } else {
+                $response = [
+                    'errors' => true,
+                    'message' => 'Ya haz aplicado para la vacante, ya esta guardada en tu dashboard.',
+                    'error_code' => 'b0002'
+                ];
+            }
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'Vacante inválida.',
+                'error_code' => 'b0001'
+            ];
+        }
+
+        return response()->json($response);
     }
 }

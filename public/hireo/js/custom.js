@@ -183,10 +183,10 @@ $(document).ready(function(){
 	/*--------------------------------------------------*/
 	/*  Sliding Button Icon
 	/*--------------------------------------------------*/
-    $('.bookmark-icon').on('click', function(e){
+    /*$('.bookmark-icon').on('click', function(e){
     	e.preventDefault();
 		$(this).toggleClass('bookmarked');
-	});
+	});*/
 
     $('.bookmark-button').on('click', function(e){
     	e.preventDefault();

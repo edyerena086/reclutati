@@ -31,9 +31,6 @@
 								<h3>{{ $vacancy['job_title'] }}</h3>
 								<h5>{{ $vacancy['company_name'] }}</h5>
 								<ul>
-									{{--<li><a href="single-company-profile.html"><i class="icon-material-outline-business"></i> King</a></li>
-									<li><div class="star-rating" data-rating="4.9"></div></li>
-									<li><img class="flag" src="{{ asset('hireo/images/flags/gb.svg') }}" alt=""> United Kingdom</li>--}}
 									<li><div class="verified-badge-with-title">Verificado</div></li>
 								</ul>
 							</div>
@@ -44,7 +41,6 @@
 								<div class="salary-amount">
 									@if ($vacancy['salary_min'] != '' && $vacancy['salary_max'] != '')
 										${{ $vacancy['salary_min'] }} - ${{ $vacancy['salary_max'] }}
-
 									@else
 										No se muestra
 									@endif
@@ -73,7 +69,7 @@
 				<div class="sidebar-container">
 					@if (!Auth::check())
 						<a href="{{ url('candidate/login/vacancy/'.$vacancy['id']) }}" class="apply-now-button">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
-					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy['id'])->first() == null)
+					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy['id'])->where('status', '!=', 2)->first() == null)
 						<a href="{{ url('vacante/aplicar/'.$vacancy['id']) }}" class="apply-now-button lets-apply">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
 
 					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy['id'])->first())
@@ -117,6 +113,21 @@
 							</div>
 						</div>
 					</div>
+
+					{{-- bookmark --}}
+					@if(Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy['id'])->first() == null)
+						<div class="sidebar-widget bookmark-wrapper-rti">
+							<h3>
+								Guardar vacante a favoritos
+							</h3>
+
+							<button class="bookmark-button margin-bottom-25" data-url="{{ url('vacante/guardar/'.$vacancy['id']) }}">
+								<span class="bookmark-icon"></span>
+								<span class="bookmark-text">Guardar vacante</span>
+								<span class="bookmarked-text">Vacante guardada</span>
+							</button>
+						</div>
+					@endif
 
 					<div class="sidebar-widget">
 						<h3>

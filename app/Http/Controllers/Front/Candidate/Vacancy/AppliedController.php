@@ -11,7 +11,7 @@ class AppliedController extends Controller
 {
     public function index()
     {
-    	$vacancies = CandidateVacancy::where('candidate_id', Auth::user()->candidate->id)->with(['vacancy.recruiter.companyContact.companies'])->orderBY('created_at', 'DESC')->paginate(10);
+    	$vacancies = CandidateVacancy::where('candidate_id', Auth::user()->candidate->id)->where('status', 1)->with(['vacancy.recruiter.companyContact.companies'])->orderBY('created_at', 'DESC')->paginate(10);
 
     	return view('front.candidate.dashboard.vacancies.applied.index', ['vacancies' => $vacancies]);
     }
