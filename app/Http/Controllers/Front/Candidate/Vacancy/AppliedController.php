@@ -9,6 +9,11 @@ use ReclutaTI\Http\Controllers\Controller;
 
 class AppliedController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('candidate.auth');
+    }
+
     public function index()
     {
     	$vacancies = CandidateVacancy::where('candidate_id', Auth::user()->candidate->id)->where('status', 1)->with(['vacancy.recruiter.companyContact.companies'])->orderBY('created_at', 'DESC')->paginate(10);

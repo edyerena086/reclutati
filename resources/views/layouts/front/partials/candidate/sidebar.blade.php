@@ -22,7 +22,7 @@
 
 							<ul class="dropdown-nav">
 								<li>
-									<li><a href="dashboard-manage-jobs.html">Vacantes guardadas</a></li>
+									<li><a href="{{ url('candidate/dashboard/vacancies/favourites') }}">Vacantes en favoritos</a></li>
 
 									<li><a href="{{ url('candidate/dashboard/vacancies/applied') }}">Vacantes aplicadas</a></li>
 								</li>

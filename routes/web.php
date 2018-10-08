@@ -46,6 +46,9 @@ Route::post('candidate/account/password/reset/{id}', 'Front\Candidate\AccountCon
 //Vacancies
 Route::get('candidate/dashboard/vacancies/applied', 'Front\Candidate\Vacancy\AppliedController@index');
 Route::delete('candidate/dashboard/vacancies/applied/{id}', 'Front\Candidate\Vacancy\AppliedController@destroy');
+Route::get('candidate/dashboard/vacancies/favourites', 'Front\Candidate\Vacancy\FavouriteController@index');
+Route::post('candidate/dashboard/vacancies/favourites/apply/{id}', 'Front\Candidate\Vacancy\FavouriteController@apply');
+Route::delete('candidate/dashboard/vacancies/favourites/{id}', 'Front\Candidate\Vacancy\FavouriteController@destroy');
 /**
  * ------------------------------------------------------------------------
  * Candidate Dashboard Routes

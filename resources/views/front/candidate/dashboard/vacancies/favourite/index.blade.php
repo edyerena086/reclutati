@@ -67,7 +67,9 @@
 								<div class="buttons-to-right always-visible">
 									<a href="{{ url('vacante/'.$vacancy->vacancy->id) }}" target="_blank" class="button ripple-effect"><i class="icon-feather-eye"></i> Ver vacante </a>
 
-									<a href="{{ url('candidate/dashboard/vacancies/applied/'.$vacancy->vacancy->id) }}" class="button gray ripple-effect ico btn-vacancy-remove" title="Dejar de aplicar" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+									<a href="{{ url('candidate/dashboard/vacancies/favourites/'.$vacancy->vacancy->id) }}" class="button gray ripple-effect ico btn-vacancy-remove" title="Eliminar vacante" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+
+									<a href="{{ url('candidate/dashboard/vacancies/favourites/apply/'.$vacancy->vacancy->id) }}" class="button gray ripple-effect ico btn-vacancy-apply" title="Aplicar a la vacante" data-tippy-placement="top"><i class="icon-material-outline-check-circle"></i></a>
 								</div>
 							</li>
 						@endforeach
@@ -82,5 +84,5 @@
 
 {{-- JS Page --}}
 @section('pageJS')
-	<script src="{{ asset('js/front/candidate/dashboard/vacancies/applied.js') }}"></script>
+	<script src="{{ asset('js/front/candidate/dashboard/vacancies/favourite.js') }}"></script>
 @stop
