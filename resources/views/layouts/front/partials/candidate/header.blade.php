@@ -11,6 +11,10 @@
 				<nav id="navigation">
 					<ul id="responsive">
 						<li>
+							<a href="{{ url('/') }}">Ir al portal</a>
+						</li>
+
+						<li>
 							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
 						</li>
 					</ul>

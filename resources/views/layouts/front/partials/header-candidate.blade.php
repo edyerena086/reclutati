@@ -12,19 +12,20 @@
 				<!-- Main Navigation -->
 				<nav id="navigation">
 					<ul id="responsive">
-						<li><a href="{{ url('candidate') }}">Candidatos</a>
-							<ul class="dropdown-nav">
-								<li><a href="{{ url('candidate/account') }}">Crea tu cuenta</a></li>
-								<li><a href="{{ url('candidate') }}">Inicia tu sesión</a></li>
-								<li><a href="{{ url('job-search') }}">Busca empleo</a></li>
-							</ul>
+						<li>
+							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
 						</li>
 
-						<li><a href="{{ url('recruiter') }}">Reclutadores</a>
-							<ul class="dropdown-nav">
-								<li><a href="{{ url('recruiter/account') }}">Publica una vacante</a></li>
-								<li><a href="{{ url('recruiter') }}">Inicia tu sesión</a></li>
-							</ul>
+						<li>
+							<a href="{{ url('candidate/dashboard') }}">Dashboard</a>
+						</li>
+
+						<li>
+							<a href="{{ url('candidate/dashboard/curriculum') }}">Mi Curriculum</a>
+						</li>
+
+						<li>
+							<a href="{{ url('candidate/dashboard/messages') }}">Mensajes</a>
 						</li>
 					</ul>
 				</nav>

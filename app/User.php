@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('\ReclutaTI\Recruiter');
     }
+
+    public function messages()
+    {
+        return $this->hasMany('\ReclutaTI\Message', 'id', 'addressee');
+    }
 }

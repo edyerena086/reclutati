@@ -28,7 +28,7 @@
 								</li>
 							</ul>
 						</li>
-						<li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Mensajes <span class="nav-tag">0</span></a></li>
+						<li><a href="{{ url('candidate/dashboard/messages') }}"><i class="icon-material-outline-question-answer"></i> Mensajes <span class="nav-tag">{{ \ReclutaTI\Message::where('addressee', Auth::user()->id)->where('status', 0)->count() }}</span></a></li>
 					</ul>
 
 					<ul data-submenu-title="Mi Cuenta">
