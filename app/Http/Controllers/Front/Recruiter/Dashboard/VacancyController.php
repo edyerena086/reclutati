@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Front\Recruiter\Dashboard;
 use Auth;
 use ReclutaTI\Vacancy;
 use Illuminate\Http\Request;
+use ReclutaTI\SearchVacancy;
 use ReclutaTI\Library\Search;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Http\Controllers\Controller;
@@ -201,15 +202,16 @@ class VacancyController extends Controller
         $response;
 
         $vacancy = Vacancy::find($id);
+        $searchVacancy = SearchVacancy::where('vacancy_id', $id)->first();
 
-        if ($vacancy) {
+        if ($vacancy && $searchVacancy) {
             $relationships = CandidateVacancy::where('vacancy_id', $vacancy->id)->get();
 
             $relationships->each(function ($item) {
                 $item->delete();
             });
 
-            if ($vacancy->delete()) {
+            if ($vacancy->delete() && $searchVacancy->delete()) {
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha eliminado con éxito la vacante.'

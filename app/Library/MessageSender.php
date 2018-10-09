@@ -20,12 +20,12 @@ class MessageSender
 		$record = new Message();
 
 		$record->sender = $sender;
-		$record->addresses = $addresses;
+		$record->addressee = $addresses;
 		if ($title != null) {
 			$record->title = $title;
 		}
 		$record->message = $message;
-		$record->parent_id ($parentMessageId == null) ? 0 : $parentMessageId;
+		$record->parent_id = ($parentMessageId == null) ? 0 : $parentMessageId;
 
 		if ($record->save()) {
 			return true;

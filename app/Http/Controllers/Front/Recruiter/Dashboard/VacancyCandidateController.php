@@ -2,12 +2,16 @@
 
 namespace ReclutaTI\Http\Controllers\Front\Recruiter\Dashboard;
 
+use Auth;
+use Notification;
 use ReclutaTI\Vacancy;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Library\MessageSender;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Notifications\Front\Recruiter\Message\NewMessage;
+use ReclutaTI\Http\Requests\Front\Recruiter\Dashboard\Message\MessageRequest;
 
 class VacancyCandidateController extends Controller
 {
@@ -114,9 +118,15 @@ class VacancyCandidateController extends Controller
     	$candidate = Candidate::find($candidate);
 
     	if ($candidate) {
-    		$sendMessage = MessageSender::send(Auth::user()->id, $candidate->user->id, $request->titulo, $request->mensaje);
+    		$sendMessage = MessageSender::send(Auth::user()->id, $candidate->user->id, $request->title, $request->message);
 
     		if ($sendMessage) {
+                $message = $request->message;
+                $recruiterName = ucwords(Auth::user()->name.' '.Auth::user()->recruiter->last_name);
+                $candidateName = ucwords($candidate->user->name);
+
+                Notification::send($candidate->user, new NewMessage($recruiterName, $candidateName, $message));
+
     			$response = [
     				'errors' => false,
     				'message' => 'Se ha enviado con éxito el mensaje.'
