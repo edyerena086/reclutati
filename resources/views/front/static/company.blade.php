@@ -19,11 +19,11 @@
 								@endif
 							</div>
 							<div class="header-details">
-								<h3>{{ $company->name }} <span>Software House</span></h3>
+								<h3>{{ $company->name }} <span></span></h3>
 								<ul>
-									<li><div class="star-rating" data-rating="4.9"></div></li>
+									{{--<li><div class="star-rating" data-rating="4.9"></div></li>--}}
 									{{--<li><img class="flag" src="images/flags/de.svg" alt=""> Germany</li>--}}
-									<li><div class="verified-badge-with-title">Verified</div></li>
+									<li><div class="verified-badge-with-title">Verificado</div></li>
 								</ul>
 							</div>
 						</div>
@@ -63,14 +63,11 @@
 											<ul>
 												<li><i class="icon-material-outline-location-on"></i> {{ $vacancy->state->name }}</li>
 												<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy->jobType->name) }}</li>
-												<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
+												<li><i class="icon-material-outline-access-time"></i> {{ ($vacancy->created_at->diffInDays(\Carbon\Carbon::now()) == 0) ? '1 día' : $vacancy->created_at->diffInDays(\Carbon\Carbon::now()).' días' }}</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-
-								<!-- Bookmark -->
-								<span class="bookmark-icon"></span>
 							</a>
 						@endforeach
 					</div>

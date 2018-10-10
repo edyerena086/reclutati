@@ -25,4 +25,9 @@ class State extends Model
 
     	return $list;
     }
+
+    public function vacancies()
+    {
+        return $this->hasMany('\ReclutaTI\Vacancy', 'state_id', 'id');
+    }
 }

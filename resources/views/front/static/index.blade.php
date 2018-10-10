@@ -61,7 +61,7 @@
 						<!-- Section Headline -->
 						<div class="section-headline margin-top-0 margin-bottom-35">
 							<h3>Últimas vacantes</h3>
-							<a href="jobs-list-layout-full-page-map.html" class="headline-link">Todas las vacantes</a>
+							<a href="{{ url('buscar/vacante') }}" class="headline-link">Todas las vacantes</a>
 						</div>
 
 						{{-- Jobs --}}

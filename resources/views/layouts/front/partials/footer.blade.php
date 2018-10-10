@@ -83,16 +83,16 @@
 
 						<ul>
 							<li>
-								<a href="{{ url('buscar') }}">Buscar vacante</a>
+								<a href="{{ url('buscar/vacante') }}">Buscar vacante</a>
 							</li>
 
 							<li>
 								<a href="{{ url('vacantes/estado') }}">Por estado</a>
 							</li>
 
-							<li>
+							{{--<li>
 								<a href="{{ url('vacantes/empresa') }}">Por empresa</a>
-							</li>
+							</li>--}}
 						</ul>
 					</div>
 				</div>

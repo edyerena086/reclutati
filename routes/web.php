@@ -16,7 +16,9 @@ Route::get('/', 'Front\StaticController@index');
 Route::get('vacante/{id}', 'Front\VacancyController@detail');
 Route::post('vacante/aplicar/{id}', 'Front\VacancyController@apply');
 Route::get('vacante/guardar/{id}', 'Front\VacancyController@bookmark');
-Route::get('vacante/por-estado/', 'Front\StateVacancy@states');
+//Vacancies by states
+Route::get('vacantes/estado/', 'Front\StateVacancy@states');
+Route::get('vacantes/estado/{id}', 'Front\StateVacancy@state');
 //Company Profile
 Route::get('perfil/empresa/{id}', 'Front\CompanyController@index');
 //Search
