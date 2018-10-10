@@ -21,6 +21,10 @@ Route::get('vacante/por-estado/', 'Front\StateVacancy@states');
 Route::get('perfil/empresa/{id}', 'Front\CompanyController@index');
 //Search
 Route::get('buscar/vacante', 'Front\SearchController@index');
+
+//Notifications
+Route::get('notification/mark-as-read/{user}/{noty}/{callback?}', 'Front\NotificationController@markAsRead');
+
 /**
  * ------------------------------------------------------------------------
  * Candidate Account Routes

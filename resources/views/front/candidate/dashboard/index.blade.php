@@ -95,4 +95,39 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="col-xl-6">
+			<div class="dashboard-box">
+				<div class="headline">
+					<h3><i class="icon-material-baseline-notifications-none"></i> Notificaciones</h3>
+					<button class="mark-as-read ripple-effect-dark" data-tippy-placement="left" title="Marcar todas como leídas">
+							<i class="icon-feather-check-square"></i>
+					</button>
+				</div>
+
+				<div class="content">
+					<ul class="dashboard-box-list">
+						@foreach (Auth::user()->unreadNotifications as $notification)
+							
+							<li>
+								<span class="notification-icon"><i class="{{ $notification->data['icon'] }}"></i></span>
+								<span class="notification-text">
+									<a href="{{ url('notification/mark-as-read/'.Auth::user()->id.'/'.$notification->id.'/y') }}">
+										{{ $notification->data['message'] }}
+									</a>
+								</span>
+								
+								<!-- Buttons -->
+								<div class="buttons-to-right">
+									<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico" title="Mark as read" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
+								</div>
+							</li>
+
+						@endforeach
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 @stop

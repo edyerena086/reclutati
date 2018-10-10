@@ -30,6 +30,8 @@ class DashboardController extends Controller
     									->take(5)
     									->get();
 
+    	
+
     	return view('front.candidate.dashboard.index', ['appliedVacancies' => $appliedVacancies, 'savedVacancies' => $savedVacancies]);
     }
 }

@@ -35,7 +35,7 @@ class NewMessage extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -63,7 +63,9 @@ class NewMessage extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'message' => $this->recruiterName.' te ha enviado un nuevo mensaje directo.',
+            'icon' => 'icon-feather-message-square',
+            'url' => 'candidate/dashboard/messages'
         ];
     }
 }

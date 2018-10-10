@@ -27,7 +27,7 @@
 				<div class="header-widget hide-on-mobile">
 					<!-- Trigger -->
 					<div class="header-notifications-trigger">
-						<a href="#"><i class="icon-feather-bell"></i><span>0</span></a>
+						<a href="#"><i class="icon-feather-bell"></i><span>{{ Auth::user()->unreadNotifications->count() }}</span></a>
 					</div>
 
 					<!-- Dropdown -->
