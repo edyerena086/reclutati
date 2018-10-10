@@ -4,7 +4,7 @@
 			{{-- Left Side --}}
 			<div class="left-side">
 				<div id="logo">
-					<a href="index.html"><img src="{{ asset('hireo/images/logo.png') }}" alt=""></a>
+					<a href="{{ url('recruiter/dashboard') }}"><img src="{{ asset('hireo/images/logo.png') }}" alt=""></a>
 				</div>
 
 				{{-- menu nav --}}
