@@ -20,7 +20,7 @@ class CompanyController extends Controller
 
     		foreach ($company->companyContacts as $item)
     		{
-    			$candidatesIds[] = $item->recruiters->get($centinel)->id;
+                $candidatesIds[] = $item->recruiters->where('id', $item->recruiter_id)->first()->id;
 
     			$centinel++;
     		}
