@@ -15,15 +15,12 @@
 						<li><a href="{{ url('recruiter/dashboard') }}">Mi Dashboard</a>
 						</li>
 
-						<li><a href="{{ url('recruiter/dashboard/vacancies') }}">Mis Vacantes</a>
+						<li>
+							<a href="{{ url('recruiter/dashboard/vacancies') }}">Mis Vacantes</a>
 						</li>
 
-
-						<li><a href="{{ url('recruiter/dashboard') }}">Mis Cuenta</a>
-							<ul class="dropdown-nav">
-								<li><a href="{{ url('recruiter/dashboard/settings') }}">Configuración</a></li>
-								<li><a href="{{ url('recruiter/account/logout') }}">Cerrar sesión</a></li>
-							</ul>
+						<li>
+							<a href="{{ url('recruiter/dashboard/candidates/search') }}">Buscar Candidatos</a>
 						</li>
 					</ul>
 				</nav>

@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Front\Recruiter;
 use DB;
 use Auth;
 use ReclutaTI\Company;
+use ReclutaTI\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ReclutaTI\Http\Controllers\Controller;
@@ -27,6 +28,11 @@ class DashboardController extends Controller
         $consult = Auth::user()->recruiter->companyContact;
         $query = Company::whereId($consult->company_id)->first();
 
+        $queryVacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)
+                                    ->where('publish', true)
+                                    ->orderBy('created_at', 'DESC')
+                                    ->take(5);
+
         $company = [
             'recruiter_main_contact' => ($consult->main_contact) ? true : false,
             'company_id' => $query->id,
@@ -35,7 +41,7 @@ class DashboardController extends Controller
             'company_about' => $query->about
         ];
 
-    	return view('front.recruiter.dashboard.index', ['company' => $company]);
+    	return view('front.recruiter.dashboard.index', ['company' => $company, 'vacancies' => $queryVacancies]);
     }
 
     /**

@@ -11,7 +11,15 @@
 				<nav id="navigation">
 					<ul id="responsive">
 						<li>
-							<a href="{{ url('job-search') }}">Buscar empleo</a>
+							<a href="{{ url('recruiter/dashboard/vacancies/create') }}">Publicar Vacante</a>
+						</li>
+
+						<li>
+							<a href="{{ url('recruiter/dashboard/candidates/search') }}">Buscar Candidatos</a>
+						</li>
+
+						<li>
+							<a href="{{ url('recruiter/dashboard/candidates/saved') }}">Candidatos guardados</a>
 						</li>
 					</ul>
 				</nav>
