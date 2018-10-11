@@ -28,6 +28,7 @@ class MessageController extends Controller
     	$messages = Message::where('addressee', Auth::user()->id)
     							->where('parent_id', 0)
     							->where('status', 1)
+                                ->with(['senders.recruiter.companyContact.companies'])
     							->orderBy('created_at', 'DESC')
     							->get();
 

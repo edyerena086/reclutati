@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="es">
 <head>
+	@if (App::environment('production'))
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127302744-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-127302744-1');
+		</script>
+	@endif
+
+
 	{{-- Page Title --}}
 	<title>
 		@yield('pageTitle') - {{ config('app.name', 'ReclutaTI') }}
