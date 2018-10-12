@@ -63,6 +63,10 @@
 							</ul>
 						</div>
 
+						<p>
+							Al dar clic en el botón "Crear cuenta" estas aceptando los <a href="{{ url('terminos-y-condiciones') }}" target="_blank">Términos y Condiciones de uso.</a>
+						</p>
+
 						<button class="submit button margin-top-15" id="submit">Crear cuenta</button>
 					</form>
 				</section>

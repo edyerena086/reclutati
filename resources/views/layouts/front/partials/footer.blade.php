@@ -96,6 +96,22 @@
 						</ul>
 					</div>
 				</div>
+
+				<div class="col-xl-2 col-lg-2 col-md-3">
+					<div class="footer-links">
+						<h3>Legales</h3>
+
+						<ul>
+							<li>
+								<a href="{{ url('aviso-de-privacidad') }}">Aviso de Privacidad</a>
+							</li>
+
+							<li>
+								<a href="{{ url('terminos-y-condiciones') }}">Términos y Condiciones de uso</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
