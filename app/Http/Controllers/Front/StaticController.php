@@ -45,4 +45,9 @@ class StaticController extends Controller
 
     	return view('front.static.index', ['vacancies' => $vacancies]);
     }
+
+    public function privacy()
+    {
+        return view('front.static.privacy');
+    }
 }
