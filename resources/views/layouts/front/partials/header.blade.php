@@ -16,7 +16,7 @@
 							<ul class="dropdown-nav">
 								<li><a href="{{ url('candidate/account') }}">Crea tu cuenta</a></li>
 								<li><a href="{{ url('candidate') }}">Inicia tu sesión</a></li>
-								<li><a href="{{ url('job-search') }}">Busca empleo</a></li>
+								<li><a href="{{ url('buscar/vacante') }}">Busca empleo</a></li>
 							</ul>
 						</li>
 

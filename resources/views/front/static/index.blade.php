@@ -1,5 +1,10 @@
 @extends('layouts.front.app')
 
+{{-- SEO --}}
+@section('seo')
+	<meta name="description" content="Bolsa de trabajo para profesionales en TI, empleos TI, ofertas de empleo, vacante en TI, ofertas de empleo programación, vacantes programación, ofertas de trabajo méxico">
+@stop
+
 {{-- Page Title --}}
 @section('pageTitle', 'Bolsa de trabajo para profesionales de TI')
 

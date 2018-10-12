@@ -7,6 +7,7 @@ use Auth;
 use ReclutaTI\Company;
 use ReclutaTI\Vacancy;
 use Illuminate\Http\Request;
+use ReclutaTI\CandidateVacancy;
 use Illuminate\Support\Facades\Storage;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\CompanyRequest;
@@ -30,8 +31,25 @@ class DashboardController extends Controller
 
         $queryVacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)
                                     ->where('publish', true)
+                                    ->with(['candidates'])
                                     ->orderBy('created_at', 'DESC')
-                                    ->take(5);
+                                    ->take(5)
+                                    ->get();
+
+        $vacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)
+                                ->where('publish', true)
+                                ->get();
+        $vacanciesId = [];
+
+        foreach ($vacancies as $vacancy) {
+            $vacanciesId[] = $vacancy->id;
+        }
+
+        $candidatesApplied = CandidateVacancy::whereIn('vacancy_id', $vacanciesId)
+                                                ->with(['candidate.user', 'vacancy'])
+                                                ->orderBy('created_at', 'DESC')
+                                                ->take(5)
+                                                ->get();
 
         $company = [
             'recruiter_main_contact' => ($consult->main_contact) ? true : false,
@@ -41,7 +59,7 @@ class DashboardController extends Controller
             'company_about' => $query->about
         ];
 
-    	return view('front.recruiter.dashboard.index', ['company' => $company, 'vacancies' => $queryVacancies]);
+    	return view('front.recruiter.dashboard.index', ['company' => $company, 'vacancies' => $queryVacancies, 'candidatesApplied' => $candidatesApplied]);
     }
 
     /**

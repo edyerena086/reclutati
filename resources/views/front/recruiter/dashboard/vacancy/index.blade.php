@@ -53,11 +53,11 @@
 											<div class="job-listing-footer">
 												<ul style="padding-top: 1rem;">
 													<li>
-														<i class="icon-material-outline-date-range"></i> Creada: {{ $vacancy->created_at->format('s/m/Y') }}</li>
+														<i class="icon-material-outline-date-range"></i> Creada: {{ $vacancy->created_at->format('d/m/Y') }}</li>
 													</li>
 
 													<li>
-														<i class="icon-material-outline-date-range"></i> Expira el {{ $vacancy->created_at->addDays(30)->format('s/m/Y') }}</li>
+														<i class="icon-material-outline-date-range"></i> Expira el {{ $vacancy->created_at->addDays(30)->format('d/m/Y') }}</li>
 													</li>
 												</ul>
 											</div>

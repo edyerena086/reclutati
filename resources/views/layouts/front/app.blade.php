@@ -13,6 +13,9 @@
 		</script>
 	@endif
 
+	{{-- SEO --}}
+	@section('seo')
+	@show
 
 	{{-- Page Title --}}
 	<title>
