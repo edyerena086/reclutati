@@ -17,11 +17,11 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="banner-headline">
-						<h3>
+						<h1>
 							<strong>ReclutaTI la bolsa de trabajo para los profesionales en TI.</strong>
 							<br>
 							<span>Todos los días encontrarás <strong class="color">ofertas</strong> nuevas.</span>
-						</h3>
+						</h1>
 					</div>
 				</div>
 			</div>
