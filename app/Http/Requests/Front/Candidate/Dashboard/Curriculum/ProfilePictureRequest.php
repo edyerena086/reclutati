@@ -24,7 +24,7 @@ class ProfilePictureRequest extends FormRequest
     public function rules()
     {
         return [
-            'imagenDePerfil' => 'required|image|max:1000|dimensions:max_width=400.max_height=400'
+            'imagenDePerfil' => 'required|image|max:1000'
         ];
     }
 

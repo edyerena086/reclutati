@@ -3,13 +3,17 @@
 namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
+use ReclutaTI\SkillLevel;
 use Illuminate\Http\Request;
 use ReclutaTI\CandidateSkill;
+use ReclutaTI\SearchCandidate;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\SkillRequest;
 
 class SkillController extends Controller
 {
+    private $searchIndex;
+
     public function __construct()
     {
         $this->middleware('candidate.auth');
@@ -32,6 +36,8 @@ class SkillController extends Controller
         $skill->skill_level_id = $request->nivel;
 
         if ($skill->save()) {
+            $this->initSearchIndex();
+            
             $response = [
                 'errors' => false,
                 'message' => 'Se ha guardado con éxito tu habilidad.',
@@ -69,6 +75,8 @@ class SkillController extends Controller
             $skill->skill_level_id = $request->nivel;
 
             if ($skill->save()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha actualizado con éxito tu habilidad.'
@@ -125,5 +133,26 @@ class SkillController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * [initSearchIndex description]
+     * @return [type] [description]
+     */
+    private function initSearchIndex()
+    {
+        $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
+
+        $this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        $skills = CandidateSkill::where('candidate_id', Auth::user()->candidate->id)->get();
+
+        $insert = '';
+
+        foreach ($skills as $skill) {
+            $insert .= $skill->skill.' '.SkillLevel::find($skill->skill_level_id)->name.' ';
+        }
+
+        $this->searchIndex->skills = $insert;
     }
 }

@@ -3,8 +3,10 @@
 namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
-use ReclutaTI\CandidateLanguage;
+use ReclutaTI\Language;
 use Illuminate\Http\Request;
+use ReclutaTI\SearchCandidate;
+use ReclutaTI\CandidateLanguage;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LanguageRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\Language\StoreRequest;
@@ -56,6 +58,8 @@ class LanguageController extends Controller
         $candidateLanguage->percent = $request->porcentaje;
 
         if ($candidateLanguage->save()) {
+            $this->initSearchIndex();
+            
             $response = [
                 'errors' => false,
                 'message' => 'Se ha guardado con éxito el nuevo idioma.',
@@ -122,6 +126,8 @@ class LanguageController extends Controller
             $candidateLanguage->percent = $request->porcentaje;
 
             if ($candidateLanguage->save()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha actualizado con éxito el idioma.'
@@ -178,5 +184,26 @@ class LanguageController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * [initSearchIndex description]
+     * @return [type] [description]
+     */
+    private function initSearchIndex()
+    {
+        $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
+
+        $this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        $languages = CandidateLanguage::where('candidate_id', Auth::user()->candidate->id)->get();
+
+        $insert = '';
+
+        foreach ($languages as $language) {
+            $insert .= Language::find($language->language_id)->name.' ';
+        }
+
+        $this->searchIndex->languages = $insert;
     }
 }

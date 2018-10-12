@@ -5,7 +5,9 @@ namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 use Auth;
 use ReclutaTI\Gender;
 use ReclutaTI\Candidate;
+use ReclutaTI\CivilStatus;
 use Illuminate\Http\Request;
+use ReclutaTI\SearchCandidate;
 use Illuminate\Support\Facades\Storage;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LaborGoalRequest;
@@ -14,6 +16,8 @@ use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\ProfilePictureR
 
 class CurriculumController extends Controller
 {
+    private $searchIndex;
+
 	public function __construct()
 	{
 		$this->middleware('candidate.auth');
@@ -54,6 +58,26 @@ class CurriculumController extends Controller
             }
 
     		if ($user->candidate->save()) {
+                //Save in search index
+                $this->initSearchIndex();
+
+                $this->searchIndex->name = $user->name.' '.$user->candidate->last_name;
+
+                //check age
+                if ($request->has('edad')) {
+                    $this->searchIndex->age = $request->edad;
+                }
+
+                //Check gender
+                if ($request->has('genero')) {
+                    $this->searchIndex->gender = Gender::find($request->genero)->name;
+                }
+
+                //Check civil status
+                if ($request->has('estadoCivil')) {
+                    $this->searchIndex->civil_status = CivilStatus::find($request->estadoCivil)->name;
+                }
+
     			$response = [
     				'errors' => false,
     				'message' => 'Se ha actualizado con éxito tu información'
@@ -90,6 +114,10 @@ class CurriculumController extends Controller
     	$candidate->labor_goal = $request->objetivoLaboral;
 
     	if ($candidate->save()) {
+            $this->initSearchIndex();
+
+            $this->searchIndex->labor_goal = $request->objetivoLaboral;
+
     		$response = [
     			'errors' => false,
     			'message' => 'Se ha actualizado con éxito tu objetivo laboral.'
@@ -143,5 +171,16 @@ class CurriculumController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * [initSearchIndex description]
+     * @return [type] [description]
+     */
+    private function initSearchIndex()
+    {
+        $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
+
+        $this->searchIndex = ($index) ? $index : new SearchCandidate();
     }
 }

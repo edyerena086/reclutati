@@ -10,6 +10,8 @@ use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\EducationReques
 
 class EducationController extends Controller
 {
+    private $searchIndex;
+
     public function __construct()
     {
         $this->middleware('candidate.auth');
@@ -146,5 +148,26 @@ class EducationController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * [initSearchIndex description]
+     * @return [type] [description]
+     */
+    private function initSearchIndex()
+    {
+        $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
+
+        $this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        $skills = CandidateSkill::where('candidate_id', Auth::user()->candidate->id)->get();
+
+        $insert = '';
+
+        foreach ($skills as $skill) {
+            $insert .= $skill->skill.' '.SkillLevel::find($skill->skill_level_id)->name.' ';
+        }
+
+        $this->searchIndex->skills = $insert;
     }
 }
