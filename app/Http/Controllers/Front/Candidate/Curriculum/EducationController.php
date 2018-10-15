@@ -4,6 +4,8 @@ namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
 use Illuminate\Http\Request;
+use ReclutaTI\EducativeLevel;
+use ReclutaTI\SearchCandidate;
 use ReclutaTI\CandidateEducationHistory;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\EducationRequest;
@@ -39,6 +41,8 @@ class EducationController extends Controller
         $candidateEducation->current = ($request->estudiandoActualmente == 1) ? false : true;
 
         if ($candidateEducation->save()) {
+            $this->initSearchIndex();
+
             $response = [
                 'errors' => false,
                 'message' => 'Se ha guardado con éxito el historial educativo.',
@@ -84,6 +88,8 @@ class EducationController extends Controller
             $candidateEducation->current = ($request->estudiandoActualmente == 1) ? false : true;
 
             if ($candidateEducation->save()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha actualizado con éxito el historial educativo.',
@@ -128,6 +134,8 @@ class EducationController extends Controller
 
         if ($candidateEducation != null) {
             if ($candidateEducation->delete()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha eliminado con éxito el historial educativo.'
@@ -160,14 +168,19 @@ class EducationController extends Controller
 
         $this->searchIndex = ($index) ? $index : new SearchCandidate();
 
-        $skills = CandidateSkill::where('candidate_id', Auth::user()->candidate->id)->get();
+        //Get all the educative histories of candidate
+        $histories = CandidateEducationHistory::where('candidate_id', Auth::user()->candidate->id)->get();
 
         $insert = '';
 
-        foreach ($skills as $skill) {
-            $insert .= $skill->skill.' '.SkillLevel::find($skill->skill_level_id)->name.' ';
+        foreach ($histories as $history) {
+            $insert .= $history->school_name.' '.$history->degree.' '.EducativeLevel::find($history->educative_level_id)->name.' '.$history->description;
         }
 
-        $this->searchIndex->skills = $insert;
+        $this->searchIndex->candidate_id = Auth::user()->candidate->id;
+
+        $this->searchIndex->education = $insert;
+
+        $this->searchIndex->save();
     }
 }

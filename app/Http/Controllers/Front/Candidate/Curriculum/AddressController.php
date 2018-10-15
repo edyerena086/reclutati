@@ -3,13 +3,17 @@
 namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
-use ReclutaTI\CandidateAddress;
+use ReclutaTI\State;
 use Illuminate\Http\Request;
+use ReclutaTI\SearchCandidate;
+use ReclutaTI\CandidateAddress;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\AddressRequest;
 
 class AddressController extends Controller
 {
+    private $searchIndex;
+
     public function __construct()
     {
         $this->middleware('candidate.auth');
@@ -38,6 +42,12 @@ class AddressController extends Controller
         $address->zipcode = $request->codigoPostal;
 
         if ($address->save()) {
+            $this->initSearchIndex();
+
+            $this->searchIndex->location = State::find($request->estado)->name;
+
+            $this->searchIndex->save();
+
             $response = [
                 'errors' => false,
                 'message' => 'Se ha guardado con éxito tu dirección.'
@@ -75,6 +85,12 @@ class AddressController extends Controller
         $address->zipcode = $request->codigoPostal;
 
         if ($address->save()) {
+            $this->initSearchIndex();
+
+            $this->searchIndex->location = State::find($request->estado)->name;
+
+            $this->searchIndex->save();
+            
             $response = [
                 'errors' => false,
                 'message' => 'Se ha actualizado con éxito tu dirección.'
@@ -88,5 +104,18 @@ class AddressController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * [initSearchIndex description]
+     * @return [type] [description]
+     */
+    private function initSearchIndex()
+    {
+        $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
+
+        $this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        $this->searchIndex->candidate_id = Auth::user()->candidate->id;
     }
 }

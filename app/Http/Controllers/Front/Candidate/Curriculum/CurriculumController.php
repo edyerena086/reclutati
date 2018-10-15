@@ -78,6 +78,9 @@ class CurriculumController extends Controller
                     $this->searchIndex->civil_status = CivilStatus::find($request->estadoCivil)->name;
                 }
 
+                //Save in search
+                $this->searchIndex->save();
+
     			$response = [
     				'errors' => false,
     				'message' => 'Se ha actualizado con éxito tu información'
@@ -117,6 +120,9 @@ class CurriculumController extends Controller
             $this->initSearchIndex();
 
             $this->searchIndex->labor_goal = $request->objetivoLaboral;
+
+            //Save in search
+            $this->searchIndex->save();
 
     		$response = [
     			'errors' => false,
@@ -182,5 +188,7 @@ class CurriculumController extends Controller
         $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
 
         $this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        $this->searchIndex->candidate_id = Auth::user()->candidate->id;
     }
 }

@@ -4,6 +4,7 @@ namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
 use Illuminate\Http\Request;
+use ReclutaTI\SearchCandidate;
 use ReclutaTI\CandidateJobHistory;
 use ReclutaTI\Http\Controllers\Controller;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\JobHistoryRequest;
@@ -35,6 +36,8 @@ class JobHistoryController extends Controller
         $jobHistory->current = ($request->trabajoActual == 2) ? true : false;
 
         if ($jobHistory->save()) {
+            $this->initSearchIndex();
+            
             $response = [
                 'errors' => false,
                 'message' => 'Se ha guardado con éxito el historial laboral.',
@@ -79,6 +82,8 @@ class JobHistoryController extends Controller
             $jobHistory->current = ($request->trabajoActual == 2) ? true : false;
 
             if ($jobHistory->save()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha actualizado con éxito el historial laboral.',
@@ -120,6 +125,8 @@ class JobHistoryController extends Controller
 
         if ($jobHistory != null) {
             if ($jobHistory->delete()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha eliminado con éxito el historial laboral.'
@@ -140,5 +147,31 @@ class JobHistoryController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * [initSearchIndex description]
+     * @return [type] [description]
+     */
+    private function initSearchIndex()
+    {
+        $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
+
+        $this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        //Get all the educative histories of candidate
+        $histories = CandidateJobHistory::where('candidate_id', Auth::user()->candidate->id)->get();
+
+        $insert = '';
+
+        foreach ($histories as $history) {
+            $insert .= $history->company_name.' '.$history->job_title.' '.$history->description;
+        }
+
+        $this->searchIndex->candidate_id = Auth::user()->candidate->id;
+
+        $this->searchIndex->job_history = $insert;
+
+        $this->searchIndex->save();
     }
 }

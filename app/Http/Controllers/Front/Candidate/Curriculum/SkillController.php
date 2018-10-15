@@ -154,5 +154,7 @@ class SkillController extends Controller
         }
 
         $this->searchIndex->skills = $insert;
+
+        $this->searchIndex->save();
     }
 }

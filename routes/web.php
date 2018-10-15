@@ -127,5 +127,7 @@ Route::post('recruiter/dashboard/candidate/{id}/{vacancy}/remove', 'Front\Recrui
 //Settings
 Route::get('recruiter/dashboard/settings', 'Front\Recruiter\Setting\SettingController@index');
 Route::post('recruiter/dashboard/settings/password', 'Front\Recruiter\Setting\PasswordController@newPassword');
+//Candidates
+Route::get('recruiter/dashboard/candidates/search', 'Front\Recruiter\Dashboard\CandidateController@search');
 //Message
 Route::post('recruiter/dashboard/vacancies/cadndidates/message/{candidate}', 'Front\Recruiter\Dashboard\VacancyCandidateController@message');

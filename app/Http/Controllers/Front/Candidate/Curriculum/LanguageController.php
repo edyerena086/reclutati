@@ -164,6 +164,8 @@ class LanguageController extends Controller
 
         if ($candidateLanguage != null) {
             if ($candidateLanguage->delete()) {
+                $this->initSearchIndex();
+
                 $response = [
                     'errors' => false,
                     'message' => 'Se ha eliminado con éxito el idioma.'
@@ -196,6 +198,8 @@ class LanguageController extends Controller
 
         $this->searchIndex = ($index) ? $index : new SearchCandidate();
 
+        $this->searchIndex->candidate_id = Auth::user()->candidate->id;
+
         $languages = CandidateLanguage::where('candidate_id', Auth::user()->candidate->id)->get();
 
         $insert = '';
@@ -205,5 +209,7 @@ class LanguageController extends Controller
         }
 
         $this->searchIndex->languages = $insert;
+
+        $this->searchIndex->save();
     }
 }
