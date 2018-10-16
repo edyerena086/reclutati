@@ -1,2 +1,3 @@
+Sitemap: https://reclutati.com/sitemap.xml
 User-agent: *
 Disallow:

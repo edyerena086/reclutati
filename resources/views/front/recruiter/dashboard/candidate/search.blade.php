@@ -11,27 +11,36 @@
 	<div class="row">
 		{{-- lateral sidebar --}}
 		<div class="col-xl-3 col-lg-4">
-			<!-- Location -->
-			<div class="sidebar-widget">
-				<h3>Ubicación</h3>
-				<div class="input-with-icon">
-					<div id="autocomplete-container">
-						<input id="autocomplete-input" type="text" placeholder="Cualquier parte">
+			<form action="{{ url('recruiter/dashboard/candidates/search') }}" method="GET">
+				<!-- Location -->
+				<div class="sidebar-widget">
+					<h3>Ubicación</h3>
+					<div class="input-with-icon">
+						<div id="autocomplete-container">
+							<input id="state" name="state" type="text" placeholder="Cualquier parte">
+						</div>
+						<i class="icon-material-outline-location-on"></i>
 					</div>
-					<i class="icon-material-outline-location-on"></i>
 				</div>
-			</div>
 
-			{{-- Search query --}}
-			<div class="sidebar-widget">
-				<h3>Palabras clave</h3>
-				<div class="keywords-container">
-					<div class="keyword-input-container">
-						<input type="text" class="keyword-input" placeholder="Ej. Desarrollador web"/>
+				{{-- Search query --}}
+				<div class="sidebar-widget">
+					<h3>Palabras clave</h3>
+					<div class="keywords-container">
+						<div class="keyword-input-container">
+							<input type="text" name="string" class="keyword-input" placeholder="Ej. Desarrollador web"/>
+						</div>
+						<div class="clearfix"></div>
 					</div>
-					<div class="clearfix"></div>
 				</div>
-			</div>
+
+				{{-- Send button --}}
+				<div class="sidebar-widget">
+					<button class="button ripple-effect" style="width: 100%">
+						Buscar
+					</button>
+				</div>
+			</form>
 		</div>
 
 		{{-- candidates profiles --}}
