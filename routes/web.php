@@ -129,5 +129,6 @@ Route::get('recruiter/dashboard/settings', 'Front\Recruiter\Setting\SettingContr
 Route::post('recruiter/dashboard/settings/password', 'Front\Recruiter\Setting\PasswordController@newPassword');
 //Candidates
 Route::get('recruiter/dashboard/candidates/search', 'Front\Recruiter\Dashboard\CandidateController@search');
+Route::get('recruiter/dashboard/candidates/detail/{id}', 'Front\Recruiter\Dashboard\CandidateController@detail');
 //Message
 Route::post('recruiter/dashboard/vacancies/cadndidates/message/{candidate}', 'Front\Recruiter\Dashboard\VacancyCandidateController@message');

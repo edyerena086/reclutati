@@ -35,7 +35,7 @@ class CandidateController extends Controller
      */
     public function detail($id)
     {
-    	$candidate = Candidate::findOrFail($id);
+    	$candidate = Candidate::where('id', $id)->with(['user', 'jobHistories', 'educativeHistories.educationLevel'])->firstOrFail();
 
     	return view('front.recruiter.dashboard.candidate.detail', ['candidate' => $candidate]);
     }

@@ -165,7 +165,7 @@ class JobHistoryController extends Controller
         $insert = '';
 
         foreach ($histories as $history) {
-            $insert .= $history->company_name.' '.$history->job_title.' '.$history->description;
+            $insert .= $history->company_name.' '.$history->job_title.' '.$history->description.' ';
         }
 
         $this->searchIndex->candidate_id = Auth::user()->candidate->id;

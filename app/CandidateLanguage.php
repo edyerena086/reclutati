@@ -15,4 +15,9 @@ class CandidateLanguage extends Model
     {
     	return $this->belongsTo('\ReclutaTI\Language');
     }
+
+    public function languageName()
+    {
+    	return $this->hasOne('\ReclutaTI\Language', 'id', 'language_id');
+    }
 }

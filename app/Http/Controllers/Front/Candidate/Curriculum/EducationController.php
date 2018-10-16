@@ -174,7 +174,7 @@ class EducationController extends Controller
         $insert = '';
 
         foreach ($histories as $history) {
-            $insert .= $history->school_name.' '.$history->degree.' '.EducativeLevel::find($history->educative_level_id)->name.' '.$history->description;
+            $insert .= $history->school_name.' '.$history->degree.' '.EducativeLevel::find($history->educative_level_id)->name.' '.$history->description.' ';
         }
 
         $this->searchIndex->candidate_id = Auth::user()->candidate->id;

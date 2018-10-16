@@ -15,4 +15,9 @@ class CandidateEducationHistory extends Model
     {
     	return $this->belongsTo('\ReclutaTI\EducativeLevel');
     }
+
+    public function educationLevel()
+    {
+    	return $this->hasOne('\ReclutaTI\EducativeLevel', 'id', 'educative_level_id');
+    }
 }

@@ -18,7 +18,7 @@ class Candidate extends Model
 
     public function educativeHistories()
     {
-    	return $this->hasMany('\ReclutaTI\CandidateEducationHistory');
+    	return $this->hasMany('\ReclutaTI\CandidateEducationHistory')->orderBy('educative_level_id', 'DESC');
     }
 
     public function address()

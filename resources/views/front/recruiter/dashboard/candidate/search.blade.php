@@ -58,7 +58,7 @@
 
 								<!-- Name -->
 								<div class="freelancer-name">
-									<h4><a href="single-freelancer-profile.html">{{ ucwords($candidate->name) }} <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+									<h4><a href="{{ url('recruiter/dashboard/candidates/detail/'. $candidate->candidate_id) }}" target="_blank">{{ ucwords($candidate->name) }} <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
 									<span>{{ $candidate->labor_goal }}</span>
 								</div>
 
@@ -75,10 +75,9 @@
 								<ul>
 									<li>Ubicación <strong><i class="icon-material-outline-location-on"></i> {{ ($candidate->location == '') ? 'Sin especificar' : $candidate->location }}</strong></li>
 									<li>Edad: <strong>{{ ($candidate->age == '') ? 'Sin especificar' : $candidate->age }}</strong></li>
-									<li>Job Success <strong>95%</strong></li>
 								</ul>
 							</div>
-							<a href="{{ url('recruiter/dashboard/candidates/detail/'. $candidate->candidate_id) }}" class="button button-sliding-icon ripple-effect">Ver perfil <i class="icon-material-outline-arrow-right-alt"></i></a>
+							<a href="{{ url('recruiter/dashboard/candidates/detail/'. $candidate->candidate_id) }}" target="_blank" class="button button-sliding-icon ripple-effect">Ver perfil <i class="icon-material-outline-arrow-right-alt"></i></a>
 						</div>
 					</div>
 				@endforeach
