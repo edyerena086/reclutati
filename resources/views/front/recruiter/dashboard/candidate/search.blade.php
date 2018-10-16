@@ -48,7 +48,7 @@
 							<div class="freelancer-overview-inner">
 								
 								<!-- Bookmark Icon -->
-								<span class="bookmark-icon"></span>
+								{{--<span class="bookmark-icon"></span>--}}
 								
 								<!-- Avatar -->
 								<div class="freelancer-avatar">
@@ -75,6 +75,9 @@
 								<ul>
 									<li>Ubicación <strong><i class="icon-material-outline-location-on"></i> {{ ($candidate->location == '') ? 'Sin especificar' : $candidate->location }}</strong></li>
 									<li>Edad: <strong>{{ ($candidate->age == '') ? 'Sin especificar' : $candidate->age }}</strong></li>
+									<li>
+										Educación: <strong>{{ $candidate->candidate->educativeHistories->first()->degree }}</strong>
+									</li>
 								</ul>
 							</div>
 							<a href="{{ url('recruiter/dashboard/candidates/detail/'. $candidate->candidate_id) }}" target="_blank" class="button button-sliding-icon ripple-effect">Ver perfil <i class="icon-material-outline-arrow-right-alt"></i></a>

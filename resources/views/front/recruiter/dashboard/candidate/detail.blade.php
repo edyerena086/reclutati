@@ -99,6 +99,9 @@
 			{{-- lateral column --}}
 			<div class="col-xl-4 col-lg-4">
 				<div class="sidebar-container">
+					{{-- Contact --}}
+					<a href="mailto:{{ $candidate->user->email }}" class="apply-now-button popup-with-zoom-anim margin-bottom-50">Conactárme <i class="icon-material-outline-arrow-right-alt"></i></a>
+
 					{{-- languages --}}
 					<div class="sidebar-widget">
 						<h3>Idiomas</h3>
