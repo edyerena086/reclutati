@@ -21,9 +21,9 @@
 
 							<ul class="dropdown-nav">
 								<li>
-									<li><a href="{{ url('candidate/dashboard/vacancies/favourites') }}">Buscar candidatos</a></li>
+									<li><a href="{{ url('recruiter/dashboard/candidates/search') }}">Buscar candidatos</a></li>
 
-									<li><a href="{{ url('candidate/dashboard/vacancies/applied') }}">Candidatos guardados</a></li>
+									{{--<li><a href="{{ url('candidate/dashboard/vacancies/applied') }}">Candidatos guardados</a></li>--}}
 								</li>
 							</ul>
 						</li>
