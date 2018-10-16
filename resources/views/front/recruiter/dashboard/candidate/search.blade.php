@@ -53,7 +53,7 @@
 								<!-- Avatar -->
 								<div class="freelancer-avatar">
 									<div class="verified-badge"></div>
-									<a href="#"><img src="images/user-avatar-big-01.jpg" alt=""></a>
+									<a href="#"><img src="{{ asset('storage/candidates/'.$candidate->candidate->id.'/'.$candidate->candidate->profile_picture) }}" alt=""></a>
 								</div>
 
 								<!-- Name -->

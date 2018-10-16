@@ -15,7 +15,7 @@
 					<div class="single-page-header-inner">
 						<div class="left-side">
 							{{-- profile picture --}}
-							<div class="header-image freelancer-avatar"><img src="images/user-avatar-big-02.jpg" alt=""></div>
+							<div class="header-image freelancer-avatar"><img src="{{ asset('storage/candidates/'.$candidate->id.'/'.$candidate->profile_picture) }}" alt=""></div>
 							<div class="header-details">
 								<h3>{{ ucwords($candidate->user->name.' '.$candidate->last_name) }} <span>{{ $candidate->user->email }}</span></h3>
 								<ul>
