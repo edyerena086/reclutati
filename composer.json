@@ -9,6 +9,8 @@
         "algolia/algoliasearch-client-php": "^1.27",
         "caouecs/laravel-lang": "~3.0",
         "fideloper/proxy": "^4.0",
+        "intervention/image": "^2.4",
+        "intervention/imagecache": "^2.3",
         "laravel/framework": "5.6.*",
         "laravel/scout": "^5.0",
         "laravel/socialite": "^3.1",
