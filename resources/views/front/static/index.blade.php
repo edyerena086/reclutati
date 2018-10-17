@@ -119,3 +119,27 @@
 		</div>
 	@endif
 @stop
+
+{{-- Page JS --}}
+@section('pageJS')
+	<!-- Datos estructurados -->
+	<script type="application/ld+json">
+	    {
+	        "@context" : "http://schema.org",
+	        "@type" : "Organization",
+	        "name" : "ReclutaTI - Bolsa de trabajo para profesionales de TI.",
+	        "url" : "https://reclutati.com",
+	        "sameAs": [
+	            "https://twitter.com/reclutaTImx",
+	            "https://www.facebook.com/reclutaTImx"
+	        ],
+	        "address": {
+	            "@type": "PostalAddress",
+	            "streetAddress": "Blvd. Antonio L. Rodriguez #1888",
+	            "addressRegion": "NL",
+	            "postalCode": "64650",
+	            "addressCountry": "MX"
+	        }
+	    }
+	</script>
+@stop
