@@ -35,7 +35,7 @@ Route::get('aviso-de-privacidad', 'Front\StaticController@privacy');
  * Front static error page
  * ------------------------------------------------------------------------
  */
-Route::get('404', 'Front\ErrorController@error404');
+Route::get('404', 'Front\ErrorController@error404')->name('404');
 Route::get('500', 'Front\ErrorController@error500');
 
 /**

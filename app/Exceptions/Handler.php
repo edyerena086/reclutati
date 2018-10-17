@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
             switch ($exception->getStatusCode())
             {
                 case 404:
-                    return redirect()->intended('/');
+                    return redirect()->route('404');
                     break;
 
                 case '500':

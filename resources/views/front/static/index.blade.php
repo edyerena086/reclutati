@@ -3,13 +3,6 @@
 {{-- SEO --}}
 @section('seo')
 	<meta name="description" content="Bolsa de trabajo para profesionales en TI, empleos TI, ofertas de empleo, vacante en TI, ofertas de empleo programación, vacantes programación, ofertas de trabajo méxico">
-
-	{{-- Structure Data --}}
-	<meta property="og:title" content="Bolsa de trabajo para profesionales en TI, vacantes, empleo en México - ReclutaTI" />
-	<meta property="og:image" content="https://reclutati.com/hireo/images/logo.png" />
-	<meta property="og:url" content="https://reclutati.com" />
-	<meta property="og:site_name" content="Bolsa de trabajo para profesionales en TI, vacantes, empleo en México - ReclutaTI" />
-	<meta property="og:description" content="ReclutaTI es una bolsa de trabajo en línea para profesionales en TI, vacantes, ofertas de empleo, vacantes progrador, empleo en tecnologías"/>
 @stop
 
 {{-- Page Title --}}
