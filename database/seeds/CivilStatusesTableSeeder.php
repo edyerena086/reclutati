@@ -39,7 +39,7 @@ class CivilStatusesTableSeeder extends Seeder
         ];
 
         foreach ($statuses as $status) {
-        	if (CivilStatus::where('name')->first() == null) {
+        	if (CivilStatus::where('name', $status['name'])->first() == null) {
         		CivilStatus::create($status);
         	}
         }

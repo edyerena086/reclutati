@@ -27,7 +27,7 @@ class SkillLevelsTableSeeder extends Seeder
         ];
 
         foreach ($skills as $skill) {
-        	if (SkillLevel::where('name')->first() == null) {
+        	if (SkillLevel::where('name', $skill['name'])->first() == null) {
         		SkillLevel::create($skill);
         	}
         }

@@ -24,11 +24,41 @@ class LanguagesTableSeeder extends Seeder
 
         		[
         			'name' => 'italiano'
-        		]
+        		],
+
+                [
+                    'name' => 'aleman'
+                ],
+
+                [
+                    'name' => 'japones'
+                ],
+
+                [
+                    'name' => 'árabe'
+                ],
+
+                [
+                    'name' => 'hindi'
+                ],
+
+                [
+                    'name' => 'portugués'
+                ],
+
+                [
+                    'name' => 'ruso'
+                ],
+
+                [
+                    'name' => 'otro'
+                ]
         	];
 
         	foreach ($languages as $language) {
-        		Language::create($language);
+                if (Language::where('name', $language['name'])->first() == null) {
+                    Language::create($language);
+                }
         	}
         }
     }

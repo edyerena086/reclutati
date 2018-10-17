@@ -28,7 +28,9 @@ class GendersTableSeeder extends Seeder
         	];
 
         	foreach ($genders as $gender) {
-        		Gender::create($gender);
+                if (Gender::where('name', $gender['name'])->first() == null) {
+                    Gender::create($gender);
+                }
         	}
         }
     }

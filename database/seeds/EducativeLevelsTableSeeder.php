@@ -44,7 +44,9 @@ class EducativeLevelsTableSeeder extends Seeder
         	];
 
         	foreach ($levels as $level) {
-        		EducativeLevel::create($level);
+                if (EducativeLevel::where('name', $level['name'])->first() == null) {
+                    EducativeLevel::create($level);
+                }
         	}
         }
     }
