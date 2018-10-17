@@ -29,6 +29,7 @@ Route::get('notification/mark-as-read/{user}/{noty}/{callback?}', 'Front\Notific
 
 //Legal
 Route::get('aviso-de-privacidad', 'Front\StaticController@privacy');
+Route::get('terminos-y-condiciones', 'Front\StaticController@privacy');
 
 /**
  * ------------------------------------------------------------------------
