@@ -44,6 +44,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
+	{{-- favicon --}}
+	<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}"/>
+
 	{{-- CSS --}}
 	<link rel="stylesheet" href="{{ asset('hireo/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('hireo/css/colors/blue.css') }}">

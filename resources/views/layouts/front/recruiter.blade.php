@@ -18,6 +18,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+	{{-- favicon --}}
+	<link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}"/>
+
 	{{-- Page CSS --}}
 	@section('pageCSS')
 	@show
