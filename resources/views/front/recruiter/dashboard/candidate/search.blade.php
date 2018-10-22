@@ -85,7 +85,7 @@
 									<li>Ubicación <strong><i class="icon-material-outline-location-on"></i> {{ ($candidate->location == '') ? 'Sin especificar' : $candidate->location }}</strong></li>
 									<li>Edad: <strong>{{ ($candidate->age == '') ? 'Sin especificar' : $candidate->age }}</strong></li>
 									<li>
-										Educación: <strong>{{ $candidate->candidate->educativeHistories->first()->degree }}</strong>
+										Educación: <strong>{{ @$candidate->candidate->educativeHistories->first()->degree }}</strong>
 									</li>
 								</ul>
 							</div>
