@@ -72,7 +72,7 @@
 				</section>
 			</div>
 
-			<div class="col-xl-6">
+			<div class="col-xl-6 col-sm-12">
 				<section id="contact" class="margin-bottom-60 social-login">
 					<h3 class="headline margin-top-15 margin-bottom-35">
 						Registrate utilizando tus redes sociales

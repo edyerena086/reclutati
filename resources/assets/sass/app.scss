@@ -161,3 +161,16 @@
 .btn-has-applied {
 	background-color: #30ab4a!important;
 }
+
+/**
+ * Media query
+ */
+@media (max-width: 479px) and (min-width: 0px) {
+	.loginBtn {
+		width: 100%;
+	}
+
+	.social-login ul {
+		padding-left: 0!important;
+	}
+}
