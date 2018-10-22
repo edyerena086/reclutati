@@ -58,7 +58,7 @@
 	</div>
 
 	{{-- Últimas vacantes --}}
-	@if (count($vacancies) >= 5)
+	@if (count($vacancies) >= 1)
 		<div class="section gray padding-top-65 padding-bottom-75">
 			<div class="container">
 				<div class="row">
