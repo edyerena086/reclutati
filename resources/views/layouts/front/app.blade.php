@@ -36,6 +36,10 @@
 	@section('seo')
 	@show
 
+	{{-- Facebook data structure --}}
+	@section('facebook')
+	@show
+
 	{{-- Page Title --}}
 	<title>
 		@yield('pageTitle') - {{ config('app.name', 'ReclutaTI') }}

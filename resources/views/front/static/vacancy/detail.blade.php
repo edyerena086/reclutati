@@ -3,6 +3,14 @@
 {{-- Page Title --}}
 @section('pageTitle', 'Vacante: '.$vacancy['job_title'])
 
+{{-- Facebook data structure --}}
+@section('facebook')
+	<meta property="og:title" content='Vacante: '{{ $vacancy['job_title'] }} />
+	<meta property="og:url" content="{{ url('vacante/'.$vacancy[''id]) }}" />
+	<meta property="og:image" content="https://reclutati.com/hireo/images/logo.png" />
+	<meta property="og:description" content="{{ $vacancy['job_small_description'] }}"/>
+@stop
+
 {{-- Page CSS --}}
 @section('pageCSS')
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
