@@ -144,3 +144,4 @@ Route::post('recruiter/dashboard/vacancies/cadndidates/message/{candidate}', 'Fr
 
 Route::get('back/tempo/candidates', 'Back\TempoController@candidates');
 Route::get('back/tempo/recruiters', 'Back\TempoController@recruiters');
+Route::get('back/tempo/vacancies', 'Back\TempoController@vacancies');
