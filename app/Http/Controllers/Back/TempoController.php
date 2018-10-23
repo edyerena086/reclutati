@@ -19,7 +19,7 @@ class TempoController extends Controller
 
     public function recruiters()
     {
-    	$recruiters = Recruiter::where('phone', '!=', '8116362986')->get();
+    	$recruiters = Recruiter::where('validation_phone', '!=', '8116362986')->get();
 
     	return 'Total de candidatos: '.$recruiters->count();
     }
