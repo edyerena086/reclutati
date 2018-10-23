@@ -6,7 +6,7 @@
 {{-- Facebook data structure --}}
 @section('facebook')
 	<meta property="og:title" content='Vacante: '{{ $vacancy['job_title'] }} />
-	<meta property="og:url" content="{{ url('vacante/'.$vacancy[''id]) }}" />
+	<meta property="og:url" content="{{ url('vacante/'.$vacancy['id']) }}" />
 	<meta property="og:image" content="https://reclutati.com/hireo/images/logo.png" />
 	<meta property="og:description" content="{{ $vacancy['job_small_description'] }}"/>
 @stop
