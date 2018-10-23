@@ -4,6 +4,7 @@ namespace ReclutaTI\Http\Controllers\Back;
 
 use ReclutaTI\User;
 use ReclutaTI\Vacancy;
+use ReclutaTI\Recruiter;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
 
@@ -18,7 +19,7 @@ class TempoController extends Controller
 
     public function recruiters()
     {
-    	$recruiters = User::whereRoleId(\ReclutaTI\Role::RECRUITER)->get();
+    	$recruiters = Recruiter::where('phone', '!=', '8116362986')->get();
 
     	return 'Total de candidatos: '.$recruiters->count();
     }
