@@ -142,6 +142,20 @@ Route::get('recruiter/dashboard/candidates/detail/{id}', 'Front\Recruiter\Dashbo
 //Message
 Route::post('recruiter/dashboard/vacancies/cadndidates/message/{candidate}', 'Front\Recruiter\Dashboard\VacancyCandidateController@message');
 
+
+/**
+ * ------------------------------------------------------------------------
+ * Back Routes
+ * ------------------------------------------------------------------------
+ * 
+ */
+Route::get('back', 'Back\AccountController@index');
+Route::post('back', 'Back\AccountController@login');
+//Dashboard
+Route::get('back/dashboard', 'Back\DashboardController@index');
+
+
+//Temporal
 Route::get('back/tempo/candidates', 'Back\TempoController@candidates');
 Route::get('back/tempo/recruiters', 'Back\TempoController@recruiters');
 Route::get('back/tempo/vacancies', 'Back\TempoController@vacancies');
