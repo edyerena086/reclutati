@@ -63,7 +63,7 @@
 				<tbody>
 					@foreach ($recruiters as $recruiter)
 						<tr>
-							<td>{{ $i++ }}</td>
+							<td>{{ $x++ }}</td>
 							<td>{{ ucwords($recruiter->user->name.' '.$recruiter->last_name) }}</td>
 							<td>{{ $recruiter->user->email }}</td>
 							<td align="right">

@@ -20,6 +20,6 @@ class DashboardController extends Controller
 
     	$recruiters = Recruiter::where('validation_phone', '!=', '8116362986')->orderBy('created_at', 'DESC')->with(['user'])->take(10)->get();
 
-    	return view('back.dashboard.index', ['candidates' => $candidates, 'i' => 1, 'recruiters' => $recruiters]);
+    	return view('back.dashboard.index', ['candidates' => $candidates, 'i' => 1, 'recruiters' => $recruiters, 'x' => 1]);
     }
 }
