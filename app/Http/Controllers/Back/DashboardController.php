@@ -17,6 +17,8 @@ class DashboardController extends Controller
     {
     	$candidates = User::whereRoleId(Role::CANDIDATE)->orderBy('created_at', 'DESC')->with(['candidate'])->take(10)->get();
 
-    	return view('back.dashboard.index', ['candidates' => $candidates, 'i' => 1]);
+    	$recruiters = User::whereRoleId(Role::RECRUITER)->orderBy('created_at', 'DESC')->with(['recruiter'])->take(10)->get();
+
+    	return view('back.dashboard.index', ['candidates' => $candidates, 'i' => 1, 'recruiters' => $recruiters]);
     }
 }
