@@ -64,8 +64,8 @@
 					@foreach ($recruiters as $recruiter)
 						<tr>
 							<td>{{ $i++ }}</td>
-							<td>{{ ucwords($recruiter->name.' '.$recruiter->recruiter->last_name) }}</td>
-							<td>{{ $recruiter->email }}</td>
+							<td>{{ ucwords($recruiter->user->name.' '.$recruiter->last_name) }}</td>
+							<td>{{ $recruiter->user->email }}</td>
 							<td align="right">
 								{{ $recruiter->created_at->format('d/m/Y') }}
 							</td>
