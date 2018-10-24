@@ -92,7 +92,7 @@
 						<th width="10%">No.</th>
 						<th width="30%">Titulo</th>
 						<th width="30%">Empresa</th>
-						<th width="30%">Fecha de registro</td>
+						<th width="30%">Estado</td>
 					</tr>
 				</thead>
 
@@ -102,8 +102,8 @@
 							<td>{{ $z++ }}</td>
 							<td>{{ $vacancy->job_title }}</td>
 							<td>{{ $vacancy->recruiter->companyContact->companies->name }}</td>
-							<td align="right">
-								{{ $vacancy->created_at->format('d/m/Y') }}
+							<td>
+								{{ $vacancy->state->name }}
 							</td>
 						</tr>
 					@endforeach
