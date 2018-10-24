@@ -28,7 +28,7 @@
 					@foreach ($candidates as $candidate)
 						<tr>
 							<td>{{ $i++ }}</td>
-							<td>{{ ucwords($candidate->name) }}</td>
+							<td>{{ ucwords($candidate->name.' '.$candidate->candidate->last_name) }}</td>
 							<td>{{ $candidate->email }}</td>
 							<td align="right">
 								{{ $candidate->created_at->format('d/m/Y') }}
