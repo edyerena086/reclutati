@@ -22,7 +22,7 @@
 						<h1>
 							<strong>Bolsa de trabajo para los profesionales en TI.</strong>
 							<br>
-							<span>Todos los días encontrarás <strong class="color">ofertas</strong> nuevas vacantes de trabajo.</span>
+							<span>Todos los días encontrarás nuevas <strong class="color">vacantes de trabajo.</strong></span>
 						</h1>
 					</div>
 				</div>
