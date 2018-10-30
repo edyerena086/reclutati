@@ -3,6 +3,8 @@
 {{-- SEO --}}
 @section('seo')
 	<meta name="description" content="Bolsa de trabajo para profesionales en TI, empleos TI, ofertas de empleo, vacante en TI, ofertas de empleo programación, vacantes programación, ofertas de trabajo méxico">
+
+	<meta name="keywords" content="bolsa de trabajo, vacantes de empleo, ofertas de trabajo, vacantes de trabajo, portal de empleo">
 @stop
 
 {{-- Page Title --}}
@@ -18,9 +20,9 @@
 				<div class="col-md-12">
 					<div class="banner-headline">
 						<h1>
-							<strong>ReclutaTI la bolsa de trabajo para los profesionales en TI.</strong>
+							<strong>Bolsa de trabajo para los profesionales en TI.</strong>
 							<br>
-							<span>Todos los días encontrarás <strong class="color">ofertas</strong> nuevas.</span>
+							<span>Todos los días encontrarás <strong class="color">ofertas</strong> nuevas vacantes de trabajo.</span>
 						</h1>
 					</div>
 				</div>
@@ -79,9 +81,9 @@
 										<!-- Logo -->
 										<div class="job-listing-company-logo">
 											@if ($vacancy['company_profile'] == '')
-												<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="">
+												<img src="{{ asset('hireo/images/company-logo-05.png') }}" alt="{{ $vacancy['company_name'] }} - Bolsa de trabajo">
 											@else
-												<img src="{{ asset('storage/recruiter/companies/'. $vacancy['company_id'].'/'.$vacancy['company_profile']) }}" alt="">
+												<img src="{{ asset('storage/recruiter/companies/'. $vacancy['company_id'].'/'.$vacancy['company_profile']) }}" alt="Imagen sin mostrar - Bolsa de trabajo">
 											@endif
 										</div>
 
