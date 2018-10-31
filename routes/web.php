@@ -154,9 +154,3 @@ Route::post('back', 'Back\AccountController@login');
 Route::get('back/account/logout', 'Back\AccountController@logout');
 //Dashboard
 Route::get('back/dashboard', 'Back\DashboardController@index');
-
-
-//Temporal
-Route::get('back/tempo/candidates', 'Back\TempoController@candidates');
-Route::get('back/tempo/recruiters', 'Back\TempoController@recruiters');
-Route::get('back/tempo/vacancies', 'Back\TempoController@vacancies');
