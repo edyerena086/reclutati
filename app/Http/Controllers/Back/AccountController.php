@@ -38,4 +38,11 @@ class AccountController extends Controller
    			return back()->withErrors(['loginError' => true]);
    		}
    	}
+
+   public function logout()
+   {
+      Auth::logout();
+
+      return redirect()->intended('back');
+   }
 }

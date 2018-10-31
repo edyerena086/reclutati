@@ -151,6 +151,7 @@ Route::post('recruiter/dashboard/vacancies/cadndidates/message/{candidate}', 'Fr
  */
 Route::get('back', 'Back\AccountController@index');
 Route::post('back', 'Back\AccountController@login');
+Route::get('back/account/logout', 'Back\AccountController@logout');
 //Dashboard
 Route::get('back/dashboard', 'Back\DashboardController@index');
 

@@ -112,7 +112,7 @@
 					</a>
 
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="{{ url('admin/account/logout') }}"><i class="icon-switch2"></i> Cerrar sesión</a></li>
+						<li><a href="{{ url('back/account/logout') }}"><i class="icon-switch2"></i> Cerrar sesión</a></li>
 					</ul>
 				</li>
 			</ul>
