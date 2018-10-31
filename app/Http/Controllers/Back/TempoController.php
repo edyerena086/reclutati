@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Back;
 use ReclutaTI\User;
 use ReclutaTI\Vacancy;
 use ReclutaTI\Recruiter;
+use ReclutaTI\SearchVacancy;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
 
@@ -26,7 +27,7 @@ class TempoController extends Controller
 
     public function vacancies()
     {
-        $vacancies = Vacancy::where('publish', true)->get();
+        $vacancies = SearchVacancy::where('publish', true)->get();
 
         return 'Total de vacantes publicadas: '.$vacancies->count();
     }
