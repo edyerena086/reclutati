@@ -13,8 +13,10 @@ class SearchController extends Controller
     {
     	$querySearch = $request->string.' '.$request->state;
 
-    	$vacancies = SearchVacancy::search($querySearch)->where('publish', true)->paginate(20);
+    	$vacancies = SearchVacancy::search($querySearch)->where('publish', true);
+    	$vacancyCount = $vacancies->count();
+    	$vacancies->paginate(20);
 
-    	return view('front.static.result', ['vacancies' => $vacancies, 'jobTypes' => JobType::all()]);
+    	return view('front.static.result', ['vacancies' => $vacancies, 'vacancyCount' => $vacancyCount, 'jobTypes' => JobType::all()]);
     }
 }

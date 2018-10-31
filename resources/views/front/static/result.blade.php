@@ -63,7 +63,7 @@
 
 				<div class="notify-box margin-top-15">
 					<div class="switch-container">
-						<b>{{ $vacancies->count() }}</b> Resultados para: <b>{{ request('string') }}</b>
+						<b>{{ $vacancyCount }}</b> Resultados para: <b>{{ request('string') }}</b>
 					</div>
 
 					<div class="sort-by">
