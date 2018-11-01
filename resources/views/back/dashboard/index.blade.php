@@ -91,8 +91,9 @@
 					<tr>
 						<th width="10%">No.</th>
 						<th width="30%">Titulo</th>
-						<th width="30%">Empresa</th>
-						<th width="30%">Estado</td>
+						<th width="25%">Empresa</th>
+						<th width="25%">Estado</td>
+						<th width="10%">ID</td>
 					</tr>
 				</thead>
 
@@ -104,6 +105,9 @@
 							<td>{{ $vacancy->recruiter->companyContact->companies->name }}</td>
 							<td>
 								{{ $vacancy->state->name }}
+							</td>
+							<td>
+								{{ $vacancy->id }}
 							</td>
 						</tr>
 					@endforeach
