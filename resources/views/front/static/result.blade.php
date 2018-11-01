@@ -1,5 +1,15 @@
 @extends('layouts.front.app')
 
+{{-- SEO --}}
+@section('seo')
+	<!--Start Datos Estructurados-->
+	<meta property="og:title" content="ReclutaTI - bolsa de trabajo para profesionales en TI" />
+	<meta property="og:url" content="https://reclutati.com/" />
+	<meta property="og:site_name" content="ReclutaTI - bolsa de trabajo para profesionales en TI" />
+	<meta property="og:description" content="Busca vacantes en área de TI, bolsa de trabajo en línea, vacantes de empleo."/>
+	<!--End Datos Estructurados-->
+@stop
+
 {{-- Page Title --}}
 @section('pageTitle', 'Busqueda de vacantes')
 
