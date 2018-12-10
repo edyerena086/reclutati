@@ -2,7 +2,7 @@
 
 {{-- SEO --}}
 @section('seo')
-	<meta name="description" content="Bolsa de trabajo para profesionales en TI, empleos TI, ofertas de empleo, vacante en TI, ofertas de empleo programación, vacantes programación, ofertas de trabajo méxico">
+	<meta name="description" content="ReclutaTI es una bolsa de trabajo para profesionales en TI, busca y aplica para las mejores vacantes en tecnologías de información en México.">
 
 	<meta name="keywords" content="bolsa de trabajo, vacantes de empleo, ofertas de trabajo, vacantes de trabajo, portal de empleo">
 @stop

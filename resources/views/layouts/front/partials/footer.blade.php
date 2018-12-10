@@ -9,7 +9,7 @@
 						<div class="footer-rows-left">
 							<div class="footer-row">
 								<div class="footer-row-inner footer-logo">
-									<img src="{{ asset('hireo/images/logo2.png') }}" alt="">
+									<img src="{{ asset('hireo/images/logo2.png') }}" alt="ReclutaTI - bolsa de trabajo para profesionales de TI">
 								</div>
 							</div>
 						</div>

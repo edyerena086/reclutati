@@ -6,7 +6,7 @@
 			<div class="left-side">
 				<!-- Logo -->
 				<div id="logo">
-					<a href="{{ url('/') }}"><img src="{{ asset('hireo/images/logo.png') }}" alt=""></a>
+					<a href="{{ url('/') }}"><img src="{{ asset('hireo/images/logo.png') }}" alt="ReclutaTI - bolsa de trabajo para profesionales en TI"></a>
 				</div>
 
 				<!-- Main Navigation -->
