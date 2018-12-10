@@ -78,6 +78,7 @@ Route::get('candidate/dashboard', 'Front\Candidate\DashboardController@index')->
 Route::get('candidate/dashboard/curriculum', 'Front\Candidate\Curriculum\CurriculumController@index');
 Route::post('candidate/dashboard/curriculum/general-info', 'Front\Candidate\Curriculum\CurriculumController@generalInfo');
 Route::post('candidate/dashboard/curriculum/labor-goal', 'Front\Candidate\Curriculum\CurriculumController@laborGoal');
+//Profile picture
 Route::post('candidate/dashboard/curriculum/profile-picture', 'Front\Candidate\Curriculum\CurriculumController@profilePicture');
 //Contact info
 Route::post('candidate/dashboard/curriculum/phones', 'Front\Candidate\Curriculum\ContactInfoController@phones');

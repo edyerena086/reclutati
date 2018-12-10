@@ -154,6 +154,17 @@ class CurriculumController extends Controller
 
         $request->file('imagenDePerfil')->storeAs($folderName, $fileName, 'public');
 
+        //Save thumbnail
+        $thumnailPath = public_path('uploads/'.$folderName);
+        if (is_dir($thumnailPath)) {
+            //Delete previous image
+            array_map('unlink', glob($thumnailPath."/*.*"));
+            rmdir($thumnailPath);
+        }
+        mkdir($thumnailPath);
+        $thumbnail = Image::make($request->file('imagenDePerfil'));
+        $thumbnail->resize(200, 200)->save($thumnailPath.'/'.$fileName);
+
         $candidate = Candidate::find(Auth::user()->candidate->id);
 
         //Delete a file if exists
@@ -167,7 +178,7 @@ class CurriculumController extends Controller
             $response = [
                 'errors' => false,
                 'message' => 'Se ha actualizado con éxito tu imagen de perfil.',
-                'image_url' => asset('storage/candidates/'.$candidate->id.'/'.$candidate->profile_picture)
+                'image_url' => asset('uploads/candidates/'.$candidate->id.'/'.$candidate->profile_picture)
             ];
         } else {
             $response = [
