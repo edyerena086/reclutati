@@ -21,6 +21,10 @@
 						<li>
 							<a href="{{ url('recruiter/dashboard/candidates/saved') }}">Candidatos guardados</a>
 						</li>
+
+						<li>
+							<a href="{{ url('recruiter/account/logout') }}">Cerrar sesión</a>
+						</li>
 					</ul>
 				</nav>
 			</div>

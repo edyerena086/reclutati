@@ -17,6 +17,10 @@
 						<li>
 							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
 						</li>
+
+						<li>
+							<a href="{{ url('candidate/account/logout') }}">Cerrar sesión</a>
+						</li>
 					</ul>
 				</nav>
 			</div>
