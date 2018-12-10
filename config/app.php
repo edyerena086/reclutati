@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        ReclutaTI\Providers\BackViewComposerServiceProvider::class,
 
         /*
          * Package Service Providers...

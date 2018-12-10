@@ -26,7 +26,27 @@
 
 								<!-- Main -->
 								<li class="navigation-header"><span>Menú</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li>
+								@foreach($modules as $module)
+
+									@if ($module->children->count() > 0)
+										<li>
+											<a href="{{ url('back/dashboard/'.$module->slug) }}"><i class="icon-stack2"></i> <span>{{ ucwords($module->name) }}</span></a>
+
+											<ul>
+												@foreach($module->children as $item)
+													<li>
+														<a href="{{ url('back/dashboard/'.$module->slug.'/'.$item->slug) }}">{{ ucwords($item->name) }}</a>
+													</li>
+												@endforeach
+											</ul>
+										</li>
+									@else
+										<li>
+											<a href="{{ url('back/dashboard/'.$module->slug) }}"><i class="icon-home"></i> <span>{{ ucwords($module->name) }}</span></a>
+										</li>
+									@endif
+								@endforeach
+								{{--<li>
 									<a href="{{ url('admin/dashboard/candidates') }}"><i class="icon-home"></i> <span>Candidatos</span></a>
 								</li>
 
@@ -42,7 +62,7 @@
 
 										<li><a href="{{ url('admin/dashboard/catalog/dates') }}">Fechas de entrevista</a></li>
 									</ul>
-								</li>
+								</li>--}}
 								<!-- /page kits -->
 
 							</ul>

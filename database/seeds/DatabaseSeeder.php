@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JobTypesTableSeeder::class);
 
         $this->call(UsersTableSeeder::class);
+
+        $this->call(SysteModulesTableSeeder::class);
     }
 }

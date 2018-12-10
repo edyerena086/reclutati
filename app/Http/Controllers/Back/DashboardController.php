@@ -11,6 +11,11 @@ use ReclutaTI\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('back.auth');
+    }
+
 	/**
 	 * [index description]
 	 * @return [type] [description]

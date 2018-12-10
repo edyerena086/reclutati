@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'candidate.auth' => \ReclutaTI\Http\Middleware\CandidateAuth::class,
         'recruiter.guest' => \ReclutaTI\Http\Middleware\RecruiterGuest::class,
         'recruiter.auth' => \ReclutaTI\Http\Middleware\RecruiterAuth::class,
+        'back.auth' => \ReclutaTI\Http\Middleware\BackAuth::class,
     ];
 }
