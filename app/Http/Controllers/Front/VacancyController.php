@@ -9,6 +9,7 @@ use ReclutaTI\Recruiter;
 use Illuminate\Http\Request;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Notifications\Front\Candidate\Vacancy\HasApplied;
 use ReclutaTI\Notifications\Front\Recruiter\Vacancy\CandidateApplied;
 
 class VacancyController extends Controller
@@ -86,6 +87,7 @@ class VacancyController extends Controller
                 $candidateName = ucwords(Auth::user()->name.' '.Auth::user()->candidate->last_name);
 
                 Notification::send($recruiter->user, new CandidateApplied($recruiterName, $candidateName,  $vacancy->job_title));
+                Notification::send(Auth::user(), new HasApplied($candidateName, $vacancy->job_title));
 
     			$response = [
     				'errors' => false,
