@@ -10,6 +10,11 @@ use ReclutaTI\Http\Requests\Back\Account\LoginRequest;
 
 class AccountController extends Controller
 {
+   public function __construct()
+   {
+      $this->middleware('guest');
+   }
+
 	/**
 	 * [index description]
 	 * @return [type] [description]

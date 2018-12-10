@@ -3,6 +3,7 @@
 namespace ReclutaTI\Http\Controllers\Front\Candidate\Curriculum;
 
 use Auth;
+use Image;
 use ReclutaTI\Gender;
 use ReclutaTI\Candidate;
 use ReclutaTI\CivilStatus;
