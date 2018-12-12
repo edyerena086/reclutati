@@ -9,6 +9,9 @@
 {{-- Content --}}
 @section('content')
 	<div class="row">
+		{{-- Email --}}
+		@include('front.recruiter.dashboard.settings.partials._email-form')
+
 		{{-- Password --}}
 		@include('front.recruiter.dashboard.settings.partials._password-form')
 	</div>
