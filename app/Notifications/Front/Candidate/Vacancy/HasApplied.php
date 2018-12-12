@@ -13,16 +13,18 @@ class HasApplied extends Notification
 
     private $candidateName;
     private $vacancyTitle;
+    private $vacancyId;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($candidateName, $vacancyTitle)
+    public function __construct($candidateName, $vacancyTitle, $vacancyId)
     {
         $this->candidateName = $candidateName;
         $this->vacancyTitle = $vacancyTitle;
+        $this->vacancyId = $vacancyId;
     }
 
     /**
@@ -33,7 +35,7 @@ class HasApplied extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -60,7 +62,11 @@ class HasApplied extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_type' => 2,
+            'notification_type' => 1,
+            'icon' => 'icon-material-outline-library-books',
+            'message_to_display' => 'Haz aplicado para la vacante de '.$this->vacancyTitle,
+            'url' => url('vacante/'.$this->vacancyId)
         ];
     }
 }

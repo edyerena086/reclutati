@@ -35,7 +35,7 @@ class CandidateApplied extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -63,7 +63,10 @@ class CandidateApplied extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_type' => 1,
+            'notification_type' => 1,
+            'message_to_display' => 'El candidato '.$this->candidate.' ha aplicado para la vacante de '.$this->vacancy,
+            'url' => url('recruiter/dashboard/vacancies')
         ];
     }
 }

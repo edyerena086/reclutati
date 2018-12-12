@@ -18,7 +18,7 @@
 						<li><a href="{{ url('candidate/dashboard') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 						<li><a href="{{ url('candidate/dashboard/curriculum') }}"><i class="icon-material-outline-assignment"></i> Mi Curriculum</a></li>
 						<li>
-							<a href=""><i class="icon-brand-wpforms"></i> Vacantes</a>
+							<a href=""><i class="icon-material-outline-library-books"></i> Vacantes</a>
 
 							<ul class="dropdown-nav">
 								<li>

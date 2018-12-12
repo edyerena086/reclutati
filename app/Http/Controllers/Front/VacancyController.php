@@ -87,7 +87,7 @@ class VacancyController extends Controller
                 $candidateName = ucwords(Auth::user()->name.' '.Auth::user()->candidate->last_name);
 
                 Notification::send($recruiter->user, new CandidateApplied($recruiterName, $candidateName,  $vacancy->job_title));
-                Notification::send(Auth::user(), new HasApplied($candidateName, $vacancy->job_title));
+                Notification::send(Auth::user(), new HasApplied($candidateName, $vacancy->job_title, $vacancy->id));
 
     			$response = [
     				'errors' => false,

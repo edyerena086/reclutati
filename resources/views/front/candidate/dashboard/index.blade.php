@@ -113,14 +113,14 @@
 							<li>
 								<span class="notification-icon"><i class="{{ $notification->data['icon'] }}"></i></span>
 								<span class="notification-text">
-									<a href="{{ url('notification/mark-as-read/'.Auth::user()->id.'/'.$notification->id.'/y') }}">
-										{{ $notification->data['message'] }}
+									<a href="{{ $notification->data['url'] }}" target="_blank">
+										{{ $notification->data['message_to_display'] }}
 									</a>
 								</span>
 								
 								<!-- Buttons -->
 								<div class="buttons-to-right">
-									<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico" title="Mark as read" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
+									<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico" title="Marcar como leído" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
 								</div>
 							</li>
 
