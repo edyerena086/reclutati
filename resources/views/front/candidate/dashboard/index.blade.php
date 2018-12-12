@@ -107,7 +107,7 @@
 				</div>
 
 				<div class="content">
-					<ul class="dashboard-box-list">
+					<ul class="dashboard-box-list notifications-list">
 						@foreach (Auth::user()->unreadNotifications as $notification)
 							
 							<li>
@@ -120,7 +120,7 @@
 								
 								<!-- Buttons -->
 								<div class="buttons-to-right">
-									<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico" title="Marcar como leído" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
+									<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico btn-noty-mark-as-read" title="Marcar como leído" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
 								</div>
 							</li>
 
@@ -130,4 +130,9 @@
 			</div>
 		</div>
 	</div>
+@stop
+
+{{-- Page JS --}}
+@section('pageJS')
+	<script src="{{ asset('js/front/candidate/dashboard/dashboard.js') }}"></script>
 @stop

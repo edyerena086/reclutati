@@ -8,6 +8,11 @@ use ReclutaTI\Http\Controllers\Controller;
 
 class NotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	/**
 	 * [markAsRead description]
 	 * @param  [type] $user     [description]
@@ -31,8 +36,11 @@ class NotificationController extends Controller
     		if ($request->ajax()) {
     			$response = [
     				'errors' => false,
-    				'markAsRead' => true
+    				'markAsRead' => true,
+                    'message' => 'Se ha marcado con éxito la notificación como leída.'
     			];
+
+                return response()->json($response);
     		} else {
     			return redirect()->intended($callback);
     		}
@@ -40,7 +48,7 @@ class NotificationController extends Controller
     		if ($request->ajax()) {
     			$response = [
     				'errors' => true,
-    				'messages' => 'La notificación es inválida.',
+    				'message' => 'La notificación es inválida.',
     				'error_code' => 'n0001'
     			];
 

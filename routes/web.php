@@ -25,7 +25,7 @@ Route::get('perfil/empresa/{id}', 'Front\CompanyController@index');
 Route::get('buscar/vacante', 'Front\SearchController@index');
 
 //Notifications
-Route::get('notification/mark-as-read/{user}/{noty}/{callback?}', 'Front\NotificationController@markAsRead');
+Route::get('notifications/mark-as-read/{user}/{noty}/{callback?}', 'Front\NotificationController@markAsRead');
 
 //Legal
 Route::get('aviso-de-privacidad', 'Front\StaticController@privacy');
