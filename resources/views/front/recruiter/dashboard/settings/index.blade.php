@@ -1,10 +1,10 @@
 @extends('layouts.front.recruiter')
 
 {{-- Page Title --}}
-@section('pageTitle', 'Dashboard')
+@section('pageTitle', 'Configuración')
 
 {{-- Section Title --}}
-@section('sectionTitle', 'Dashboard')
+@section('sectionTitle', 'Configuración')
 
 {{-- Content --}}
 @section('content')

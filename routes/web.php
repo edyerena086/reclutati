@@ -130,6 +130,8 @@ Route::post('recruiter/account/password/reset/{id}', 'Front\Recruiter\AccountCon
  * 
  */
 Route::get('recruiter/dashboard', 'Front\Recruiter\DashboardController@index');
+//Company
+Route::get('recruiter/dashboard/company', 'Front\Recruiter\Dashboard\CompanyController@index');
 Route::post('recruiter/dashboard/company/update', 'Front\Recruiter\DashboardController@company');
 Route::post('recruiter/dashboard/company/profile-picture', 'Front\Recruiter\DashboardController@companyProfilePicture');
 //vacancies

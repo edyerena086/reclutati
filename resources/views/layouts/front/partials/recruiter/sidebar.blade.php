@@ -16,8 +16,14 @@
 				<div class="dashboard-nav-inner">
 					<ul data-submenu-title="Inicio">
 						<li><a href="{{ url('recruiter/dashboard') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+						{{-- If recruiter is main account display --}}
+						@if(Auth::user()->recruiter->companyContact->main_contact)
+							<li>
+								<a href="{{ url('recruiter/dashboard/company') }}"><i class="icon-material-outline-business"></i> Mi empresa</a>
+							</li>
+						@endif
 						<li>
-							<a href=""><i class="icon-brand-wpforms"></i> Candidatos</a>
+							<a href=""><i class="icon-feather-users"></i> Candidatos</a>
 
 							<ul class="dropdown-nav">
 								<li>

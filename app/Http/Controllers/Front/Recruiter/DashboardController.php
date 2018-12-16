@@ -27,7 +27,6 @@ class DashboardController extends Controller
     public function index()
     {
         $consult = Auth::user()->recruiter->companyContact;
-        $query = Company::whereId($consult->company_id)->first();
 
         $queryVacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)
                                     ->where('publish', true)
@@ -51,15 +50,7 @@ class DashboardController extends Controller
                                                 ->take(5)
                                                 ->get();
 
-        $company = [
-            'recruiter_main_contact' => ($consult->main_contact) ? true : false,
-            'company_id' => $query->id,
-            'company_name' => $query->name,
-            'company_profile' => $query->profile_picture,
-            'company_about' => $query->about
-        ];
-
-    	return view('front.recruiter.dashboard.index', ['company' => $company, 'vacancies' => $queryVacancies, 'candidatesApplied' => $candidatesApplied]);
+    	return view('front.recruiter.dashboard.index', ['vacancies' => $queryVacancies, 'candidatesApplied' => $candidatesApplied]);
     }
 
     /**
