@@ -66,7 +66,8 @@
 	<div id="wrapper">
 		{{-- Heder --}}
 		@if (Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE)
-			@include('layouts.front.partials.header-candidate')
+			{{--@include('layouts.front.partials.header-candidate')--}}
+			@include('layouts.front.partials.candidate.header')
 		@elseif (Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::RECRUITER)
 			@include('layouts.front.partials.header-recruiter')
 		@else
