@@ -17,10 +17,6 @@
 						<li>
 							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
 						</li>
-
-						<li>
-							<a href="{{ url('candidate/account/logout') }}">Cerrar sesión</a>
-						</li>
 					</ul>
 				</nav>
 			</div>
@@ -60,6 +56,49 @@
 							</div>
 						</div>
 					</div>
+				</div>
+
+				{{-- User profile --}}
+				<div class="header-widget">
+
+					<!-- Messages -->
+					<div class="header-notifications user-menu">
+						<div class="header-notifications-trigger">
+							<a href="#"><div class="user-avatar status-online"><img src="{{ asset('hireo/images/user-avatar-small-01.jpg') }}" alt=""></div></a>
+						</div>
+
+						<!-- Dropdown -->
+						<div class="header-notifications-dropdown">
+
+							<!-- User Status -->
+							<div class="user-status">
+
+								<!-- User Name / Avatar -->
+								<div class="user-details">
+									<div class="user-avatar status-online"><img src="{{ url('hireo/images/user-avatar-small-01.jpg') }}" alt=""></div>
+									<div class="user-name">
+										{{ ucwords(Auth::user()->name.' '.Auth::user()->candidate->last_name) }} {{--<span>Freelancer</span>--}}
+									</div>
+								</div>
+								
+								<!-- User Status Switcher -->
+								{{--<div class="status-switch" id="snackbar-user-status">
+									<label class="user-online current-status">Online</label>
+									<label class="user-invisible">Invisible</label>
+									<!-- Status Indicator -->
+									<span class="status-indicator" aria-hidden="true"></span>
+								</div>--}}
+						</div>
+						
+						<ul class="user-menu-small-nav">
+							<li><a href="{{ url('candidate/dashboard') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+							<li><a href="{{ url('candidate/dashboard/curriculum') }}"><i class="icon-material-outline-assignment"></i> Mi Curriculum</a></li>
+							<li><a href="{{ url('candidate/account/logout') }}"><i class="icon-material-outline-power-settings-new"></i> Cerrar sesión</a></li>
+						</ul>
+
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
