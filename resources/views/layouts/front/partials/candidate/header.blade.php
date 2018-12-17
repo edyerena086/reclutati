@@ -64,7 +64,13 @@
 					<!-- Messages -->
 					<div class="header-notifications user-menu">
 						<div class="header-notifications-trigger">
-							<a href="#"><div class="user-avatar status-online"><img src="{{ asset('hireo/images/user-avatar-small-01.jpg') }}" alt=""></div></a>
+							<a href="#">
+								@if(Auth::user()->candidate->profile_picture == '')
+									<div class="user-avatar status-online"><img src="{{ asset('hireo/images/user-avatar-placeholder.png') }}" alt=""></div>
+								@else
+									<div class="user-avatar status-online"><img src="{{ asset('storage/candidates/'.Auth::user()->candidate->id.'/'.Auth::user()->candidate->profile_picture) }}" alt=""></div>
+								@endif
+							</a>
 						</div>
 
 						<!-- Dropdown -->
@@ -75,7 +81,13 @@
 
 								<!-- User Name / Avatar -->
 								<div class="user-details">
-									<div class="user-avatar status-online"><img src="{{ url('hireo/images/user-avatar-small-01.jpg') }}" alt=""></div>
+									<div class="user-avatar status-online">
+										@if(Auth::user()->candidate->profile_picture == '')
+											<img src="{{ url('hireo/images/user-avatar-placeholder.png') }}" alt="">
+										@else
+											<img src="{{ asset('storage/candidates/'.Auth::user()->candidate->id.'/'.Auth::user()->candidate->profile_picture) }}" alt="">
+										@endif
+									</div>
 									<div class="user-name">
 										{{ ucwords(Auth::user()->name.' '.Auth::user()->candidate->last_name) }} {{--<span>Freelancer</span>--}}
 									</div>

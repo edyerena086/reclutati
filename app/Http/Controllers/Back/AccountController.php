@@ -10,9 +10,12 @@ use ReclutaTI\Http\Requests\Back\Account\LoginRequest;
 
 class AccountController extends Controller
 {
+   /**
+    * [__construct description]
+    */
    public function __construct()
    {
-      $this->middleware('back.guest');
+      $this->middleware('back.guest')->except(['logout']);
    }
 
 	/**
