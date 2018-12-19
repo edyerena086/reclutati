@@ -55,7 +55,7 @@
 											</tr>
 										@endforeach
 									@else
-										<tr>
+										<tr id="noResumeUploaded">
 											<td colspan="3" align="center">No hay archivos que mostrar</td>
 										</tr>
 									@endif

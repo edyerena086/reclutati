@@ -253,9 +253,12 @@ class CurriculumController extends Controller
             Storage::disk('public')->delete($folderName.'/'.$file->file);
 
             if ($file->delete()) {
+                $howMuchFile = Auth::user()->candidate->files->count();
+                
                 $response = [
                     'errors' => false,
-                    'message' => 'Se ha eliminado con éxito el archivo.'
+                    'message' => 'Se ha eliminado con éxito el archivo.',
+                    'file_count' => $howMuchFile
                 ];
             } else {
                 $response = [

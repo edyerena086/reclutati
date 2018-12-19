@@ -60,6 +60,7 @@ $(document).ready(function () {
 
 						//Add new record to table
 						var baseRoute = $('meta[name=base-url]').attr('content');
+						$('#noResumeUploaded').remove();
 						var newRecord = `<tr>
 												<td>
 													<i class="icon-material-outline-picture-as-pdf"></i> <a href="${response.file_url}" target="_blank">${response.file_name}</a>
@@ -149,6 +150,12 @@ $(document).ready(function () {
 														</div>`;
 
 									$('#printUploadCV').html(uploadButton);
+
+									if (response.file_count == 0) {
+										$('#resumeTable tbody').append(`<tr id="noResumeUploaded">
+														<td colspan="3" align="center">No hay archivos que mostrar</td>
+													</tr>`);
+									}
 								} else {
 									$.jnoty(response.message, {
 										header: 'Advertencia',
