@@ -5,8 +5,9 @@ namespace ReclutaTI\Http\Controllers\Front\Candidate;
 use Auth;
 use ReclutaTI\CandidateFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use ReclutaTI\Http\Controllers\Controller;
-use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Resume\StoreRequest;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\ResumeRequest;
 
 class ResumeController extends Controller
 {
@@ -33,24 +34,39 @@ class ResumeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(ResumeRequest $request)
     {
         $response;
 
         $record = new CandidateFile();
 
-        $record->candidate_id = Auth::user()->candidate_id;
+        $fileName = rand(100000, 999999).'_cv.'.$request->file('resume')->getClientOriginalExtension();
+        $filePublicName = $request->file('resume')->getClientOriginalName();
+        $folderName = 'candidates/'.Auth::user()->candidate->id.'/resumes';
+
+        $request->file('resume')->storeAs($folderName, $fileName, 'public');
+
+        $record->candidate_id = Auth::user()->candidate->id;
+        $record->file = $fileName;
+        $record->file_public_name = $filePublicName;
 
         if ($record->save()) {
+            $howMuchFile = Auth::user()->candidate->files->count();
+
             $response = [
                 'errors' => false,
-                'message' => 'Se ha guardado con éxito el nuevo archivo.'
+                'message' => 'Se ha guardado con éxito tu CV.',
+                'file_name' => $filePublicName,
+                'file_id' => $record->id,
+                'file_url' => url('storage/candidates/'.Auth::user()->candidate->id.'/resumes/'.$record->file),
+                'delete_upload_button' => ($howMuchFile == 3) ? true : false,
+                'file_count' => $howMuchFile
             ];
         } else {
             $response = [
-                'errors' => false,
-                'message' => 'No se ha podido guardar el nuevo archivo.',
-                'error_code' => 's0001'
+                'errors' => true,
+                'message' => 'No se ha podido guardar tu CV.',
+                'error_code' => 'cvu0001'
             ];
         }
 
@@ -99,6 +115,38 @@ class ResumeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = CandidateFile::find($id);
+
+        $response;
+
+        if ($file != null) {
+            $folderName = 'candidates/'.Auth::user()->candidate->id.'/resumes';
+            Storage::disk('public')->delete($folderName.'/'.$file->file);
+
+            if ($file->delete()) {
+                $howMuchFile = Auth::user()->candidate->files->count();
+                
+                $response = [
+                    'errors' => false,
+                    'message' => 'Se ha eliminado con éxito el archivo.',
+                    'file_count' => $howMuchFile
+                ];
+            } else {
+                $response = [
+                    'errors' => true,
+                    'message' => 'No se ha podido eliminar el archivo.',
+                    'error_code' => 'dr0002'
+                ];
+            }
+            
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'El archivo a eliminar no existe.',
+                'error_code' => 'dr0001'
+            ];
+        }
+
+        return response()->json($response);
     }
 }
