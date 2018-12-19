@@ -153,7 +153,7 @@ $(document).ready(function () {
 
 									if (response.file_count == 0) {
 										$('#resumeTable tbody').append(`<tr id="noResumeUploaded">
-														<td colspan="3" align="center">No hay archivos que mostrar</td>
+														<td colspan="2" align="center">No hay archivos que mostrar</td>
 													</tr>`);
 									}
 								} else {

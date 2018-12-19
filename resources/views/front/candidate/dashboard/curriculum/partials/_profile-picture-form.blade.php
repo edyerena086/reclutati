@@ -12,7 +12,7 @@
 								@if (Auth::user()->candidate->profile_picture == '')
 									<img class="profile-pic" src="{{  asset('hireo') }}/images/user-avatar-placeholder.png" alt="" />
 								@else
-									<img class="profile-pic" src="{{  asset('storage/candidates/'.Auth::user()->candidate->id.'/'.\ReclutaTI\Candidate::find(Auth::user()->candidate->id)->profile_picture) }}" alt="" />
+									<img class="profile-pic" src="{{  asset('uploads/candidates/'.Auth::user()->candidate->id.'/'.\ReclutaTI\Candidate::find(Auth::user()->candidate->id)->profile_picture) }}" alt="" />
 								@endif
 								<div class="upload-button"></div>
 								<input class="file-upload" data-url="{{ url('candidate/dashboard/curriculum/profile-picture') }}" type="file" id="profilePicture" accept="image/*"/>
@@ -56,7 +56,7 @@
 										@endforeach
 									@else
 										<tr id="noResumeUploaded">
-											<td colspan="3" align="center">No hay archivos que mostrar</td>
+											<td colspan="2" align="center">No hay archivos que mostrar</td>
 										</tr>
 									@endif
 								</tbody>
