@@ -8,9 +8,11 @@ use ReclutaTI\Gender;
 use ReclutaTI\Candidate;
 use ReclutaTI\CivilStatus;
 use Illuminate\Http\Request;
+use ReclutaTI\CandidateFile;
 use ReclutaTI\SearchCandidate;
 use Illuminate\Support\Facades\Storage;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\ResumeRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\LaborGoalRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\GeneralInfoRequest;
 use ReclutaTI\Http\Requests\Front\Candidate\Dashboard\Curriculum\ProfilePictureRequest;
@@ -185,6 +187,89 @@ class CurriculumController extends Controller
                 'errors' => true,
                 'message' => 'No se ha podido actualizar tu imagen de perfil.',
                 'error_code' => 'pp0001'
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    /**
+     * [uploadResume description]
+     * @param  ResumeRequest $request [description]
+     * @return [type]                 [description]
+     */
+    public function uploadResume(ResumeRequest $request)
+    {
+        $response;
+
+        $record = new CandidateFile();
+
+        $fileName = rand(100000, 999999).'_cv.'.$request->file('resume')->getClientOriginalExtension();
+        $filePublicName = $request->file('resume')->getClientOriginalName();
+        $folderName = 'candidates/'.Auth::user()->candidate->id.'/resumes';
+
+        $request->file('resume')->storeAs($folderName, $fileName, 'public');
+
+        $record->candidate_id = Auth::user()->candidate->id;
+        $record->file = $fileName;
+        $record->file_public_name = $filePublicName;
+
+        if ($record->save()) {
+            $howMuchFile = Auth::user()->candidate->files->count();
+
+            $response = [
+                'errors' => false,
+                'message' => 'Se ha guardado con éxito tu CV.',
+                'file_name' => $filePublicName,
+                'file_id' => $record->id,
+                'file_url' => url('storage/candidates/'.Auth::user()->candidate->id.'/resumes/'.$record->file),
+                'delete_upload_button' => ($howMuchFile == 3) ? true : false,
+                'file_count' => $howMuchFile
+            ];
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'No se ha podido guardar tu CV.',
+                'error_code' => 'cvu0001'
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    /**
+     * [deleteResume description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function deleteResume($id)
+    {
+        $file = CandidateFile::find($id);
+
+        $response;
+
+        if ($file != null) {
+            $folderName = 'candidates/'.Auth::user()->candidate->id.'/resumes';
+            Storage::disk('public')->delete($folderName.'/'.$file->file);
+
+            if ($file->delete()) {
+                $response = [
+                    'errors' => false,
+                    'message' => 'Se ha eliminado con éxito el archivo.'
+                ];
+            } else {
+                $response = [
+                    'errors' => true,
+                    'message' => 'No se ha podido eliminar el archivo.',
+                    'error_code' => 'dr0002'
+                ];
+            }
+            
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'El archivo a eliminar no existe.',
+                'error_code' => 'dr0001'
             ];
         }
 

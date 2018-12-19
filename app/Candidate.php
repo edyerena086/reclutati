@@ -45,4 +45,9 @@ class Candidate extends Model
     {
         return $this->hasMany('\ReclutaTI\CandidateVacancy');
     }
+
+    public function files()
+    {
+        return $this->hasMany('\ReclutaTI\CandidateFile');
+    }
 }

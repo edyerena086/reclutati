@@ -82,6 +82,9 @@ Route::post('candidate/dashboard/curriculum/labor-goal', 'Front\Candidate\Curric
 Route::get('candidate/dashboard/resume', 'Front\Candidate\ResumeController@index');
 //Profile picture
 Route::post('candidate/dashboard/curriculum/profile-picture', 'Front\Candidate\Curriculum\CurriculumController@profilePicture');
+//Resume
+Route::post('candidate/dashboard/curriculum/upload-resume', 'Front\Candidate\Curriculum\CurriculumController@uploadResume');
+Route::get('candidate/dashboard/curriculum/delete-resume/{id}', 'Front\Candidate\Curriculum\CurriculumController@deleteResume');
 //Contact info
 Route::post('candidate/dashboard/curriculum/phones', 'Front\Candidate\Curriculum\ContactInfoController@phones');
 Route::post('candidate/dashboard/curriculum/social-media', 'Front\Candidate\Curriculum\ContactInfoController@socialMedia');
