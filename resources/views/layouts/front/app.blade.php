@@ -98,6 +98,7 @@
 	<script src="{{ asset('hireo/js/custom.js') }}"></script>
 	<script src="{{ asset('js/front/plugins/sticky-alerts/jnoty.js') }}"></script>
 	<script src="{{ asset('js/pastora.js') }}"></script>
+	<script src="{{ asset('js/front/notifications.js') }}"></script>
 
 	{{-- Page JS --}}
 	@section('pageJS')

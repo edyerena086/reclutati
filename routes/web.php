@@ -26,6 +26,7 @@ Route::get('buscar/vacante', 'Front\SearchController@index');
 
 //Notifications
 Route::get('notifications/mark-as-read/{user}/{noty}/{callback?}', 'Front\NotificationController@markAsRead');
+Route::get('notifications/all-mark-as-read', 'Front\NotificationController@allMarkAsRead');
 
 //Legal
 Route::get('aviso-de-privacidad', 'Front\StaticController@privacy');

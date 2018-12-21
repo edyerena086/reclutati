@@ -56,4 +56,40 @@ $(document).ready(function () {
 
 		//console.log($('.btn-noty-mark-as-read').index(env));
 	});
+
+	//Mark all as read
+	$('.mark-as-read').on('click', function (e) {
+		e.preventDefault();
+
+		let env = this;
+
+		let notificationItems = $('.notifications-list li').length;
+
+		if (notificationItems > 0) {
+			$.get($(this).attr('data-url'), function (response) {
+				if (response.errors == false) {
+					$('.notifications-list').empty();
+
+					$.jnoty(response.message, {
+						header: 'Éxito',
+				        theme: 'jnoty-success',
+				        life: 5000,
+				        position: 'top-right',
+				        icon: 'fa fa-check-circle'
+					});
+
+					$('#notyCounter').html('0');
+				} else {
+					$.jnoty(response.message, {
+						header: 'Advertencia',
+				        theme: 'jnoty-danger',
+				        life: 5000,
+				        color: 'rti-danger',
+				        position: 'top-right',
+				        icon: 'fa fa-info-circle'
+					});
+				}
+			});
+		}
+	});
 });

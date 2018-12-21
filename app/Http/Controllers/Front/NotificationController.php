@@ -2,6 +2,7 @@
 
 namespace ReclutaTI\Http\Controllers\Front;
 
+use Auth;
 use ReclutaTI\User;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
@@ -57,5 +58,23 @@ class NotificationController extends Controller
     			return back();
     		}
     	}
+    }
+
+    /**
+     * [allMarkAsRead description]
+     * @return [type] [description]
+     */
+    public function allMarkAsRead()
+    {
+        $response;
+
+        Auth::user()->unreadNotifications->markAsRead();
+
+        $response = [
+            'errors' => false,
+            'message' => 'Se ha marcado con éxito todas las notificaciones.'
+        ];
+
+        return response()->json($response);
     }
 }
