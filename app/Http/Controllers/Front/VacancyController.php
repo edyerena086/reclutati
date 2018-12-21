@@ -9,6 +9,7 @@ use ReclutaTI\Recruiter;
 use Illuminate\Http\Request;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Http\Requests\Front\VacancyApplyRequest;
 use ReclutaTI\Notifications\Front\Candidate\Vacancy\HasApplied;
 use ReclutaTI\Notifications\Front\Recruiter\Vacancy\CandidateApplied;
 
@@ -62,7 +63,7 @@ class VacancyController extends Controller
      * @param  VacancyApplyRequest $request [description]
      * @return [type]                       [description]
      */
-    public function apply($id)
+    public function apply(VacancyApplyRequest $request, $id)
     {
     	$response;
 
@@ -80,6 +81,11 @@ class VacancyController extends Controller
 
     		$apply->candidate_id = Auth::user()->candidate->id;
     		$apply->vacancy_id = $id;
+
+            //Check if there is any resume attached
+            if ($request->has('resume')) {
+                $apply->candidate_file_id = $request->resume;
+            }
 
     		if ($apply->save()) {
                 $recruiter = Recruiter::find($vacancy->recruiter_id);

@@ -78,8 +78,13 @@
 					@if (!Auth::check())
 						<a href="{{ url('candidate/login/vacancy/'.$vacancy['id']) }}" class="apply-now-button">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
 					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy['id'])->where('status', '!=', 2)->first() == null)
-						<a href="{{ url('vacante/aplicar/'.$vacancy['id']) }}" class="apply-now-button lets-apply">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
-
+						
+						{{-- Button applied --}}
+						@if (Auth::user()->candidate->files->count() > 0)
+							<a href="#small-dialog-3" class="apply-now-button popup-with-zoom-anim">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
+						@else
+							<a href="{{ url('vacante/aplicar/'.$vacancy['id']) }}" class="apply-now-button lets-apply">Aplica ahora <i class="icon-material-outline-arrow-right-alt"></i></a>
+						@endif
 					@elseif (Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE && Auth::user()->candidate->vacancies->where('vacancy_id', $vacancy['id'])->first())
 
 						<a href="" class="apply-now-button btn-has-applied">Ya haz aplicado <i class="icon-material-outline-check-circle"></i></a>
@@ -149,6 +154,52 @@
 			</div>
 		</div>
 	</div>
+
+	{{-- Resume shows --}}
+	@if (Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::CANDIDATE)
+		<div id="small-dialog-3" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+			{{-- tabs --}}
+			<div class="sign-in-form">
+				<ul class="popup-tabs-nav">
+				</ul>
+
+				{{-- tab content --}}
+				<div class="popup-tab-content" id="tab2">
+
+					{{-- form --}}
+					<form id="frmSendWithResume" class="not-index" data-action="store" method="post" action="{{ url('vacante/aplicar/'.$vacancy['id']) }}">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="section-headline margin-top-25 margin-bottom-12">
+									<h5>¿Deseas enviar un CV especifico al reclutador?</h5>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="radio">
+									<input id="radio-0" name="resume" value="0" type="radio" checked>
+									<label for="radio-0"><span class="radio-label"></span> No deseo enviar un curriculum</label>
+								</div>
+							</div>
+
+							@foreach (Auth::user()->candidate->files as $file)
+								<div class="col-xl-12">
+									<div class="radio">
+										<input id="radio-{{ $file->id }}" value="{{ $file->id }}" name="resume" type="radio">
+										<label for="radio-{{ $file->id }}"><span class="radio-label"></span> {{ $file->file_public_name }}</label>
+									</div>
+								</div>
+							@endforeach
+						</div>
+
+						<button class="button full-width button-sliding-icon ripple-effect" type="submit">Enviar<i class="icon-material-outline-arrow-right-alt"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	@endif
 @stop
 
 {{-- Page JS --}}
