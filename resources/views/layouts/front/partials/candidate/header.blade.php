@@ -4,18 +4,18 @@
 			{{-- Left Side --}}
 			<div class="left-side">
 				<div id="logo">
-					<a href="{{ url('candidate/dashboard') }}"><img src="{{ asset('hireo/images/logo.png') }}" alt=""></a>
+					<a href="{{ url('/') }}"><img src="{{ asset('hireo/images/logo.png') }}" alt=""></a>
 				</div>
 
 				{{-- menu nav --}}
 				<nav id="navigation">
 					<ul id="responsive">
 						<li>
-							<a href="{{ url('/') }}">Ir al portal</a>
+							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
 						</li>
 
 						<li>
-							<a href="{{ url('buscar/vacante') }}">Buscar empleo</a>
+							<a href="{{ url('candidate/dashboard') }}">Dashboard</a>
 						</li>
 					</ul>
 				</nav>
