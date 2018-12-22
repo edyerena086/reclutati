@@ -38,7 +38,8 @@ class NotificationController extends Controller
     			$response = [
     				'errors' => false,
     				'markAsRead' => true,
-                    'message' => 'Se ha marcado con éxito la notificación como leída.'
+                    'message' => 'Se ha marcado con éxito la notificación como leída.',
+                    'unreadNotifications' => $user->unreadNotifications->count()
     			];
 
                 return response()->json($response);

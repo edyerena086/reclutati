@@ -39,6 +39,8 @@ $(document).ready(function () {
 					var position = $('.btn-noty-mark-as-read').index(env);
 
 					$('.notifications-list li:eq('+position+')').remove();
+
+					$('#notyCounter').html(response.unreadNotifications);
 				} else {
 					$.jnoty(response.message, {
 						header: 'Advertencia',
