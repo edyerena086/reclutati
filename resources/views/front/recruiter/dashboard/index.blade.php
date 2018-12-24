@@ -114,7 +114,7 @@
 
 								{{-- buttons --}}
 								<div class="buttons-to-right always-visible">
-									<a href="{{ url('recruiter/dashboard/candidate/detail/'.$candidate->candidate->id) }}" class="button gray ripple-effect ico" title="Ver" target="_blank" data-tippy-placement="top"><i class="icon-feather-eye"></i></a>
+									<a href="{{ url('recruiter/dashboard/candidates/detail/'.$candidate->candidate->id) }}" class="button gray ripple-effect ico" title="Ver" target="_blank" data-tippy-placement="top"><i class="icon-feather-eye"></i></a>
 								</div>
 							</li>
 						@endforeach
