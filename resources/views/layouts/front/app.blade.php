@@ -69,7 +69,7 @@
 			{{--@include('layouts.front.partials.header-candidate')--}}
 			@include('layouts.front.partials.candidate.header')
 		@elseif (Auth::check() && Auth::user()->role_id == \ReclutaTI\Role::RECRUITER)
-			@include('layouts.front.partials.header-recruiter')
+			@include('layouts.front.partials.recruiter.header')
 		@else
 			@include('layouts.front.partials.header')
 		@endif

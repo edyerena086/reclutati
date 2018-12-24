@@ -77,6 +77,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 	<script src="{{ asset('js/front/plugins/sticky-alerts/jnoty.js') }}"></script>
 	<script src="{{ asset('js/pastora.js') }}"></script>
+	<script src="{{ asset('js/front/notifications.js') }}"></script>
 
 	{{-- Page JS --}}
 	@section('pageJS')

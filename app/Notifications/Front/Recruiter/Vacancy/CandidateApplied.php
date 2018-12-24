@@ -65,6 +65,7 @@ class CandidateApplied extends Notification
         return [
             'user_type' => 1,
             'notification_type' => 1,
+            'icon' => 'icon-feather-users',
             'message_to_display' => 'El candidato '.$this->candidate.' ha aplicado para la vacante de '.$this->vacancy,
             'url' => url('recruiter/dashboard/vacancies')
         ];
