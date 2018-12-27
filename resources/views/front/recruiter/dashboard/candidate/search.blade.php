@@ -62,7 +62,11 @@
 								<!-- Avatar -->
 								<div class="freelancer-avatar">
 									<div class="verified-badge"></div>
-									<a href="#"><img src="{{ asset('storage/candidates/'.$candidate->candidate->id.'/'.$candidate->candidate->profile_picture) }}" alt=""></a>
+									@if ($candidate->candidate->profile_picture == '')
+										<a href="{{ url('recruiter/dashboard/candidates/detail/'. $candidate->candidate_id) }}" target="_blank"><img src="{{ asset('hireo/images/user-avatar-placeholder.png') }}" alt=""></a>
+									@else
+										<a href="{{ url('recruiter/dashboard/candidates/detail/'. $candidate->candidate_id) }}" target="_blank"><img src="{{ asset('uploads/candidates/'.$candidate->candidate->id.'/'.$candidate->candidate->profile_picture) }}" alt=""></a>
+									@endif
 								</div>
 
 								<!-- Name -->
