@@ -102,6 +102,15 @@
 					{{-- Contact --}}
 					<a href="mailto:{{ $candidate->user->email }}" class="apply-now-button popup-with-zoom-anim margin-bottom-50">Conactárme <i class="icon-material-outline-arrow-right-alt"></i></a>
 
+					@if ($resume != '') 
+						<div class="sidebar-widget">
+							<h3>Curriculum en PDF</h3>
+							<div class="attachments-container">
+								<a href="{{ asset('storage/candidates/'.$candidate->id.'/resumes/'.$resume) }}" target="_blank" class="attachment-box ripple-effect"><span>Curriculum</span><i>PDF</i></a>
+							</div>
+						</div>
+					@endif
+
 					{{-- languages --}}
 					<div class="sidebar-widget">
 						<h3>Idiomas</h3>

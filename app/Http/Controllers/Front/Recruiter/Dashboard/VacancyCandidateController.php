@@ -7,6 +7,7 @@ use Notification;
 use ReclutaTI\Vacancy;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
+use ReclutaTI\CandidateFile;
 use ReclutaTI\CandidateVacancy;
 use ReclutaTI\Library\MessageSender;
 use ReclutaTI\Http\Controllers\Controller;
@@ -42,11 +43,18 @@ class VacancyCandidateController extends Controller
     				'name' => ucwords($candidate->candidate->user->name.' '.$candidate->candidate->last_name),
     				'profile_picture' => $candidate->candidate->profile_picture,
     				'email' => $candidate->candidate->user->email,
-    				'cellphone' => $candidate->candidate->cellphone
+    				'cellphone' => $candidate->candidate->cellphone,
+                    'file' => CandidateVacancy::where('candidate_id', $candidate->candidate->id)->where('vacancy_id', $vacancy->id)->first()->candidate_file_id
     			];
     		}
 
     		$vacancyView['candidates'] = $candidateItem;
+
+            /*if (!is_null($resume)) {
+                $resumeFile = CandidateFile::findOrFail($resume);
+
+                $vacancyView['resume'] = $resumeFile->file;
+            }*/
 
     		return view('front.recruiter.dashboard.vacancy.candidates.index', ['vacancy' => $vacancyView]);
     	} else {

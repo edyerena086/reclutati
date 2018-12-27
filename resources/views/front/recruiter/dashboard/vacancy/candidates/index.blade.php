@@ -54,7 +54,7 @@
 
 											{{-- buttons --}}
 											<div class="buttons-to-right always-visible margin-top-25 margin-bottom-5">
-												<a href="{{ url('recruiter/dashboard/candidates/detail/'.$candidate['id']) }}" target="_blank" class="button ripple-effect"><i class="icon-feather-file-text"></i> Ver curriculum</a>
+												<a href="{{ url('recruiter/dashboard/candidates/detail/'.$candidate['id'].'/'.$candidate['file']) }}" target="_blank" class="button ripple-effect"><i class="icon-feather-file-text"></i> Ver curriculum</a>
 
 												<a href="#small-dialog-1" data-url="{{ url('recruiter/dashboard/vacancies/cadndidates/message/'.$candidate['id']) }}" class="popup-with-zoom-anim button dark btn-send-message ripple-effect"><i class="icon-feather-mail"></i> Mandar mensaje</a>
 

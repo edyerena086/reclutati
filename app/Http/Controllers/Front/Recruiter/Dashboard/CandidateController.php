@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Front\Recruiter\Dashboard;
 use ReclutaTI\Candidate;
 use Illuminate\Http\Request;
 use ReclutaTI\SearchCandidate;
+use ReclutaTI\CandidateFile;
 use ReclutaTI\Http\Controllers\Controller;
 
 class CandidateController extends Controller
@@ -33,10 +34,18 @@ class CandidateController extends Controller
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function detail($id)
+    public function detail($id, $resume = null)
     {
     	$candidate = Candidate::where('id', $id)->with(['user', 'jobHistories', 'educativeHistories.educationLevel'])->firstOrFail();
 
-    	return view('front.recruiter.dashboard.candidate.detail', ['candidate' => $candidate]);
+        $resumeDisplay = '';
+
+        if (!is_null($resume)) {
+            $resumeFile = CandidateFile::findOrFail($resume);
+
+            $resumeDisplay = $resumeFile->file;
+        }
+
+    	return view('front.recruiter.dashboard.candidate.detail', ['candidate' => $candidate, 'resume' => $resumeDisplay]);
     }
 }

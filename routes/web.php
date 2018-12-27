@@ -147,7 +147,7 @@ Route::post('recruiter/dashboard/settings/password', 'Front\Recruiter\Setting\Pa
 Route::post('recruiter/dashboard/settings/email', 'Front\Recruiter\Setting\EmailController@update');
 //Candidates
 Route::get('recruiter/dashboard/candidates/search', 'Front\Recruiter\Dashboard\CandidateController@search');
-Route::get('recruiter/dashboard/candidates/detail/{id}', 'Front\Recruiter\Dashboard\CandidateController@detail');
+Route::get('recruiter/dashboard/candidates/detail/{id}/{resume?}', 'Front\Recruiter\Dashboard\CandidateController@detail');
 //Message
 Route::post('recruiter/dashboard/vacancies/cadndidates/message/{candidate}', 'Front\Recruiter\Dashboard\VacancyCandidateController@message');
 
