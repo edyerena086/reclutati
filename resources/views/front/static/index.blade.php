@@ -97,7 +97,7 @@
 													<li><i class="icon-material-outline-business"></i> {{ $vacancy['company_name'] }}</li>
 													<li><i class="icon-material-outline-location-on"></i> {{ $vacancy['job_location'] }}</li>
 													<li><i class="icon-material-outline-business-center"></i> {{ ucwords($vacancy['job_type']) }}</li>
-													<li><i class="icon-material-outline-access-time"></i> {{ ($vacancy['created_at'] == 1) ? '1 día' : $vacancy['created_at'].' días' }}</li>
+													{{--<li><i class="icon-material-outline-access-time"></i> {{ ($vacancy['created_at'] == 1) ? '1 día' : $vacancy['created_at'].' días' }}</li>--}}
 												</ul>
 											</div>
 										</div>
