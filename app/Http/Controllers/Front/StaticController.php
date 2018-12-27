@@ -48,6 +48,6 @@ class StaticController extends Controller
 
     public function privacy()
     {
-        return view('front.static.privacy');
+        return view('front.static.using-conditions');
     }
 }
