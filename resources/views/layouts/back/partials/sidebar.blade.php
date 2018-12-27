@@ -34,13 +34,7 @@
 									<a href="#"><i class="icon-stack2"></i> <span>Catalogos</span></a>
 
 									<ul>
-										<li><a href="{{ url('admin/dashboard/catalog/periods') }}">Periodos de Inscripción</a></li>
-
-										<li><a href="{{ url('admin/dashboard/catalog/genders') }}">Generos</a></li>
-
-										<li><a href="{{ url('admin/dashboard/catalog/civil-statuses') }}">Estados civil</a></li>
-
-										<li><a href="{{ url('admin/dashboard/catalog/dates') }}">Fechas de entrevista</a></li>
+										<li><a href="{{ url('back/dashboard/catalogs/languages') }}">Idiomas</a></li>
 									</ul>
 								</li>
 								<!-- /page kits -->

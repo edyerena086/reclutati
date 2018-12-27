@@ -163,3 +163,5 @@ Route::post('back', 'Back\AccountController@login');
 Route::get('back/account/logout', 'Back\AccountController@logout');
 //Dashboard
 Route::get('back/dashboard', 'Back\DashboardController@index');
+//Languages catalog
+Route::resource('back/dashboard/catalogs/languages', 'Back\Catalog\LanguageController');
