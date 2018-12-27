@@ -165,7 +165,7 @@ class CurriculumController extends Controller
         }
         mkdir($thumnailPath);
         $thumbnail = Image::make($request->file('imagenDePerfil'));
-        $thumbnail->resize(200, 200)->save($thumnailPath.'/'.$fileName);
+        $thumbnail->fit(300, 300)->save($thumnailPath.'/'.$fileName);
 
         $candidate = Candidate::find(Auth::user()->candidate->id);
 

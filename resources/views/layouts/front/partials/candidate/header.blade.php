@@ -72,7 +72,7 @@
 								@if(Auth::user()->candidate->profile_picture == '')
 									<div class="user-avatar status-online"><img src="{{ asset('hireo/images/user-avatar-placeholder.png') }}" alt=""></div>
 								@else
-									<div class="user-avatar status-online"><img src="{{ asset('storage/candidates/'.Auth::user()->candidate->id.'/'.Auth::user()->candidate->profile_picture) }}" alt=""></div>
+									<div class="user-avatar status-online"><img src="{{ asset('uploads/candidates/'.Auth::user()->candidate->id.'/'.Auth::user()->candidate->profile_picture) }}" alt=""></div>
 								@endif
 							</a>
 						</div>
