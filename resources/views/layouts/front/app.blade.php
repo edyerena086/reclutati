@@ -48,6 +48,10 @@
 	@section('facebook')
 	@show
 
+	{{-- Twitter data structure --}}
+	@section('twitter')
+	@show
+
 	{{-- Page Title --}}
 	<title>
 		@yield('pageTitle') - {{ config('app.name', 'ReclutaTI') }}

@@ -7,6 +7,27 @@
 	<meta name="keywords" content="bolsa de trabajo, vacantes de empleo, ofertas de trabajo, vacantes de trabajo, portal de empleo">
 @stop
 
+{{-- Facebook Opengraph --}}
+@section('facebook')
+	<meta property="og:title" content="Bolsa de trabajo para profesionales en TI - ReclutaTI" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://reclutati.com/" />
+	<meta property="og:image" content="https://reclutati.com/images/icono.png" />
+	<meta property="og:image:height" content="150" />
+	<meta property="og:image:width" content="150" />
+	<meta property="og:site_name" content="Bolsa de Trabajo para profesionales en TI - ReclutaTI"/>
+	<meta property="og:description" content="ReclutaTI es una bolsa de trabajo para profesionales en TI, busca y aplica para las mejores vacantes en tecnologías de información en México." />
+@stop
+
+{{-- Twitter data structure --}}
+@section('twitter')
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:url" content="https://reclutati.com" />
+	<meta name="twitter:title" content="Bolsa de trabajo para profesionales en TI - ReclutaTI" />
+	<meta name="twitter:description" content="ReclutaTI es una bolsa de trabajo para profesionales en TI, busca y aplica para las mejores vacantes en tecnologías de información en México." />
+	<meta name="twitter:image" content="https://reclutati.com/images/icono.png" />
+@stop
+
 {{-- Page Title --}}
 @section('pageTitle', 'Bolsa de trabajo para profesionales de TI')
 
