@@ -95,7 +95,9 @@ class UpdateTest extends TestCase
     {
     	$this->init();
 
-    	Auth::attempt(['email' => $this->candidateSkill->candidate()->first()->user()->first()->email, 'password' => 'secret']);
+    	$login = Auth::attempt(['email' => $this->candidateSkill->candidate()->first()->user()->first()->email, 'password' => 'secret']);
+
+        $this->assertEquals($login, true);
 
     	$data = [
     		'habilidad' => 'PHP',

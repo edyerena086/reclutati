@@ -5,6 +5,7 @@ namespace ReclutaTI\Http\Controllers\Back\Catalog;
 use ReclutaTI\Language;
 use Illuminate\Http\Request;
 use ReclutaTI\Http\Controllers\Controller;
+use ReclutaTI\Http\Requests\Back\Dashboard\Catalog\LanguageRequest;
 
 class LanguageController extends Controller
 {
@@ -30,7 +31,7 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.dashboard.catalog.language.create');
     }
 
     /**
@@ -39,20 +40,27 @@ class LanguageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LanguageRequest $request)
     {
-        //
-    }
+        $response;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $languaje = new Language();
+
+        $languaje->name = $request->idioma;
+
+        if ($languaje->save()) {
+            $response = [
+                'errors' => false,
+                'message' => 'Se ha guardado con éxito el nuevo idioma.'
+            ];
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'No se ha podido guardar el nuevo idioma.'
+            ];
+        }
+
+        return response()->json($response);
     }
 
     /**

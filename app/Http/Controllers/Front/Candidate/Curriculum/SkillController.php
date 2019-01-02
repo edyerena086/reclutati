@@ -35,6 +35,8 @@ class SkillController extends Controller
         $skill->skill = $request->habilidad;
         $skill->skill_level_id = $request->nivel;
 
+        $this->initSearchIndex();
+
         if ($skill->save()) {
             $this->initSearchIndex();
             
@@ -143,7 +145,14 @@ class SkillController extends Controller
     {
         $index = SearchCandidate::where('candidate_id', Auth::user()->candidate->id)->first();
 
-        $this->searchIndex = ($index) ? $index : new SearchCandidate();
+        //$this->searchIndex = ($index) ? $index : new SearchCandidate();
+
+        if ($index != null) {
+            $this->searchIndex = $index;
+        } else {
+            $this->searchIndex = new SearchCandidate();
+            $this->searchIndex->candidate_id = Auth::user()->candidate->id; 
+        }
 
         $skills = CandidateSkill::where('candidate_id', Auth::user()->candidate->id)->get();
 

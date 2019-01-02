@@ -3,6 +3,16 @@
 {{-- Page Title --}}
 @section('pageTitle', 'Catálogo de idiomas')
 
+{{-- Body title --}}
+@section('bodyPageTitle', 'Catálogo de idiomas')
+
+{{-- Add new language button --}}
+@section('headerPageButton')
+	<a href="{{ url('back/dashboard/catalogs/languages/create') }}" class="btn btn-primary">
+		Crear nuevo lenguaje
+	</a>
+@stop
+
 {{-- Page Content --}}
 @section('content')
 	<div class="panel panel-flat">

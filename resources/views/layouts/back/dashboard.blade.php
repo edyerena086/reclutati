@@ -19,7 +19,7 @@
 	<link href="{{ url('/') }}/limitless/assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="{{ url('/') }}/limitless/assets/css/colors.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
+    {{--<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />--}}
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -108,7 +108,7 @@
 
 					<!-- Footer -->
 					<div class="footer text-muted">
-						&copy; {{ \Carbon\Carbon::now()->year }}. <a href="#">Powered</a> by <a href="http://metodika.mx" target="_blank">Metodika IT</a>
+						&copy; {{ \Carbon\Carbon::now()->year }}. <a href="#">Powered</a> by <a href="{{ url('/') }}" target="_blank">ReclutaTI</a>
 					</div>
 					<!-- /footer -->
 
