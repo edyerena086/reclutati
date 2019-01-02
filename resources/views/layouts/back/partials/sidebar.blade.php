@@ -37,6 +37,10 @@
 										<li><a href="{{ url('back/dashboard/catalogs/languages') }}">Idiomas</a></li>
 									</ul>
 								</li>
+
+								<li>
+									<a href="{{ url('back/dashboard/blogs') }}"><i class="icon-home"></i> <span>Blog</span></a>
+								</li>
 								<!-- /page kits -->
 
 							</ul>

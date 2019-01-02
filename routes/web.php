@@ -165,3 +165,5 @@ Route::get('back/account/logout', 'Back\AccountController@logout');
 Route::get('back/dashboard', 'Back\DashboardController@index');
 //Languages catalog
 Route::resource('back/dashboard/catalogs/languages', 'Back\Catalog\LanguageController');
+//Blog
+Route::resource('back/dashboard/blogs', 'Back\BlogController');
