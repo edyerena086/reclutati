@@ -121,20 +121,26 @@
 	<script type="application/ld+json">
 	    {
 	        "@context" : "http://schema.org",
-	        "@type" : "Organization",
+	        "@type" : "WebSite",
 	        "name" : "ReclutaTI - Bolsa de trabajo para profesionales de TI.",
 	        "url" : "https://reclutati.com",
 	        "sameAs": [
 	            "https://twitter.com/reclutaTImx",
 	            "https://www.facebook.com/reclutaTImx"
 	        ],
-	        "address": {
+	        "potentialAction": {
+	        	"@type": "SearchAction",
+	        	"target": "https://reclutati.com/buscar/vacante?string={search_term_string}",
+			    //"target": "https://query.example.com/search?q={search_term_string}",
+			    "query-input": "required name=search_term_string"
+	        }
+	        /*"address": {
 	            "@type": "PostalAddress",
 	            "streetAddress": "Blvd. Antonio L. Rodriguez #1888",
 	            "addressRegion": "NL",
 	            "postalCode": "64650",
 	            "addressCountry": "MX"
-	        }
+	        }*/
 	    }
 	</script>
 @stop
