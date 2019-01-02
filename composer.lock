@@ -2410,24 +2410,23 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "5.2.4",
+            "version": "5.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "7ba7c366477c810d6b56f637f6412f1b2d1b0f9f"
+                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/7ba7c366477c810d6b56f637f6412f1b2d1b0f9f",
-                "reference": "7ba7c366477c810d6b56f637f6412f1b2d1b0f9f",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
+                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "~5.5.0|~5.6.0|~5.7.0",
                 "nesbot/carbon": "^1.21",
                 "php": "^7.1",
-                "spatie/crawler": "^4.1.0",
-                "spatie/temporary-directory": "^1.1"
+                "spatie/crawler": "^4.1.0"
             },
             "require-dev": {
                 "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
@@ -2466,7 +2465,7 @@
                 "laravel-sitemap",
                 "spatie"
             ],
-            "time": "2018-09-17T12:10:32+00:00"
+            "time": "2018-11-05T13:42:06+00:00"
         },
         {
             "name": "spatie/robots-txt",
