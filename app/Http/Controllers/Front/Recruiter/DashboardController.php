@@ -28,6 +28,8 @@ class DashboardController extends Controller
     {
         $consult = Auth::user()->recruiter->companyContact;
 
+        $hasProfilePicture = ($consult->companies->profile_picture == '') ? false : true;
+
         $queryVacancies = Vacancy::where('recruiter_id', Auth::user()->recruiter->id)
                                     ->where('publish', true)
                                     ->with(['candidates'])
@@ -50,7 +52,7 @@ class DashboardController extends Controller
                                                 ->take(5)
                                                 ->get();
 
-    	return view('front.recruiter.dashboard.index', ['vacancies' => $queryVacancies, 'candidatesApplied' => $candidatesApplied]);
+    	return view('front.recruiter.dashboard.index', ['vacancies' => $queryVacancies, 'candidatesApplied' => $candidatesApplied, 'hasProfilePicture' => $hasProfilePicture]);
     }
 
     /**

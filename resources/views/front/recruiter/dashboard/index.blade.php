@@ -21,6 +21,22 @@
 
 				<div class="content">
 					<ul class="dashboard-box-list notifications-list">
+						@if (!$hasProfilePicture)
+							<li>
+								<span class="notification-icon"><i class="icon-material-outline-add-photo-alternate"></i></span>
+								<span class="notification-text">
+									<a href="{{ url('recruiter/dashboard/company') }}" target="_blank">
+										Agregra el logo de tu empresa y da más seguridad a los candidatos en tus vacantes.
+									</a>
+								</span>
+								
+								<!-- Buttons -->
+								<div class="buttons-to-right">
+									{{--<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico btn-noty-mark-as-read" title="Marcar como leído" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>--}}
+								</div>
+							</li>
+						@endif
+
 						@foreach (Auth::user()->unreadNotifications as $notification)
 							
 							<li>
