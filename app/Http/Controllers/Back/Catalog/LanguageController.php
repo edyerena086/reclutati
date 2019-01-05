@@ -56,7 +56,8 @@ class LanguageController extends Controller
         } else {
             $response = [
                 'errors' => true,
-                'message' => 'No se ha podido guardar el nuevo idioma.'
+                'message' => 'No se ha podido guardar el nuevo idioma.',
+                'error_code' => 's0001'
             ];
         }
 
@@ -81,9 +82,28 @@ class LanguageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LanguageRequest $request, $id)
     {
-        //
+        $language = Language::firstOrFail($id);
+
+        $response;
+
+        $languaje->name = $request->idioma;
+
+        if ($languaje->save()) {
+            $response = [
+                'errors' => false,
+                'message' => 'Se ha editado con éxito el idioma '.$request->idioma
+            ];
+        } else {
+            $response = [
+                'errors' => true,
+                'message' => 'No se ha podido actualizar el idioma.',
+                'error_code' => 'u0001'
+            ];
+        }
+
+        return response()->json();
     }
 
     /**

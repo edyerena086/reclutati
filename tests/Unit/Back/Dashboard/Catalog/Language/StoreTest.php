@@ -19,4 +19,34 @@ class StoreTest extends TestCase
 
     	$response->assertStatus(422);
     }
+
+    public function test_send_no_language()
+    {
+    	$response = $this->json('POST', $this->url);
+
+    	$response
+    		->assertStatus(422)
+    		->assertJson([
+    			'errors' => [
+    				'idioma' => [
+	    				'El campo idioma es obligatorio.'
+	    			]
+    			]
+    		]);
+    }
+
+    public function test_success()
+    {
+    	$data = [
+    		'idioma' => 'otomano'
+    	];
+
+    	$response = $this->json('POST', $this->url, $data);
+
+    	$response
+    		->assertStatus(200)
+    		->assertJson([
+    			'errors' => false
+    		]);
+    }
 }
