@@ -121,7 +121,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-12">
-					© {{ \Carbon\Carbon::now()->year }} <strong>ReclutaTI</strong>. Todos los derechos reservados.
+					© {{ \Carbon\Carbon::now()->year }} <strong>ReclutaTI</strong>. Todos los derechos reservados. Powered by <a href="http://uitastudio.com" target="_blank" style="color: #fff">UitaStudio</a>
 				</div>
 			</div>
 		</div>

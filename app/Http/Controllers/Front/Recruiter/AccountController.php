@@ -29,6 +29,8 @@ class AccountController extends Controller
     {
         $this->middleware('recruiter.guest')->except(['logout']);
 
+        $this->middleware('throttle:5,1')->only(['login']);
+
         $this->middleware('recruiter.auth')->only(['logout']);
     }
 

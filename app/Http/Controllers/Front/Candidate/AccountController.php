@@ -28,6 +28,8 @@ class AccountController extends Controller
 	{
 		$this->middleware('candidate.guest')->except(['logout']);
 
+        $this->middleware('throttle:5,1')->only(['login']);
+
 		$this->middleware('candidate.auth')->only(['logout']);
 	}
 
