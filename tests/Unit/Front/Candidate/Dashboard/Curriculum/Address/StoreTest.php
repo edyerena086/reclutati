@@ -142,7 +142,7 @@ class StoreTest extends TestCase
 
     public function test_success()
     {
-    	$candidate = factory(\ReclutaTI\Candidate::class)->create();
+    	$candidate = factory(\ReclutaTI\Candidate::class)->make();
 
     	Auth::attempt(['email' => $candidate->user()->first()->email, 'password' => 'secret']);
 
