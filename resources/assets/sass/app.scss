@@ -163,6 +163,16 @@
 }
 
 /**
+ * Overrides hideo classes
+ */
+.mfp-wrap {
+	z-index: 99995;
+}
+.mfp-bg {
+	z-index: 99994;
+}
+
+/**
  * Media query
  */
 @media (max-width: 479px) and (min-width: 0px) {

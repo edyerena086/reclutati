@@ -163,7 +163,7 @@ class CurriculumController extends Controller
             array_map('unlink', glob($thumnailPath."/*.*"));
             rmdir($thumnailPath);
         }
-        mkdir($thumnailPath);
+        mkdir($thumnailPath, 0777, true);
         $thumbnail = Image::make($request->file('imagenDePerfil'));
         $thumbnail->fit(300, 300)->save($thumnailPath.'/'.$fileName);
 

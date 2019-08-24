@@ -89,7 +89,7 @@
 										@if(Auth::user()->candidate->profile_picture == '')
 											<img src="{{ url('hireo/images/user-avatar-placeholder.png') }}" alt="">
 										@else
-											<img src="{{ asset('storage/candidates/'.Auth::user()->candidate->id.'/'.Auth::user()->candidate->profile_picture) }}" alt="">
+											<img src="{{ asset('uploads/candidates/'.Auth::user()->candidate->id.'/'.Auth::user()->candidate->profile_picture) }}" alt="">
 										@endif
 									</div>
 									<div class="user-name">

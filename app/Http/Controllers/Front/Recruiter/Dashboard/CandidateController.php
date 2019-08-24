@@ -12,7 +12,8 @@ class CandidateController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('candidate.auth')->only(['apply']);
+        //$this->middleware('candidate.auth')->only(['apply']);
+        $this->middleware('recruiter.auth')->only(['detail']);
 	}
 
 	/**
