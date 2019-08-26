@@ -1,13 +1,13 @@
 @component('mail::message')
 # ¡Hola {{ $candidateName }}!
 
-Haz recibido un mensaje por parte de {{ $recruiterName }}
+Haz recibido un mensaje por parte de **{{ $recruiterName }}** de la empresa **{{ $companyName }}**
 
 El mensaje es el siguiente:
 
-> {{ $message }}
+> ___{{ $message }}___
 
-@component('mail::button', ['url' => url('recruiter')])
+@component('mail::button', ['url' => url('candidate')])
 Ver mensaje
 @endcomponent
 

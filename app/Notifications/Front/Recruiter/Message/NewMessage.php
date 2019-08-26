@@ -13,6 +13,7 @@ class NewMessage extends Notification
 
     private $recruiterName;
     private $candidateName;
+    private $companyName;
     private $message;
 
     /**
@@ -20,10 +21,11 @@ class NewMessage extends Notification
      *
      * @return void
      */
-    public function __construct($recruiterName, $candidateName, $message)
+    public function __construct($recruiterName, $candidateName, $companyName, $message)
     {
         $this->recruiterName = $recruiterName;
         $this->candidateName = $candidateName;
+        $this->companyName = $companyName;
         $this->message = $message;
     }
 
@@ -50,6 +52,7 @@ class NewMessage extends Notification
                                 ->markdown('emails.front.recruiter.message.new', [
                                     'recruiterName' => $this->recruiterName,
                                     'candidateName' => $this->candidateName,
+                                    'companyName' => $this->companyName,
                                     'message' => $this->message
                                 ]);
     }
@@ -63,7 +66,7 @@ class NewMessage extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->recruiterName.' te ha enviado un nuevo mensaje directo.',
+            'message_to_display' => $this->recruiterName.' te ha enviado un nuevo mensaje directo.',
             'icon' => 'icon-feather-message-square',
             'url' => 'candidate/dashboard/messages'
         ];

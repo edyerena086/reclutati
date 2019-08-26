@@ -1,10 +1,10 @@
 @extends('layouts.front.candidate')
 
 {{-- Page Title --}}
-@section('pageTitle', 'Mis Vacantes Aplicadas')
+@section('pageTitle', 'Mis Postulaciones')
 
 {{-- Section Title --}}
-@section('sectionTitle', 'Mis Vacantes Aplicadas')
+@section('sectionTitle', 'Mis Postulaciones')
 
 {{-- Action button --}}
 @section('actionButton')
@@ -26,7 +26,7 @@
 			<div class="dashboard-box margin-top-0">
 				<!-- Headline -->
 				<div class="headline">
-					<h3><i class="icon-material-outline-business-center"></i> Mis vacantes aplicadas</h3>
+					<h3><i class="icon-material-outline-business-center"></i> Mis Postulaciones</h3>
 				</div>
 
 				<div class="content">

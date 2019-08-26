@@ -13,15 +13,18 @@
 			<div class="dashboard-box">
 				<div class="headline">
 					<h3><i class="icon-material-baseline-notifications-none"></i> Notificaciones</h3>
-					<button class="mark-as-read ripple-effect-dark" data-url="{{ url('notifications/all-mark-as-read') }}" data-tippy-placement="left" title="Marcar todas como leídas">
-							<i class="icon-feather-check-square"></i>
-					</button>
+					
+					@if (Auth::user()->unreadNotifications->count())
+						<button class="mark-as-read ripple-effect-dark" data-url="{{ url('notifications/all-mark-as-read') }}" data-tippy-placement="left" title="Marcar todas como leídas">
+								<i class="icon-feather-check-square"></i>
+						</button>
+					@endif
 				</div>
 
 				<div class="content">
-					<ul class="dashboard-box-list notifications-list">
-						@foreach (Auth::user()->unreadNotifications as $notification)
-							
+					
+					@forelse (Auth::user()->unreadNotifications as $notification)
+						<ul class="dashboard-box-list notifications-list">
 							<li>
 								<span class="notification-icon"><i class="{{ $notification->data['icon'] }}"></i></span>
 								<span class="notification-text">
@@ -35,9 +38,15 @@
 									<a href="{{ url('notifications/mark-as-read/'.Auth::user()->id.'/'.$notification->id) }}" class="button ripple-effect ico btn-noty-mark-as-read" title="Marcar como leído" data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
 								</div>
 							</li>
+						</ul>
 
-						@endforeach
-					</ul>
+					@empty
+							
+							<ul class="dashboard-box-list">
+								<li>No tienes ninguna notficación</li>
+							</ul>
+
+					@endforelse
 				</div>
 			</div>
 		</div>
@@ -48,12 +57,12 @@
 			{{-- Vacancy applied --}}
 			<div class="dashboard-box main-box-in-row">
 				<div class="headline">
-					<h3><i class="icon-brand-wpforms"></i> Últimas vacantes aplicadas</h3>
+					<h3><i class="icon-brand-wpforms"></i> Últimas postulaciones</h3>
 				</div>
 
 				<div class="container">
-					<ul class="dashboard-box-list">
-						@foreach ($appliedVacancies as $vacancy)
+					@forelse ($appliedVacancies as $vacancy)
+						<ul class="dashboard-box-list">
 							<li class="vacancy-item">
 								{{-- vacancy description --}}
 								<div class="job-listing">
@@ -81,8 +90,12 @@
 									</div>
 								</div>
 							</li>
-						@endforeach
-					</ul>
+						</ul>
+					@empty
+						<ul class="dashboard-box-list">
+							<li>No tienes ninguna postulación</li>
+						</ul>
+					@endforelse
 				</div>
 			</div>
 		</div>
@@ -95,8 +108,8 @@
 				</div>
 
 				<div class="container">
-					<ul class="dashboard-box-list">
-						@foreach ($savedVacancies as $vacancy)
+					@forelse ($savedVacancies as $vacancy)
+						<ul class="dashboard-box-list">
 							<li class="vacancy-item">
 								{{-- vacancy description --}}
 								<div class="job-listing">
@@ -124,8 +137,12 @@
 									</div>
 								</div>
 							</li>
-						@endforeach
-					</ul>
+						</ul>
+					@empty
+						<ul class="dashboard-box-list">
+							<li>No tienes vacantes guardadas</li>
+						</ul>
+					@endforelse
 				</div>
 			</div>
 		</div>

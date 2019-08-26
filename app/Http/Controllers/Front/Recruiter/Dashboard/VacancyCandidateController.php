@@ -44,7 +44,7 @@ class VacancyCandidateController extends Controller
     				'profile_picture' => $candidate->candidate->profile_picture,
     				'email' => $candidate->candidate->user->email,
     				'cellphone' => $candidate->candidate->cellphone,
-                    'file' => CandidateVacancy::where('candidate_id', $candidate->candidate->id)->where('vacancy_id', $vacancy->id)->first()->candidate_file_id
+            'file' => CandidateVacancy::where('candidate_id', $candidate->candidate->id)->where('vacancy_id', $vacancy->id)->first()->candidate_file_id
     			];
     		}
 
@@ -130,10 +130,11 @@ class VacancyCandidateController extends Controller
 
     		if ($sendMessage) {
                 $message = $request->message;
-                $recruiterName = ucwords(Auth::user()->name.' '.Auth::user()->recruiter->last_name);
+								$recruiterName = ucwords(Auth::user()->name.' '.Auth::user()->recruiter->last_name);
+								$companyName = Auth::user()->recruiter->companyContact->companies->name;
                 $candidateName = ucwords($candidate->user->name);
 
-                Notification::send($candidate->user, new NewMessage($recruiterName, $candidateName, $message));
+                Notification::send($candidate->user, new NewMessage($recruiterName, $candidateName, $companyName, $message));
 
     			$response = [
     				'errors' => false,

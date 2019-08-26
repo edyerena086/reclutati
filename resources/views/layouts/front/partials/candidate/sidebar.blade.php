@@ -17,7 +17,8 @@
 					<ul data-submenu-title="Inicio">
 						<li><a href="{{ url('candidate/dashboard') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 						<li><a href="{{ url('candidate/dashboard/curriculum') }}"><i class="icon-material-outline-assignment"></i> Mi Curriculum</a></li>
-						<li>
+						<li><a href="{{ url('candidate/dashboard/vacancies/favourites') }}"><i class="icon-material-outline-library-books"></i> Vacantes en favoritos</a></li>
+						{{--<li>
 							<a href=""><i class="icon-material-outline-library-books"></i> Vacantes</a>
 
 							<ul class="dropdown-nav">
@@ -27,7 +28,8 @@
 									<li><a href="{{ url('candidate/dashboard/vacancies/applied') }}">Vacantes aplicadas</a></li>
 								</li>
 							</ul>
-						</li>
+						</li>--}}
+						<li><a href="{{ url('candidate/dashboard/vacancies/applied') }}"><i class="icon-material-outline-check"></i> Mi Postulaciones</a></li>
 						{{--<li><a href="{{ url('candidate/dashboard/messages') }}"><i class="icon-material-outline-question-answer"></i> Mensajes <span class="nav-tag">{{ \ReclutaTI\Message::where('addressee', Auth::user()->id)->where('status', 0)->count() }}</span></a></li>--}}
 					</ul>
 
