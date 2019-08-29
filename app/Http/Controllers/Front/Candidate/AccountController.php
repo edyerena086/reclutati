@@ -128,7 +128,7 @@ class AccountController extends Controller
 
     		if ($candidate->save()) {
     			//Send welcome Mail
-    			Mail::to($user->email)->send(new Welcome($user));
+    			return Mail::to($user->email)->send(new Welcome($user));
 
     			//Log user in
     			Auth::attempt([

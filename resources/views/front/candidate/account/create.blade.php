@@ -85,11 +85,11 @@
 							</a>
 						</li>
 
-						<li>
+						{{--<li>
 							<a href="{{ route('social_auth', ['driver' => 'google']) }}" class="loginBtn loginBtn--google">
 							  Registrate con Google
 							</a>
-						</li>
+						</li>--}}
 
 						<li>
 							<a href="{{ route('social_auth', ['driver' => 'github']) }}" class="loginBtn loginBtn--github">
